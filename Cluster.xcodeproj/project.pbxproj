@@ -8,12 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */; };
-		CCBC38591C1DCAA700E0EFEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38581C1DCAA700E0EFEF /* ViewController.swift */; };
+		CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */; };
 		CCBC385C1C1DCAA700E0EFEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */; };
 		CCBC385E1C1DCAA700E0EFEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBC385D1C1DCAA700E0EFEF /* Assets.xcassets */; };
 		CCBC38611C1DCAA700E0EFEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBC385F1C1DCAA700E0EFEF /* LaunchScreen.storyboard */; };
 		CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC386B1C1DCAA700E0EFEF /* ClusterTests.swift */; };
 		CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38761C1DCAA700E0EFEF /* ClusterUITests.swift */; };
+		CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */; };
+		CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */; };
+		CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */; };
+		CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */; };
+		CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */; };
+		CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */; };
+		CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
+		CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
+		CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
+		CCBC38A71C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
+		CCBC38A81C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
+		CCBC38A91C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
+		CCBC38AC1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
+		CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
+		CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
+		CCBC38B01C1E1D2000E0EFEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBC38AF1C1E1D2000E0EFEF /* QuartzCore.framework */; };
+		CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
+		CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
+		CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +55,7 @@
 /* Begin PBXFileReference section */
 		CCBC38531C1DCAA700E0EFEF /* Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cluster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CCBC38581C1DCAA700E0EFEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CCBC385B1C1DCAA700E0EFEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCBC385D1C1DCAA700E0EFEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCBC38601C1DCAA700E0EFEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +66,16 @@
 		CCBC38721C1DCAA700E0EFEF /* ClusterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClusterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBC38761C1DCAA700E0EFEF /* ClusterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterUITests.swift; sourceTree = "<group>"; };
 		CCBC38781C1DCAA700E0EFEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSummaryCard.swift; sourceTree = "<group>"; };
+		CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSContactDetail.swift; sourceTree = "<group>"; };
+		CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUtils.swift; sourceTree = "<group>"; };
+		CCBC38AF1C1E1D2000E0EFEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CCBC38B11C1E1DD700E0EFEF /* Cluster-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cluster-Bridging-Header.h"; sourceTree = "<group>"; };
+		CCBC38B21C1E1DD700E0EFEF /* ClusterTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClusterTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClusterUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSContactDetailFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBC38B01C1E1D2000E0EFEF /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +107,7 @@
 		CCBC384A1C1DCAA700E0EFEF = {
 			isa = PBXGroup;
 			children = (
+				CCBC38AF1C1E1D2000E0EFEF /* QuartzCore.framework */,
 				CCBC38551C1DCAA700E0EFEF /* Cluster */,
 				CCBC386A1C1DCAA700E0EFEF /* ClusterTests */,
 				CCBC38751C1DCAA700E0EFEF /* ClusterUITests */,
@@ -97,12 +128,20 @@
 		CCBC38551C1DCAA700E0EFEF /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				CCBC38AA1C1E01B200E0EFEF /* utils */,
+				CCBC38991C1DF5F100E0EFEF /* models */,
+				CCBC38941C1DDBAF00E0EFEF /* views */,
 				CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */,
-				CCBC38581C1DCAA700E0EFEF /* ViewController.swift */,
+				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
 				CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */,
 				CCBC385D1C1DCAA700E0EFEF /* Assets.xcassets */,
 				CCBC385F1C1DCAA700E0EFEF /* LaunchScreen.storyboard */,
 				CCBC38621C1DCAA700E0EFEF /* Info.plist */,
+				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
+				CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */,
+				CCBC38B11C1E1DD700E0EFEF /* Cluster-Bridging-Header.h */,
+				CCBC38B21C1E1DD700E0EFEF /* ClusterTests-Bridging-Header.h */,
+				CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */,
 			);
 			path = Cluster;
 			sourceTree = "<group>";
@@ -123,6 +162,31 @@
 				CCBC38781C1DCAA700E0EFEF /* Info.plist */,
 			);
 			path = ClusterUITests;
+			sourceTree = "<group>";
+		};
+		CCBC38941C1DDBAF00E0EFEF /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		CCBC38991C1DF5F100E0EFEF /* models */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */,
+				CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		CCBC38AA1C1E01B200E0EFEF /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +320,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCBC38591C1DCAA700E0EFEF /* ViewController.swift in Sources */,
+				CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */,
+				CCBC38A71C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
+				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
+				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */,
+				CCBC38AC1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +335,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCBC38A81C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
+				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
+				CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCBC38A91C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
+				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
+				CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,10 +481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Cluster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.Cluster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/Cluster-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -410,10 +495,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Cluster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.Cluster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/Cluster-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -421,10 +508,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ClusterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.ClusterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/ClusterTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cluster.app/Cluster";
 			};
 			name = Debug;
@@ -433,10 +523,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ClusterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.ClusterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/ClusterTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cluster.app/Cluster";
 			};
 			name = Release;
@@ -444,10 +536,13 @@
 		CCBC38821C1DCAA700E0EFEF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ClusterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.ClusterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/ClusterUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = Cluster;
 				USES_XCTRUNNER = YES;
 			};
@@ -456,10 +551,12 @@
 		CCBC38831C1DCAA700E0EFEF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ClusterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Official.ClusterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cluster/ClusterUITests-Bridging-Header.h";
 				TEST_TARGET_NAME = Cluster;
 				USES_XCTRUNNER = YES;
 			};
