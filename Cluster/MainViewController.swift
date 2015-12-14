@@ -94,6 +94,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.contactDisplayPic.image = UIImage(named: (cellModel?.profilePicImageURL)!)
         cell.name.text = cellModel?.contactName
         cell.designation.text = cellModel?.contactDesignation
+        cell.email.text = cellModel?.primaryEmail
         return cell
     }
     
