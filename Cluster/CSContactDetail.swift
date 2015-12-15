@@ -9,6 +9,7 @@
 import Foundation
 
 class CSContactDetail: NSObject {
+    
     // Primary Required Properties
     let profilePicImageURL: String!
     let contactName: String!

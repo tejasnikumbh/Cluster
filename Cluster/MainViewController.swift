@@ -10,7 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    @IBOutlet weak var cardSummaryTableView: UITableView!
     @IBOutlet weak var contactsTableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -20,7 +19,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.contactDetailFetcher = CSContactDetailFetcher.fetchContactDetailsWithCompletion({})
+        
+        CSContactDetailFetcher.fetchContactDetailsWithCompletion({
+            (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
+                self.contactDetailFetcher = contactDetailsFetcher
+        })
+        
         setupNavBar()
         setupSearchBar()
     }

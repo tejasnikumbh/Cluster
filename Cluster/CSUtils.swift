@@ -10,6 +10,12 @@ import UIKit
 
 class CSUtils: NSObject {
  
+    /* ============================= UI Utils ================================== */
+    static func showCameraActionSheet(){
+        
+    }
+    
+    /* ============================= Validation Utils ========================== */
     static func validatePhoneNumber(phoneNumber: String?) -> Bool{
         if(phoneNumber == nil) {
             print("Internal Error: Text Input String is nil")

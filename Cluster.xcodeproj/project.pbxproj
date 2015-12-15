@@ -23,9 +23,6 @@
 		CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
 		CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
 		CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */; };
-		CCBC38A71C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
-		CCBC38A81C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
-		CCBC38A91C1DFBA300E0EFEF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */; };
 		CCBC38AC1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
 		CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
 		CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */; };
@@ -69,7 +66,6 @@
 		CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSummaryCard.swift; sourceTree = "<group>"; };
 		CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSContactDetail.swift; sourceTree = "<group>"; };
 		CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUtils.swift; sourceTree = "<group>"; };
 		CCBC38AF1C1E1D2000E0EFEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CCBC38B11C1E1DD700E0EFEF /* Cluster-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cluster-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -128,20 +124,15 @@
 		CCBC38551C1DCAA700E0EFEF /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				CCBC38BF1C1FA73400E0EFEF /* supportingfiles */,
+				CCBC38BE1C1FA70400E0EFEF /* storyboards */,
+				CCBC38BD1C1FA6E500E0EFEF /* controllers */,
 				CCBC38AA1C1E01B200E0EFEF /* utils */,
 				CCBC38991C1DF5F100E0EFEF /* models */,
 				CCBC38941C1DDBAF00E0EFEF /* views */,
 				CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */,
-				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
-				CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */,
 				CCBC385D1C1DCAA700E0EFEF /* Assets.xcassets */,
-				CCBC385F1C1DCAA700E0EFEF /* LaunchScreen.storyboard */,
 				CCBC38621C1DCAA700E0EFEF /* Info.plist */,
-				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
-				CCBC38A61C1DFBA300E0EFEF /* SearchViewController.swift */,
-				CCBC38B11C1E1DD700E0EFEF /* Cluster-Bridging-Header.h */,
-				CCBC38B21C1E1DD700E0EFEF /* ClusterTests-Bridging-Header.h */,
-				CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */,
 			);
 			path = Cluster;
 			sourceTree = "<group>";
@@ -187,6 +178,34 @@
 				CCBC38AB1C1E01C800E0EFEF /* CSUtils.swift */,
 			);
 			name = utils;
+			sourceTree = "<group>";
+		};
+		CCBC38BD1C1FA6E500E0EFEF /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
+				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		CCBC38BE1C1FA70400E0EFEF /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */,
+				CCBC385F1C1DCAA700E0EFEF /* LaunchScreen.storyboard */,
+			);
+			name = storyboards;
+			sourceTree = "<group>";
+		};
+		CCBC38BF1C1FA73400E0EFEF /* supportingfiles */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC38B11C1E1DD700E0EFEF /* Cluster-Bridging-Header.h */,
+				CCBC38B21C1E1DD700E0EFEF /* ClusterTests-Bridging-Header.h */,
+				CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */,
+			);
+			name = supportingfiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +340,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */,
-				CCBC38A71C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
@@ -336,7 +354,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
-				CCBC38A81C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
@@ -350,7 +367,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
-				CCBC38A91C1DFBA300E0EFEF /* SearchViewController.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
