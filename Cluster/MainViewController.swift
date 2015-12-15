@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var cardSummaryTableView: UITableView!
     @IBOutlet weak var contactsTableView: UITableView!
@@ -21,26 +21,32 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.contactDetailFetcher = CSContactDetailFetcher.fetchContactDetailsWithCompletion({})
-        self.automaticallyAdjustsScrollViewInsets = false
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        self.definesPresentationContext = true
-        self.contactsTableView.tableHeaderView = searchController.searchBar
-
         setupNavBar()
+        setupSearchBar()
     }
     
     func setupNavBar() {
+        // Setting up the bar properties
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "Helvetica", size: 22)!
         ]
-        
+        // Setting up and adding the items
         let title = "Cluster"
         let settingsBtn = getBarButtonItem(UIImage(named: "settings"), selector: Selector("settingsPressed:"))
         let addUserBtn = getBarButtonItem(UIImage(named: "add_user"), selector: Selector("addUserPressed:"))
         self.navigationItem.title = title
         self.navigationItem.leftBarButtonItems = [settingsBtn]
         self.navigationItem.rightBarButtonItems = [addUserBtn]
+    }
+    
+    func setupSearchBar() {
+        // Important while resizing
+        self.automaticallyAdjustsScrollViewInsets = false
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+        // Finally setting our searchBar to be the header view
+        self.contactsTableView.tableHeaderView = searchController.searchBar
     }
 
     func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem{
@@ -90,7 +96,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         presentViewController(phoneNumberPrompt, animated: true, completion: nil)
     }
     
-    // UITableViewDataSource methods
+    // UISearchResultUpdating protocol related methods
+    func filterContentForSearchText(searchText: String?, scope: String = "All") {
+        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter { userContactDetail in
+            return userContactDetail.contactName.lowercaseString.containsString((searchText?.lowercaseString)!)
+        })!
+        self.contactsTableView.reloadData()
+    }
+}
+
+// Extension implementing the UITableViewDatasource and UITableViewDelegate methods
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    // UITableViewDatasource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.searchController.active && self.searchController.searchBar.text != "" {
             return filteredContacts.count
@@ -116,14 +134,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    // UISearchResultUpdating related methods
-    func filterContentForSearchText(searchText: String?, scope: String = "All") {
-        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter { userContactDetail in
-            return userContactDetail.contactName.lowercaseString.containsString((searchText?.lowercaseString)!)
-        })!
-        self.contactsTableView.reloadData()
     }
 }
 
