@@ -11,7 +11,7 @@ import QuartzCore
 
 class EditProfileViewController: UIViewController {
 
-    /* ============================== Outlets ============================== */
+    /* ====================================== Outlets ========================================= */
     @IBOutlet weak var rootScrollView: UIScrollView!
     
     @IBOutlet weak var detailCardProfilePic: UIImageView!
@@ -28,7 +28,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var secondaryEmailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
-    /* ========================= Super Methods Overridden =================== */
+    /* ================================= Super Methods Overridden ============================= */
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -45,7 +45,7 @@ class EditProfileViewController: UIViewController {
     }
     
 
-    /* ========================== View Setup Methods ======================== */
+    /* ================================= View Setup Methods =================================== */
     func setupView() {
         addGradientToView(detailCardProfilePic)
     }
@@ -63,7 +63,7 @@ class EditProfileViewController: UIViewController {
         imageView.layer.insertSublayer(gradient, atIndex: 0)
     }
     
-    /* ============================ Gesture Recognizers ======================= */
+    /* ================================= Gesture Recognizers ================================== */
     func setupGestureRecognizers() {
         var tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("backBtnPressed:"))
@@ -76,15 +76,58 @@ class EditProfileViewController: UIViewController {
         self.editDetailsContainerView.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    // Selectors
     func backBtnPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func editPhotoPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
-    
+        let choosePictureController = UIAlertController(title: "PLEASE CHOOSE A METHOD",
+            message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let cameraAction = UIAlertAction(title: "Camera",
+            style: UIAlertActionStyle.Default, handler: {
+            (action: UIAlertAction) -> Void in
+            self.presentViewControllerWithSourceType(UIImagePickerControllerSourceType.Camera)
+            choosePictureController.dismissViewControllerAnimated(true, completion: nil)
+        })
+        let galleryAction = UIAlertAction(title: "Gallery",
+            style: UIAlertActionStyle.Default, handler: {
+            (action: UIAlertAction) -> Void in
+            self.presentViewControllerWithSourceType(UIImagePickerControllerSourceType.PhotoLibrary)
+            choosePictureController.dismissViewControllerAnimated(true, completion: nil)
+        })
+        choosePictureController.addAction(cameraAction)
+        choosePictureController.addAction(galleryAction)
+        self.presentViewController(choosePictureController, animated: true, completion: nil)
     }
     
     func editDetailsPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        
+    }
     
+    // Selector Helpers
+    func presentViewControllerWithSourceType(
+        imagePickerSourceType: UIImagePickerControllerSourceType) {
+            
+        if(UIImagePickerController.isSourceTypeAvailable(imagePickerSourceType)) {
+            let imagePickerView = UIImagePickerController()
+            imagePickerView.allowsEditing = true
+            imagePickerView.delegate = self
+            imagePickerView.sourceType = imagePickerSourceType
+            self.presentViewController(imagePickerView, animated: true, completion: nil)
+        }
+            
+    }
+    
+}
+
+// Extension for picking photo
+extension EditProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController,
+        didFinishPickingImage image: UIImage,
+        editingInfo: [String : AnyObject]?) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.detailCardProfilePic.image = image
+            // Persist the image in local cache as well as store it to the backend
     }
 }
