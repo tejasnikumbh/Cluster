@@ -139,7 +139,9 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hvu-Ab-8So" firstAttribute="centerY" secondItem="RUZ-1O-8bY" secondAttribute="centerY" id="35d-Pz-3ul"/>
+                                                <constraint firstItem="hvu-Ab-8So" firstAttribute="centerY" secondItem="RUZ-1O-8bY" secondAttribute="centerY" id="35d-Pz-3ul">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                                                </constraint>
                                                 <constraint firstItem="ozs-3z-QIm" firstAttribute="leading" secondItem="RUZ-1O-8bY" secondAttribute="leading" id="85o-Rb-Siv">
                                                     <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                                 </constraint>
@@ -161,7 +163,7 @@
                                                     <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                                 </constraint>
                                                 <constraint firstItem="Vor-wX-xwu" firstAttribute="top" secondItem="RUZ-1O-8bY" secondAttribute="topMargin" constant="10" id="bdH-ZU-NMW">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="4"/>
                                                 </constraint>
                                                 <constraint firstItem="C4z-Ud-UMB" firstAttribute="leading" secondItem="8OD-Qo-I28" secondAttribute="leading" id="bt5-DJ-MZv"/>
                                                 <constraint firstAttribute="trailing" secondItem="ozs-3z-QIm" secondAttribute="trailing" id="jjM-pK-6cA">
@@ -237,7 +239,7 @@
                             <constraint firstItem="SQ0-KE-TrX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rp2-qQ-PMB"/>
                             <constraint firstAttribute="trailing" secondItem="SQ0-KE-TrX" secondAttribute="trailing" id="cfV-3r-kpU"/>
                             <constraint firstItem="SQ0-KE-TrX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yIw-ke-P2Z">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-54"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                         </constraints>
                         <variation key="default">
@@ -268,6 +270,7 @@
                     <navigationItem key="navigationItem" id="Ji8-6G-Pai"/>
                     <connections>
                         <outlet property="cardSummaryTableView" destination="SQ0-KE-TrX" id="I8J-Mj-9wq"/>
+                        <outlet property="contactsTableView" destination="SQ0-KE-TrX" id="sTK-CI-AEi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1030,23 +1033,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEY-cQ-L02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-372" y="-432"/>
-        </scene>
-        <!--Search View Controller-->
-        <scene sceneID="pEX-cA-uHc">
-            <objects>
-                <viewController storyboardIdentifier="searchViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s2a-c5-yZe" customClass="SearchViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dN9-5c-ctR"/>
-                        <viewControllerLayoutGuide type="bottom" id="gsf-FJ-odd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cpE-oo-Cf0">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yvQ-wS-d8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="564" y="-432"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mh5-ty-Pgn">

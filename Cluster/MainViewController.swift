@@ -11,23 +11,36 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var cardSummaryTableView: UITableView!
+    @IBOutlet weak var contactsTableView: UITableView!
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     var contactDetailFetcher: CSContactDetailFetcher?
+    var filteredContacts = [CSContactDetail]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.contactDetailFetcher = CSContactDetailFetcher.fetchContactDetailsWithCompletion({})
+        self.automaticallyAdjustsScrollViewInsets = false
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+        self.contactsTableView.tableHeaderView = searchController.searchBar
+
         setupNavBar()
-        self.contactDetailFetcher = CSContactDetailFetcher.fetchContactDetailsWithCompletion {}
     }
     
     func setupNavBar() {
-        let space = getBarButtonItem(nil, selector: nil)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Helvetica", size: 22)!
+        ]
+        
+        let title = "Cluster"
         let settingsBtn = getBarButtonItem(UIImage(named: "settings"), selector: Selector("settingsPressed:"))
         let addUserBtn = getBarButtonItem(UIImage(named: "add_user"), selector: Selector("addUserPressed:"))
-        let searchUserBtn = getBarButtonItem(UIImage(named: "search"), selector: Selector("searchPressed:"))
-        
+        self.navigationItem.title = title
         self.navigationItem.leftBarButtonItems = [settingsBtn]
-        self.navigationItem.rightBarButtonItems = [searchUserBtn, space, addUserBtn]
+        self.navigationItem.rightBarButtonItems = [addUserBtn]
     }
 
     func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem{
@@ -77,20 +90,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         presentViewController(phoneNumberPrompt, animated: true, completion: nil)
     }
     
-    func searchPressed(searchButton: UIBarButtonItem) {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : SearchViewController = storyboard.instantiateViewControllerWithIdentifier("searchViewController") as! SearchViewController
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
-    
     // UITableViewDataSource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.searchController.active && self.searchController.searchBar.text != "" {
+            return filteredContacts.count
+        }
         return (self.contactDetailFetcher?.userContactDetails.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("csCard") as! CSSummaryCard
-        let cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
+        var cellModel: CSContactDetail?
+        if searchController.active && searchController.searchBar.text != "" {
+            cellModel = filteredContacts[indexPath.row]
+        } else {
+            cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
+        }
         cell.contactDisplayPic.image = UIImage(named: (cellModel?.profilePicImageURL)!)
         cell.name.text = cellModel?.contactName
         cell.designation.text = cellModel?.contactDesignation
@@ -101,5 +116,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    // UISearchResultUpdating related methods
+    func filterContentForSearchText(searchText: String?, scope: String = "All") {
+        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter { userContactDetail in
+            return userContactDetail.contactName.lowercaseString.containsString((searchText?.lowercaseString)!)
+        })!
+        self.contactsTableView.reloadData()
+    }
+}
+
+// Extension implementing the UISearchResultsUpdating Protocol
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
