@@ -30,6 +30,12 @@
 		CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
 		CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
 		CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */; };
+		CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
+		CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
+		CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
+		CCBC38CB1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
+		CCBC38CC1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
+		CCBC38CD1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +78,8 @@
 		CCBC38B21C1E1DD700E0EFEF /* ClusterTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClusterTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClusterUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSContactDetailFetcher.swift; sourceTree = "<group>"; };
+		CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileDetailsViewController.swift; sourceTree = "<group>"; };
+		CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEffects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,7 @@
 		CCBC38551C1DCAA700E0EFEF /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
+				CCBC38C91C21677F00E0EFEF /* libraries */,
 				CCBC38BF1C1FA73400E0EFEF /* supportingfiles */,
 				CCBC38BE1C1FA70400E0EFEF /* storyboards */,
 				CCBC38BD1C1FA6E500E0EFEF /* controllers */,
@@ -185,6 +194,7 @@
 			children = (
 				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
 				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
+				CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -206,6 +216,14 @@
 				CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */,
 			);
 			name = supportingfiles;
+			sourceTree = "<group>";
+		};
+		CCBC38C91C21677F00E0EFEF /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+				CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */,
+			);
+			name = libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,10 +358,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */,
+				CCBC38CB1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */,
 				CCBC38AC1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
 			);
@@ -354,11 +374,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
 				CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
+				CCBC38CC1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,11 +389,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
 				CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
+				CCBC38CD1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +621,7 @@
 				CCBC387D1C1DCAA700E0EFEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CCBC387E1C1DCAA700E0EFEF /* Build configuration list for PBXNativeTarget "ClusterTests" */ = {
 			isa = XCConfigurationList;
@@ -605,6 +630,7 @@
 				CCBC38801C1DCAA700E0EFEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CCBC38811C1DCAA700E0EFEF /* Build configuration list for PBXNativeTarget "ClusterUITests" */ = {
 			isa = XCConfigurationList;
@@ -613,6 +639,7 @@
 				CCBC38831C1DCAA700E0EFEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -102,7 +102,11 @@ class EditProfileViewController: UIViewController {
     }
     
     func editDetailsPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
-        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : EditProfileDetailsViewController = storyboard.instantiateViewControllerWithIdentifier("editProfileDetailsViewController") as! EditProfileDetailsViewController
+        vc.backgroundImage = self.view.pb_takeSnapshot()
+        self.presentViewController(vc, animated: true, completion: nil)
+
     }
     
     // Selector Helpers
