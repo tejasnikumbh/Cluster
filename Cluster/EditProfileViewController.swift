@@ -45,7 +45,7 @@ class EditProfileViewController: UIViewController {
     }
     
 
-    /* ================================= View Setup Methods =================================== */
+    /* ================================= View Config Methods =================================== */
     func setupView() {
         addGradientToView(detailCardProfilePic)
     }
@@ -63,7 +63,6 @@ class EditProfileViewController: UIViewController {
         imageView.layer.insertSublayer(gradient, atIndex: 0)
     }
     
-    /* ================================= Gesture Recognizers ================================== */
     func setupGestureRecognizers() {
         var tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("backBtnPressed:"))
@@ -76,7 +75,8 @@ class EditProfileViewController: UIViewController {
         self.editDetailsContainerView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    // Selectors
+    /* ======================================= Selectors ====================================== */
+    
     func backBtnPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -109,7 +109,6 @@ class EditProfileViewController: UIViewController {
 
     }
     
-    // Selector Helpers
     func presentViewControllerWithSourceType(
         imagePickerSourceType: UIImagePickerControllerSourceType) {
             

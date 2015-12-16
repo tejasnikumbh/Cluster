@@ -9,24 +9,37 @@
 import UIKit
 
 class EditProfileDetailsViewController: UIViewController {
+
+    /* ====================================== Outlets ========================================= */
     
     var backgroundImage: UIImage?
+    
     @IBOutlet weak var backgroundImageMask: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var closeBtnContainer: UIView!
+
+    /* ================================= Super Methods Overridden ============================= */
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupGestureRecognizers()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.addTintedBlur()
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
+
+    /* ================================= View Config Methods =================================== */
+
+    func setupView() {
+        self.addTintedBlur()
+    }
+ 
     func addTintedBlur() {
         // Setting the backgroundImage
         self.backgroundImageView.image = backgroundImage
@@ -37,6 +50,17 @@ class EditProfileDetailsViewController: UIViewController {
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = self.view.bounds
         self.backgroundImageView.addSubview(blurView)
+    }
+    
+    func setupGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: Selector("closeBtnTapped:"))
+        self.closeBtnContainer.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    /* ===================================== Selectors ===================================== */
+    func closeBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
