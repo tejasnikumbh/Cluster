@@ -2436,6 +2436,7 @@
                         <outlet property="nameTextField" destination="5gf-xV-1zQ" id="zJJ-gc-zTf"/>
                         <outlet property="primaryEmailTextField" destination="77x-kU-G2h" id="qVE-Q9-P5r"/>
                         <outlet property="primaryPhoneTextField" destination="wEZ-Jm-0Ke" id="5n8-de-oRC"/>
+                        <outlet property="rootScrollView" destination="4S9-vC-DkJ" id="4bj-UI-jKM"/>
                         <outlet property="secondaryEmailTextField" destination="QNB-1U-LtC" id="hx4-Bl-HlV"/>
                         <outlet property="secondaryPhoneTextField" destination="ILZ-si-h97" id="Mgj-hc-sgR"/>
                     </connections>

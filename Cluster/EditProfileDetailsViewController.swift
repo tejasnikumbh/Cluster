@@ -14,6 +14,8 @@ class EditProfileDetailsViewController: UIViewController {
     
     var backgroundImage: UIImage?
     
+    @IBOutlet weak var rootScrollView: UIScrollView!
+    
     @IBOutlet weak var backgroundImageMask: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var closeBtnContainer: UIView!
@@ -35,7 +37,14 @@ class EditProfileDetailsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        registerObservers()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        deregisterObservers()
+    }
+    
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -78,9 +87,38 @@ class EditProfileDetailsViewController: UIViewController {
     }
     
     func setupGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+        var tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("closeBtnTapped:"))
         self.closeBtnContainer.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("resignKeyboard:"))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func registerObservers() {
+        self.startObservingKeyboard()
+    }
+    
+    func deregisterObservers() {
+        self.stopObservingKeyboard()
+    }
+    
+    private func startObservingKeyboard() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:Selector("keyboardWillShow:"),
+            name:UIKeyboardWillShowNotification,
+            object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:Selector("keyboardWillHide:"),
+            name:UIKeyboardWillHideNotification,
+            object:nil)
+    }
+    
+    private func stopObservingKeyboard() {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIKeyboardWillHideNotification, object: nil)
     }
     
     /* ===================================== Selectors ===================================== */
@@ -88,4 +126,22 @@ class EditProfileDetailsViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0,
+                    keyboardSize.height, 0.0);
+                self.rootScrollView.contentInset = contentInset
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let contentInset = UIEdgeInsetsZero;
+        self.rootScrollView.contentInset = contentInset
+    }
+    
+    func resignKeyboard(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        self.view.endEditing(true)
+    }
 }
