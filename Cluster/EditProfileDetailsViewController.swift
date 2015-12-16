@@ -27,6 +27,10 @@ class EditProfileDetailsViewController: UIViewController {
     @IBOutlet weak var primaryEmailTextField: UITextField!
     @IBOutlet weak var secondaryEmailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    
+    @IBOutlet weak var saveChangesBtn: UIButton!
+    @IBOutlet weak var saveChangesBottomConstraint: NSLayoutConstraint!
+    
     /* ================================= Super Methods Overridden ============================= */
     
     override func viewDidLoad() {
@@ -109,6 +113,10 @@ class EditProfileDetailsViewController: UIViewController {
             name:UIKeyboardWillShowNotification,
             object:nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: Selector("keyboardWillChangeFrame:"),
+            name: UIKeyboardWillChangeFrameNotification,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
             selector:Selector("keyboardWillHide:"),
             name:UIKeyboardWillHideNotification,
             object:nil)
@@ -117,6 +125,8 @@ class EditProfileDetailsViewController: UIViewController {
     private func stopObservingKeyboard() {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIKeyboardWillChangeFrameNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -130,8 +140,32 @@ class EditProfileDetailsViewController: UIViewController {
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0,
-                    keyboardSize.height, 0.0);
+                    keyboardSize.height + self.saveChangesBtn.frame.height, 0.0);
                 self.rootScrollView.contentInset = contentInset
+            }
+        }
+    }
+    
+    func keyboardWillChangeFrame(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardFrame: CGRect? = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue {
+                // Extracting animation relevant params
+                let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+                let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+                let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+                // Setting the bottom constraint value. This is important
+                if(keyboardFrame?.origin.y >= UIScreen.mainScreen().bounds.size.height) {
+                    self.saveChangesBottomConstraint?.constant = 0.0
+                } else {
+                    self.saveChangesBottomConstraint?.constant = (keyboardFrame?.size.height)!
+                }
+                // Performing the animation
+                UIView.animateWithDuration(duration,
+                    delay: NSTimeInterval(0),
+                    options: animationCurve,
+                    animations: { self.view.layoutIfNeeded() },
+                    completion: nil)
             }
         }
     }
