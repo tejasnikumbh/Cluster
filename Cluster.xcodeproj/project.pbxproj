@@ -48,6 +48,9 @@
 		CCBC38DB1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
 		CCBC38DC1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
 		CCBC38DD1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
+		CCDD36451C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDD36441C230B8000481E23 /* CSRequestDetailFetcher.swift */; };
+		CCDD36461C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDD36441C230B8000481E23 /* CSRequestDetailFetcher.swift */; };
+		CCDD36471C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDD36441C230B8000481E23 /* CSRequestDetailFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,7 @@
 		CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchController+Customization.swift"; sourceTree = "<group>"; };
 		CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRequestCard.swift; sourceTree = "<group>"; };
+		CCDD36441C230B8000481E23 /* CSRequestDetailFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRequestDetailFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,7 @@
 			children = (
 				CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */,
 				CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */,
+				CCDD36441C230B8000481E23 /* CSRequestDetailFetcher.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
+				CCDD36451C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
@@ -400,6 +406,7 @@
 				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCDD36461C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */,
 				CCBC38DC1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
@@ -419,6 +426,7 @@
 				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCDD36471C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */,
 				CCBC38DD1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,

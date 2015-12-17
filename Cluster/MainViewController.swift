@@ -20,10 +20,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CSContactDetailFetcher.fetchContactDetailsWithCompletion({
+        // Introduce a waitloader until requests are fetched. Ideally introduce a cache
+        CSContactDetailFetcher.fetchContactDetailsWithCompletion {
             (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
                 self.contactDetailFetcher = contactDetailsFetcher
-        })
+        }
         
         setupView()
         setupNavBar()

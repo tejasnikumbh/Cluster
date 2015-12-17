@@ -1,22 +1,22 @@
 //
-//  ContactDetailFetcher.swift
+//  CSRequestDetailFetcher.swift
 //  Cluster
 //
-//  Created by Tejas Nikumbh on 12/15/15.
+//  Created by Tejas Nikumbh on 12/17/15.
 //  Copyright © 2015 Personal. All rights reserved.
 //
 
 import UIKit
 
-class CSContactDetailFetcher: NSObject {
+class CSRequestDetailFetcher: NSObject {
     
-    let userContactDetails: [CSContactDetail]
+    let requestsContactDetails: [CSContactDetail]
     
-    init(userContactDetails: [CSContactDetail]) {
-        self.userContactDetails = userContactDetails
+    init(requestsContactDetails: [CSContactDetail]) {
+        self.requestsContactDetails = requestsContactDetails
     }
     
-    class func fetchContactDetailsWithCompletion(completion:(CSContactDetailFetcher) -> Void) {
+    class func fetchRequestDetailsWithCompletion(completion:(CSRequestDetailFetcher) -> Void) {
         // make async call, fetch contact details and populate the property
         let user1 = CSContactDetail(profilePicImageURL: "face", contactName: "Tejas Nikumbh", contactDesignation: "Software Developer", primaryPhone: "+91 750 608 1238", secondaryPhone: "+91 997 073 5269", primaryEmail: "tejnikumbh@gmail.com", secondaryEmail: "tejasnikumbh@gmail.com", address: "221B, Baker Street, London , New England")
         let user2 = CSContactDetail(profilePicImageURL: "face2", contactName: "Shaan Chugh", contactDesignation: "Quantitative Analyst", primaryPhone: "+91 888 342 2213", secondaryPhone: "+91 932 422 4352", primaryEmail: "schugh@stanford.edu", secondaryEmail: "schugh@gmail.com", address: "Cuff Parade, Bandra East, Mumbai, India")
@@ -26,10 +26,10 @@ class CSContactDetailFetcher: NSObject {
         let user6 = CSContactDetail(profilePicImageURL: "face6", contactName: "Aditya Patil", contactDesignation: "Operations Head", primaryPhone: "+91 888 342 2213", secondaryPhone: "+91 932 422 4352", primaryEmail: "apatil@gmail.com", secondaryEmail: "schugh@gmail.com", address: "Cuff Parade, Bandra East, Mumbai, India")
         let user7 = CSContactDetail(profilePicImageURL: "face7", contactName: "Rachel S", contactDesignation: "Product Manager", primaryPhone: "+91 888 342 2213", secondaryPhone: "+91 932 422 4352", primaryEmail: "rachelstein@gmail.com", secondaryEmail: "schugh@gmail.com", address: "Cuff Parade, Bandra East, Mumbai, India")
         
-        let userContactDetailsArray = [user1, user2, user3, user4, user5, user6, user7]
-        let contactDetailFetcherResultObject = CSContactDetailFetcher(
-                                                userContactDetails: userContactDetailsArray)
-        completion(contactDetailFetcherResultObject)
+        let requestsContactDetailsArray = [user1, user2, user3, user4, user5, user6, user7]
+        let requestsDetailFetcherResultObject = CSRequestDetailFetcher(
+            requestsContactDetails: requestsContactDetailsArray)
+        completion(requestsDetailFetcherResultObject)
     }
-    
+
 }

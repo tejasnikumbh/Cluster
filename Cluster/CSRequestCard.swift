@@ -17,6 +17,8 @@ class CSRequestCard: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.requestProfileBtn.layer.cornerRadius = 24
+        self.requestProfileBtn.clipsToBounds = true
     }
     
    
