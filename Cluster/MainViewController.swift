@@ -25,15 +25,34 @@ class MainViewController: UIViewController {
                 self.contactDetailFetcher = contactDetailsFetcher
         })
         
+        setupView()
         setupNavBar()
         setupSearchBar()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    func setupView() {
+        self.contactsTableView.backgroundColor = UIColor.themeColor()
+        self.contactsTableView.separatorColor = UIColor.whiteColor()
+        // Illogical but useful for hiding the gray stuff of search controller
+        self.contactsTableView.backgroundView = UIView()
+        // Useful for cancel button white color
+        UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
+    }
+    
     func setupNavBar() {
-        // Setting up the bar properties
+        // Styling up the bar properties
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Helvetica", size: 22)!
+            NSFontAttributeName: UIFont(name: "Helvetica", size: 22)!,
+            NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
+        self.navigationController?.navigationBar.barTintColor = UIColor.themeColor()
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         // Setting up and adding the items
         let title = "Cluster"
         let settingsBtn = getBarButtonItem(UIImage(named: "settings"), selector: Selector("settingsPressed:"))
@@ -44,6 +63,9 @@ class MainViewController: UIViewController {
     }
     
     func setupSearchBar() {
+        // Styling the bar
+        searchController.searchBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        searchController.searchBar.barTintColor = UIColor.themeColor()
         // Important while resizing
         self.automaticallyAdjustsScrollViewInsets = false
         searchController.searchResultsUpdater = self
@@ -80,24 +102,27 @@ class MainViewController: UIViewController {
     }
     
     func addUserPressed(addUserButton: UIBarButtonItem) {
-        var inputTextField: UITextField?
-        let phoneNumberPrompt = UIAlertController(title: "Cluster", message: "Enter recipient's phone number", preferredStyle: UIAlertControllerStyle.Alert)
-        phoneNumberPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        phoneNumberPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            if (CSUtils.validatePhoneNumber(inputTextField!.text)) {
-                // Send the contact a request and show success in completion
-            } else {
-                // Show a failure toast
-            }
-        }))
+//        var inputTextField: UITextField?
+//        let phoneNumberPrompt = UIAlertController(title: "Cluster", message: "Enter recipient's phone number", preferredStyle: UIAlertControllerStyle.Alert)
+//        phoneNumberPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+//        phoneNumberPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+//            if (CSUtils.validatePhoneNumber(inputTextField!.text)) {
+//                // Send the contact a request and show success in completion
+//            } else {
+//                // Show a failure toast
+//            }
+//        }))
+//        
+//        phoneNumberPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+//            textField.placeholder = "Phone Number"
+//            textField.keyboardType = UIKeyboardType.PhonePad
+//            inputTextField = textField
+//        })
         
-        phoneNumberPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Phone Number"
-            textField.keyboardType = UIKeyboardType.PhonePad
-            inputTextField = textField
-        })
-        
-        presentViewController(phoneNumberPrompt, animated: true, completion: nil)
+        //presentViewController(phoneNumberPrompt, animated: true, completion: nil)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : ConnectViewController = storyboard.instantiateViewControllerWithIdentifier("connectViewController") as! ConnectViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     // UISearchResultUpdating protocol related methods
@@ -121,7 +146,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("csCard") as! CSSummaryCard
+        let cell = tableView.dequeueReusableCellWithIdentifier("csCardCell") as! CSSummaryCard
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
             cellModel = filteredContacts[indexPath.row]

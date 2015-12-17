@@ -33,9 +33,21 @@
 		CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
 		CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
 		CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */; };
-		CCBC38CB1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
-		CCBC38CC1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
-		CCBC38CD1C21679D00E0EFEF /* UIViewEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */; };
+		CCBC38CB1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIView+Utilities.swift */; };
+		CCBC38CC1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIView+Utilities.swift */; };
+		CCBC38CD1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CA1C21679D00E0EFEF /* UIView+Utilities.swift */; };
+		CCBC38CF1C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CE1C21A53700E0EFEF /* UIColor+ExtraColors.swift */; };
+		CCBC38D01C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CE1C21A53700E0EFEF /* UIColor+ExtraColors.swift */; };
+		CCBC38D11C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38CE1C21A53700E0EFEF /* UIColor+ExtraColors.swift */; };
+		CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */; };
+		CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */; };
+		CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */; };
+		CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */; };
+		CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */; };
+		CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */; };
+		CCBC38DB1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
+		CCBC38DC1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
+		CCBC38DD1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +91,11 @@
 		CCBC38B31C1E1DD700E0EFEF /* ClusterUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClusterUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CCBC38B91C1F815200E0EFEF /* CSContactDetailFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSContactDetailFetcher.swift; sourceTree = "<group>"; };
 		CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileDetailsViewController.swift; sourceTree = "<group>"; };
-		CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEffects.swift; sourceTree = "<group>"; };
+		CCBC38CA1C21679D00E0EFEF /* UIView+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utilities.swift"; sourceTree = "<group>"; };
+		CCBC38CE1C21A53700E0EFEF /* UIColor+ExtraColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ExtraColors.swift"; sourceTree = "<group>"; };
+		CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchController+Customization.swift"; sourceTree = "<group>"; };
+		CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRequestCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +148,7 @@
 		CCBC38551C1DCAA700E0EFEF /* Cluster */ = {
 			isa = PBXGroup;
 			children = (
-				CCBC38C91C21677F00E0EFEF /* libraries */,
+				CCBC38C91C21677F00E0EFEF /* extensions */,
 				CCBC38BF1C1FA73400E0EFEF /* supportingfiles */,
 				CCBC38BE1C1FA70400E0EFEF /* storyboards */,
 				CCBC38BD1C1FA6E500E0EFEF /* controllers */,
@@ -168,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */,
+				CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -195,6 +212,7 @@
 				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
 				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
 				CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */,
+				CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -218,12 +236,14 @@
 			name = supportingfiles;
 			sourceTree = "<group>";
 		};
-		CCBC38C91C21677F00E0EFEF /* libraries */ = {
+		CCBC38C91C21677F00E0EFEF /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CCBC38CA1C21679D00E0EFEF /* UIViewEffects.swift */,
+				CCBC38CA1C21679D00E0EFEF /* UIView+Utilities.swift */,
+				CCBC38CE1C21A53700E0EFEF /* UIColor+ExtraColors.swift */,
+				CCBC38D21C21A82900E0EFEF /* UISearchController+Customization.swift */,
 			);
-			name = libraries;
+			name = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,13 +377,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBC38CF1C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */,
-				CCBC38CB1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
+				CCBC38CB1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */,
+				CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
+				CCBC38DB1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */,
 				CCBC38AC1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
 			);
@@ -376,11 +400,15 @@
 				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCBC38DC1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
+				CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
+				CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
+				CCBC38D01C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
 				CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
-				CCBC38CC1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
+				CCBC38CC1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,11 +419,15 @@
 				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CCBC38DD1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
+				CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
+				CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
+				CCBC38D11C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
 				CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
-				CCBC38CD1C21679D00E0EFEF /* UIViewEffects.swift in Sources */,
+				CCBC38CD1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  UIViewEffects.swift
+//  UIView+Utilities.swift
 //  Cluster
 //
 //  Created by Tejas Nikumbh on 12/16/15.
@@ -7,10 +7,6 @@
 //
 
 import UIKit
-
-class UIViewEffects: UIView {
-
-}
 
 extension UIView {
     func pb_takeSnapshot() -> UIImage {
