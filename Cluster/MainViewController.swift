@@ -38,6 +38,8 @@ class MainViewController: UIViewController {
     func setupView() {
         self.contactsTableView.backgroundColor = UIColor.themeColor()
         self.contactsTableView.separatorColor = UIColor.whiteColor()
+        self.contactsTableView.contentInset = UIEdgeInsets(top: 5, left: 0,
+            bottom: 0, right: 0)
         // Illogical but useful for hiding the gray stuff of search controller
         self.contactsTableView.backgroundView = UIView()
         // Useful for cancel button white color

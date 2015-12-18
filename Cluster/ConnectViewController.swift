@@ -75,17 +75,18 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView,
         editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
-            title: "Yes", handler:{
+        let yesRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
+            title: " Yes ", handler:{
                 action, indexpath in
-                print("MORE•ACTION");
+                print("YES•ACTION");
         });
-        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
-        let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
-            title: "No", handler:{
+        yesRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        let noRowAction = UITableViewRowAction(
+            style: UITableViewRowActionStyle.Default,
+            title: "  No ", handler:{
                 action, indexpath in
-                print("DELETE•ACTION");
+                print("NO•ACTION");
         });
-        return [deleteRowAction, moreRowAction];
+        return [noRowAction, yesRowAction];
     }
 }
