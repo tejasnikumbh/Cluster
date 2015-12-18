@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC56770E1C240CBF003114D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56770D1C240CBF003114D0 /* LoginViewController.swift */; };
+		CC56770F1C240CBF003114D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56770D1C240CBF003114D0 /* LoginViewController.swift */; };
+		CC5677101C240CBF003114D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56770D1C240CBF003114D0 /* LoginViewController.swift */; };
+		CC5677121C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
+		CC5677131C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
+		CC5677141C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
 		CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */; };
 		CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */; };
 		CCBC385C1C1DCAA700E0EFEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */; };
@@ -71,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC56770D1C240CBF003114D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CC5677111C240CD1003114D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CCBC38531C1DCAA700E0EFEF /* Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cluster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +226,8 @@
 				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
 				CCBC38C01C214E3B00E0EFEF /* EditProfileDetailsViewController.swift */,
 				CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */,
+				CC56770D1C240CBF003114D0 /* LoginViewController.swift */,
+				CC5677111C240CD1003114D0 /* SignUpViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -385,12 +395,14 @@
 				CCBC38CF1C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */,
 				CCBC38CB1C21679D00E0EFEF /* UIView+Utilities.swift in Sources */,
+				CC56770E1C240CBF003114D0 /* LoginViewController.swift in Sources */,
 				CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCDD36451C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
+				CC5677121C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38DB1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
@@ -403,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC56770F1C240CBF003114D0 /* LoginViewController.swift in Sources */,
 				CCBC38BB1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C21C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
@@ -411,6 +424,7 @@
 				CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D01C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
+				CC5677131C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
 				CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
@@ -423,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC5677101C240CBF003114D0 /* LoginViewController.swift in Sources */,
 				CCBC38BC1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
 				CCBC38C31C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
@@ -431,6 +446,7 @@
 				CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D11C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
+				CC5677141C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
 				CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
