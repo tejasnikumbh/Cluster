@@ -35,6 +35,10 @@ class EditProfileDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupView()
         setupGestureRecognizers()
     }

@@ -33,12 +33,11 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupView()
         setupGestureRecognizers()
     }
-    
     
     override func prefersStatusBarHidden() -> Bool {
         return true;

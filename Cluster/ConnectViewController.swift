@@ -17,13 +17,15 @@ class ConnectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Introduce a wait loader until requests are fetched, Ideally do caching
         CSRequestDetailFetcher.fetchRequestDetailsWithCompletion {
             (requestsDetailFetcher: CSRequestDetailFetcher) -> Void in
             self.requestsDetailFetcher = requestsDetailFetcher
         }
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupView()
         setupGestureRecognizers()
     }
