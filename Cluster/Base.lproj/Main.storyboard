@@ -2817,7 +2817,7 @@
         <!--Edit Profile Form View Controller-->
         <scene sceneID="j9T-yY-TbJ">
             <objects>
-                <viewController storyboardIdentifier="editProfileDetailsViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNg-0C-v97" customClass="EditProfileFormViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editProfileFormViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNg-0C-v97" customClass="EditProfileFormViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Edl-ps-uem"/>
                         <viewControllerLayoutGuide type="bottom" id="1p1-Qb-52a"/>
