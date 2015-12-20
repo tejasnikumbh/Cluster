@@ -13,6 +13,9 @@
 		CC5677121C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
 		CC5677131C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
 		CC5677141C240CD1003114D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpViewController.swift */; };
+		CCAC6F981C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
+		CCAC6F991C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
+		CCAC6F9A1C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
 		CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */; };
 		CCBC38591C1DCAA700E0EFEF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */; };
 		CCBC385C1C1DCAA700E0EFEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBC385A1C1DCAA700E0EFEF /* Main.storyboard */; };
@@ -79,6 +82,7 @@
 /* Begin PBXFileReference section */
 		CC56770D1C240CBF003114D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CC5677111C240CD1003114D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSFormBaseViewController.swift; sourceTree = "<group>"; };
 		CCBC38531C1DCAA700E0EFEF /* Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cluster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBC38561C1DCAA700E0EFEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */,
 				CC56770D1C240CBF003114D0 /* LoginViewController.swift */,
 				CC5677111C240CD1003114D0 /* SignUpViewController.swift */,
+				CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CC5677121C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38BA1C1F815200E0EFEF /* CSContactDetailFetcher.swift in Sources */,
+				CCAC6F981C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */,
 				CCBC38C11C214E3B00E0EFEF /* EditProfileDetailsViewController.swift in Sources */,
 				CCBC38DB1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38571C1DCAA700E0EFEF /* AppDelegate.swift in Sources */,
@@ -424,6 +430,7 @@
 				CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D01C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
+				CCAC6F991C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */,
 				CC5677131C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
@@ -446,6 +453,7 @@
 				CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D11C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
+				CCAC6F9A1C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */,
 				CC5677141C240CD1003114D0 /* SignUpViewController.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,

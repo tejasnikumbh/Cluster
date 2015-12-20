@@ -8,13 +8,11 @@
 
 import UIKit
 
-class EditProfileDetailsViewController: UIViewController {
+class EditProfileDetailsViewController: CSFormBaseViewController {
 
     /* ====================================== Outlets ========================================= */
     
     var backgroundImage: UIImage?
-    
-    @IBOutlet weak var rootScrollView: UIScrollView!
     
     @IBOutlet weak var backgroundImageMask: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -33,26 +31,10 @@ class EditProfileDetailsViewController: UIViewController {
     
     /* ================================= Super Methods Overridden ============================= */
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupView()
-        setupGestureRecognizers()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        registerObservers()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        deregisterObservers()
-    }
-    
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -94,60 +76,28 @@ class EditProfileDetailsViewController: UIViewController {
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
-    func setupGestureRecognizers() {
-        var tapGestureRecognizer = UITapGestureRecognizer(target: self,
+    override func setupGestureRecognizers() {
+        super.setupGestureRecognizers()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("closeBtnTapped:"))
         self.closeBtnContainer.addGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("resignKeyboard:"))
-        tapGestureRecognizer.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func registerObservers() {
-        self.startObservingKeyboard()
-    }
-    
-    func deregisterObservers() {
-        self.stopObservingKeyboard()
-    }
-    
-    private func startObservingKeyboard() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector:Selector("keyboardWillShow:"),
-            name:UIKeyboardWillShowNotification,
-            object:nil)
+    override func startObservingKeyboard() {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: Selector("keyboardWillChangeFrame:"),
             name: UIKeyboardWillChangeFrameNotification,
             object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector:Selector("keyboardWillHide:"),
-            name:UIKeyboardWillHideNotification,
-            object:nil)
     }
     
-    private func stopObservingKeyboard() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: UIKeyboardWillShowNotification, object: nil)
+    override func stopObservingKeyboard() {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIKeyboardWillChangeFrameNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: UIKeyboardWillHideNotification, object: nil)
     }
     
     /* ===================================== Selectors ===================================== */
     func closeBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
-                let contentInset = UIEdgeInsetsMake(0.0, 0.0,
-                    keyboardSize.height + self.saveChangesBtn.frame.height, 0.0);
-                self.rootScrollView.contentInset = contentInset
-            }
-        }
     }
     
     func keyboardWillChangeFrame(notification: NSNotification) {
@@ -174,12 +124,4 @@ class EditProfileDetailsViewController: UIViewController {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        let contentInset = UIEdgeInsetsZero;
-        self.rootScrollView.contentInset = contentInset
-    }
-    
-    func resignKeyboard(gestureRecognizer: UITapGestureRecognizer? = nil) {
-        self.view.endEditing(true)
-    }
 }

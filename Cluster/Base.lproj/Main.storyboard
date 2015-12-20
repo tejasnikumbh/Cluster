@@ -922,7 +922,7 @@
                         <outlet property="loginBtnTrailingConstraint" destination="gEO-ih-Rwx" id="LCH-Xr-QCW"/>
                         <outlet property="passwordContainerView" destination="Mpl-oo-XBV" id="NkD-aR-X8s"/>
                         <outlet property="passwordTextField" destination="Mpl-oo-XBV" id="coM-3D-hdi"/>
-                        <outlet property="rootScrollView" destination="cwD-xu-id4" id="hOB-w8-Iwj"/>
+                        <outlet property="rootScrollView" destination="cwD-xu-id4" id="J3J-gM-tef"/>
                         <outlet property="signUpBtn" destination="Is6-wr-Vae" id="AOS-ac-JLR"/>
                         <outlet property="signUpBtnLeadingConstraint" destination="6do-J8-2mB" id="DKG-Mf-VQ5"/>
                         <outlet property="usernameContainerView" destination="1sy-T0-PCT" id="oIA-yF-gjV"/>
@@ -2042,7 +2042,7 @@
                         <outlet property="backBtnContainer" destination="09g-z4-DaE" id="Vpg-Nz-W5f"/>
                         <outlet property="backBtnImageView" destination="wnm-zo-7gt" id="oae-Hh-MXP"/>
                         <outlet property="bgView" destination="bAM-4F-MFH" id="7tQ-cn-DFv"/>
-                        <outlet property="rootScrollView" destination="76U-8i-b9g" id="esa-Dw-f6P"/>
+                        <outlet property="rootScrollView" destination="76U-8i-b9g" id="gSU-TP-CEN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dit-Sk-w8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4238,7 +4238,7 @@
                         <outlet property="nameTextField" destination="5gf-xV-1zQ" id="zJJ-gc-zTf"/>
                         <outlet property="primaryEmailTextField" destination="77x-kU-G2h" id="qVE-Q9-P5r"/>
                         <outlet property="primaryPhoneTextField" destination="wEZ-Jm-0Ke" id="5n8-de-oRC"/>
-                        <outlet property="rootScrollView" destination="4S9-vC-DkJ" id="4bj-UI-jKM"/>
+                        <outlet property="rootScrollView" destination="4S9-vC-DkJ" id="vSa-sz-cU3"/>
                         <outlet property="saveChangesBottomConstraint" destination="fh9-Re-xWS" id="5Sz-pD-EEZ"/>
                         <outlet property="saveChangesBtn" destination="Zdk-oe-nLe" id="6N1-WF-tPh"/>
                         <outlet property="secondaryEmailTextField" destination="QNB-1U-LtC" id="hx4-Bl-HlV"/>
