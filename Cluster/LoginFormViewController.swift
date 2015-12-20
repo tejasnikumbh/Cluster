@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: CSFormBaseViewController {
+class LoginFormViewController: CSFormBaseViewController {
 
     @IBOutlet weak var bgView: UIView!
     

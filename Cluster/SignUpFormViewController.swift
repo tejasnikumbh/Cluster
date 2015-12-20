@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: CSFormBaseViewController {
+class SignUpFormViewController: CSFormBaseViewController {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var backBtnContainer: UIView!
@@ -20,7 +20,8 @@ class SignUpViewController: CSFormBaseViewController {
     
     override func setupGestureRecognizers() {
         super.setupGestureRecognizers()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("backBtnTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: Selector("backBtnTapped:"))
         self.backBtnContainer.addGestureRecognizer(tapGestureRecognizer)
     }
  

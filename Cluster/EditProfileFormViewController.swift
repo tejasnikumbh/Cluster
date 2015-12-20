@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileDetailsViewController: CSFormBaseViewController {
+class EditProfileFormViewController: CSFormBaseViewController {
 
     /* ====================================== Outlets ========================================= */
     

@@ -280,11 +280,11 @@
             </objects>
             <point key="canvasLocation" x="1092" y="336.75"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login Form View Controller-->
         <scene sceneID="R1i-Pg-whE">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qa-Bn-s5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="l9P-T2-InO" customClass="LoginViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l9P-T2-InO" customClass="LoginFormViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GvO-05-VJ0"/>
                         <viewControllerLayoutGuide type="bottom" id="0us-OP-RYX"/>
@@ -932,10 +932,10 @@
             </objects>
             <point key="canvasLocation" x="4699.5" y="336.75"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Sign Up Form View Controller-->
         <scene sceneID="XkO-19-TXK">
             <objects>
-                <viewController id="AzE-nv-Umt" customClass="SignUpViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AzE-nv-Umt" customClass="SignUpFormViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wJQ-dL-06Y"/>
                         <viewControllerLayoutGuide type="bottom" id="GuO-5Y-823"/>
@@ -2814,10 +2814,10 @@
             </objects>
             <point key="canvasLocation" x="150" y="-378"/>
         </scene>
-        <!--Edit Profile Details View Controller-->
+        <!--Edit Profile Form View Controller-->
         <scene sceneID="j9T-yY-TbJ">
             <objects>
-                <viewController storyboardIdentifier="editProfileDetailsViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNg-0C-v97" customClass="EditProfileDetailsViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editProfileDetailsViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BNg-0C-v97" customClass="EditProfileFormViewController" customModule="Cluster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Edl-ps-uem"/>
                         <viewControllerLayoutGuide type="bottom" id="1p1-Qb-52a"/>

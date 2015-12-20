@@ -4,7 +4,10 @@
 //
 //  Created by Tejas Nikumbh on 12/20/15.
 //  Copyright © 2015 Personal. All rights reserved.
-//
+//  This class acts an abstract class for Forms in our Application
+//  Prime Functionality : - 
+//  * Adjusts scrollview insets according to keyboard show and hide
+//  * Resigns keyboard responder on touches in view outside keyboard
 
 import UIKit
 
@@ -12,10 +15,7 @@ class CSFormBaseViewController: UIViewController {
 
     @IBOutlet weak var rootScrollView: UIScrollView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    /*===================================== UIViewController Methods ======================== */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.setupGestureRecognizers()
@@ -31,8 +31,10 @@ class CSFormBaseViewController: UIViewController {
         self.deregisterObservers()
     }
     
+    /* ==================================== View Configuration Methods ======================= */
     func setupGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("resignKeyboard:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: Selector("resignKeyboard:"))
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -63,6 +65,7 @@ class CSFormBaseViewController: UIViewController {
             name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    /* ==================================== Selectors =========================================== */
     func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
