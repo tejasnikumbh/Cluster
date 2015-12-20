@@ -140,6 +140,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CCAC6F9B1C2712BB00D87AB6 /* forms */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */,
+				CCBC38C01C214E3B00E0EFEF /* EditProfileFormViewController.swift */,
+				CC56770D1C240CBF003114D0 /* LoginFormViewController.swift */,
+				CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */,
+			);
+			name = forms;
+			sourceTree = "<group>";
+		};
 		CCBC384A1C1DCAA700E0EFEF = {
 			isa = PBXGroup;
 			children = (
@@ -226,13 +237,10 @@
 		CCBC38BD1C1FA6E500E0EFEF /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CCAC6F9B1C2712BB00D87AB6 /* forms */,
 				CCBC38581C1DCAA700E0EFEF /* MainViewController.swift */,
 				CCBC389E1C1DF9A400E0EFEF /* EditProfileViewController.swift */,
-				CCBC38C01C214E3B00E0EFEF /* EditProfileFormViewController.swift */,
 				CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */,
-				CC56770D1C240CBF003114D0 /* LoginFormViewController.swift */,
-				CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */,
-				CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";

@@ -12,6 +12,7 @@ class ConnectViewController: UIViewController {
 
     @IBOutlet weak var backBtnContainer: UIView!
     @IBOutlet weak var requestsTableView: UITableView!
+    @IBOutlet weak var bgView: UIView!
     
     var requestsDetailFetcher: CSRequestDetailFetcher?
     
@@ -41,13 +42,19 @@ class ConnectViewController: UIViewController {
     }
     
     func setupGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+        var tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("backBtnTapped:"))
         self.backBtnContainer.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("resignResponder:"))
+        self.bgView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func backBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func resignResponder(gestureRecognizer:UITapGestureRecognizer? = nil) {
+        self.view.endEditing(true)
     }
     
     
