@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MainViewController: UIViewController {
 
@@ -19,6 +20,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let testObject = PFObject(className: "TestObject")
+        testObject["foo"] = "bar"
+        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            print("Object has been saved.")
+        }
         // Introduce a waitloader until requests are fetched. Ideally introduce a cache
         CSContactDetailFetcher.fetchContactDetailsWithCompletion {
             (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
