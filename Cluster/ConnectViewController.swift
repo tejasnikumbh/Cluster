@@ -45,7 +45,8 @@ class ConnectViewController: UIViewController {
         var tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("backBtnTapped:"))
         self.backBtnContainer.addGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("resignResponder:"))
+        tapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: Selector("resignResponder:"))
         self.bgView.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -89,7 +90,8 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
                 action, indexpath in
                 print("YES•ACTION");
         });
-        yesRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        yesRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851,
+                                               blue: 0.3922, alpha: 1.0);
         let noRowAction = UITableViewRowAction(
             style: UITableViewRowActionStyle.Default,
             title: "  No ", handler:{
