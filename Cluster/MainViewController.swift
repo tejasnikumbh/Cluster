@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     func setupView() {
         self.contactsTableView.backgroundColor = UIColor.themeColor()
         self.contactsTableView.separatorColor = UIColor.whiteColor()
-        self.contactsTableView.contentInset = UIEdgeInsets(top: 5, left: 0,
+        self.contactsTableView.contentInset = UIEdgeInsets(top: 0, left: 0,
             bottom: 0, right: 0)
         // Illogical but useful for hiding the gray stuff of search controller
         self.contactsTableView.backgroundView = UIView()
@@ -84,12 +84,14 @@ class MainViewController: UIViewController {
         // Styling the bar
         searchController.searchBar.setBackgroundImage(UIImage(),
             forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.barTintColor = UIColor.themeColor()
+        searchController.searchBar.backgroundColor = UIColor.themeColor()
         // Important while resizing
-        self.automaticallyAdjustsScrollViewInsets = false
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
+        searchController.searchBar.delegate = self
         // Finally setting our searchBar to be the header view
         self.contactsTableView.tableHeaderView = searchController.searchBar
     }
@@ -177,8 +179,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // Extension implementing the UISearchResultsUpdating Protocol
-extension MainViewController: UISearchResultsUpdating {
+extension MainViewController: UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        self.contactsTableView.scrollEnabled = false
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.contactsTableView.scrollEnabled = true
     }
 }
