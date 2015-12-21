@@ -7,21 +7,29 @@
 //
 
 import UIKit
+import Parse
 
 class LoginFormViewController: CSFormBaseViewController {
 
     @IBOutlet weak var bgView: UIView!
     
     @IBOutlet weak var usernameContainerView: UIView!
-    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordContainerView: UIView!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var loginBtnTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var signUpBtnLeadingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var forgotPasswordBtn: UIButton!
+    
+    @IBAction func loginBtnTapped(sender: UIButton) {
+        let username = self.usernameTextField.text
+        let password = self.passwordTextField.text
+        // Validate the email and password before calling logInUser
+        self.logInUser(username!, password: password!)
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -36,6 +44,33 @@ class LoginFormViewController: CSFormBaseViewController {
         self.navigationController?.navigationBarHidden = true
         self.loginBtnTrailingConstraint.constant = -1*self.usernameContainerView.frame.size.width/2.0 - 8.0
         self.signUpBtnLeadingConstraint.constant = self.usernameContainerView.frame.size.width/2.0 + 8.0
+    }
+    
+}
+
+// Extension for parse relevant methods
+extension LoginFormViewController {
+    
+    func logInUser(username: String, password: String) {
+        let spinner = CSUtils.startSpinner(self.view)
+        PFUser.logInWithUsernameInBackground(username,
+            password: password,
+            block: {
+                (user, error) -> Void in
+                CSUtils.stopSpinner(spinner)
+                if ((user) != nil) {
+                    dispatch_async(dispatch_get_main_queue(),
+                    { // Successful Login
+                        () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        print("User successfully logged in")
+                    })
+                } else { // Invalid Login
+                    let alertDialog = CSUtils.getDisplayDialog(message: "Invalid Email or Password")
+                    self.presentViewController(alertDialog, animated: true, completion: nil)
+                    print("Wrong email or password")
+                }
+        })
     }
     
 }

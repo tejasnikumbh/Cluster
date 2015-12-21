@@ -17,26 +17,30 @@ class MainViewController: UIViewController {
     
     var contactDetailFetcher: CSContactDetailFetcher?
     var filteredContacts = [CSContactDetail]()
+    var currentUser: PFUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testObject = PFObject(className: "TestObject")
-        testObject["foo"] = "bar"
-        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            print("Object has been saved.")
+        // REdirect to login screen if not already logged in
+        if(PFUser.currentUser() == nil) {
+            let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
+                as! UINavigationController
+            self.presentViewController(viewController, animated: true, completion: nil)
         }
-        // Introduce a waitloader until requests are fetched. Ideally introduce a cache
+        
+        // FEtch details relevant to current user
+        currentUser = PFUser.currentUser()
+        // Introduce a waitloader until requests are fetched.
+        // Ideally introduce a cache.
         CSContactDetailFetcher.fetchContactDetailsWithCompletion {
             (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
-                self.contactDetailFetcher = contactDetailsFetcher
+            self.contactDetailFetcher = contactDetailsFetcher
         }
+        self.setupView()
+        self.setupNavBar()
+        self.setupSearchBar()
     }
     
-    override func viewDidLayoutSubviews() {
-        setupView()
-        setupNavBar()
-        setupSearchBar()
-    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -61,12 +65,15 @@ class MainViewController: UIViewController {
         ]
         self.navigationController?.navigationBar.barTintColor = UIColor.themeColor()
         self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(),
+            forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         // Setting up and adding the items
         let title = "Cluster"
-        let settingsBtn = getBarButtonItem(UIImage(named: "settings"), selector: Selector("settingsPressed:"))
-        let addUserBtn = getBarButtonItem(UIImage(named: "add_user"), selector: Selector("addUserPressed:"))
+        let settingsBtn = getBarButtonItem(UIImage(named: "settings"),
+            selector: Selector("settingsPressed:"))
+        let addUserBtn = getBarButtonItem(UIImage(named: "add_user"),
+            selector: Selector("addUserPressed:"))
         self.navigationItem.title = title
         self.navigationItem.leftBarButtonItems = [settingsBtn]
         self.navigationItem.rightBarButtonItems = [addUserBtn]
@@ -74,7 +81,8 @@ class MainViewController: UIViewController {
     
     func setupSearchBar() {
         // Styling the bar
-        searchController.searchBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+        searchController.searchBar.setBackgroundImage(UIImage(),
+            forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
         searchController.searchBar.barTintColor = UIColor.themeColor()
         // Important while resizing
         self.automaticallyAdjustsScrollViewInsets = false
@@ -85,7 +93,7 @@ class MainViewController: UIViewController {
         self.contactsTableView.tableHeaderView = searchController.searchBar
     }
 
-    func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem{
+    func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem {
         // Case of a space button
         if(image == nil && selector == nil) {
             let space = UIBarButtonItem(barButtonSystemItem: .FixedSpace,
@@ -97,7 +105,8 @@ class MainViewController: UIViewController {
         let navBarBtnView = UIButton()
         navBarBtnView.setImage(image, forState: .Normal)
         navBarBtnView.frame = CGRectMake(0, 0, 30, 30)
-        navBarBtnView.addTarget(self, action: selector!, forControlEvents: .TouchUpInside)
+        navBarBtnView.addTarget(self, action: selector!,
+            forControlEvents: .TouchUpInside)
         let navBarBtn = UIBarButtonItem()
         navBarBtn.customView = navBarBtnView
         
@@ -112,23 +121,6 @@ class MainViewController: UIViewController {
     }
     
     func addUserPressed(addUserButton: UIBarButtonItem) {
-//        var inputTextField: UITextField?
-//        let phoneNumberPrompt = UIAlertController(title: "Cluster", message: "Enter recipient's phone number", preferredStyle: UIAlertControllerStyle.Alert)
-//        phoneNumberPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-//        phoneNumberPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-//            if (CSUtils.validatePhoneNumber(inputTextField!.text)) {
-//                // Send the contact a request and show success in completion
-//            } else {
-//                // Show a failure toast
-//            }
-//        }))
-//        
-//        phoneNumberPrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-//            textField.placeholder = "Phone Number"
-//            textField.keyboardType = UIKeyboardType.PhonePad
-//            inputTextField = textField
-//        })
-        
         //presentViewController(phoneNumberPrompt, animated: true, completion: nil)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : ConnectViewController = storyboard.instantiateViewControllerWithIdentifier("connectViewController") as! ConnectViewController
@@ -137,7 +129,8 @@ class MainViewController: UIViewController {
     
     // UISearchResultUpdating protocol related methods
     func filterContentForSearchText(searchText: String?, scope: String = "All") {
-        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter { userContactDetail in
+        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter {
+            userContactDetail in
             return userContactDetail.contactName.lowercaseString.containsString((searchText?.lowercaseString)!)
         })!
         self.contactsTableView.reloadData()
@@ -155,7 +148,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return (self.contactDetailFetcher?.userContactDetails.count)!
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("csCardCell") as! CSSummaryCard
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {

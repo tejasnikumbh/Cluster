@@ -8,11 +8,14 @@
 
 import UIKit
 import QuartzCore
+import Parse
 
 class EditProfileViewController: UIViewController {
 
-    /* ====================================== Outlets ========================================= */
+    /* ====================================== Outlets and Actions ============================== */
     @IBOutlet weak var rootScrollView: UIScrollView!
+    @IBOutlet weak var rootContentView: UIView!
+    @IBOutlet weak var spinnerView: UIView!
     
     @IBOutlet weak var detailCardProfilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -27,6 +30,10 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var primaryEmailLabel: UILabel!
     @IBOutlet weak var secondaryEmailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBAction func logOutTapped(sender: UIButton) {
+        self.logOutUser()
+    }
     
     /* ================================= Super Methods Overridden ============================= */
     override func viewDidLoad() {
@@ -95,8 +102,13 @@ class EditProfileViewController: UIViewController {
             self.presentViewControllerWithSourceType(UIImagePickerControllerSourceType.PhotoLibrary)
             choosePictureController.dismissViewControllerAnimated(true, completion: nil)
         })
+        let cancelAction = UIAlertAction(title: "Cancel",
+            style: UIAlertActionStyle.Cancel, handler: nil)
+        
         choosePictureController.addAction(cameraAction)
         choosePictureController.addAction(galleryAction)
+        choosePictureController.addAction(cancelAction)
+        
         self.presentViewController(choosePictureController, animated: true, completion: nil)
     }
     
@@ -119,6 +131,33 @@ class EditProfileViewController: UIViewController {
             self.presentViewController(imagePickerView, animated: true, completion: nil)
         }
             
+    }
+    
+}
+
+// Extension for Parse Methods
+extension EditProfileViewController {
+  
+    func logOutUser() {
+        let spinner = CSUtils.startSpinner(self.spinnerView)
+        PFUser.logOutInBackgroundWithBlock {
+            (error) -> Void in
+            CSUtils.stopSpinner(spinner)
+            if((error) != nil) { // If error logging out, display it
+                let alertDialog = CSUtils.getDisplayDialog(message: "Error logging out")
+                self.presentViewController(alertDialog, animated:true, completion:nil)
+                print("User not logged out successfully")
+                return
+            }
+            // Navigate to login controller otherwise
+            dispatch_async(dispatch_get_main_queue(),
+            { // We need dispatch async since what if user has navigated away?
+                () -> Void in
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginFormViewController")
+                self.presentViewController(viewController, animated: true, completion: nil)
+                print("User logged out successfully")
+            })
+        }
     }
     
 }
