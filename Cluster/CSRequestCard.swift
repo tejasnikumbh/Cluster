@@ -20,7 +20,5 @@ class CSRequestCard: UITableViewCell {
         self.requestProfileBtn.layer.cornerRadius = 24
         self.requestProfileBtn.clipsToBounds = true
     }
-    
-   
-   
+
 }

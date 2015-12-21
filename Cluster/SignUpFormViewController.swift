@@ -11,6 +11,8 @@ import Parse
 
 class SignUpFormViewController: CSFormBaseViewController {
 
+    /* ======================================== Outlets and IBActions ===================================== */
+
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var backBtnContainer: UIView!
     @IBOutlet weak var backBtnImageView: UIImageView!
@@ -29,7 +31,9 @@ class SignUpFormViewController: CSFormBaseViewController {
         // TODO: Validate all these (including if password matches confirm password)
         self.signUpUser(email, password: password, fullName: fullName, phoneNumber: phoneNumber)
     }
-    
+
+    /* ======================================== Super Methods Overridden ================================== */
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.setupGestureRecognizers()
@@ -46,6 +50,8 @@ class SignUpFormViewController: CSFormBaseViewController {
         self.backBtnContainer.addGestureRecognizer(tapGestureRecognizer)
     }
  
+    /* ================================================ Selectors ========================================= */
+    
     func backBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -55,7 +61,8 @@ class SignUpFormViewController: CSFormBaseViewController {
 // Extension for parse methods
 extension SignUpFormViewController {
     
-    func signUpUser(email: String?, password: String?, fullName:String?, phoneNumber: String?) {
+    func signUpUser(email: String?, password: String?,
+        fullName:String?, phoneNumber: String?) {
         let newUser = PFUser()
         newUser.username = email
         newUser.password = password

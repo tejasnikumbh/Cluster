@@ -10,7 +10,7 @@ import UIKit
 
 class EditProfileFormViewController: CSFormBaseViewController {
 
-    /* ====================================== Outlets ========================================= */
+    /* =========================================== Outlets =============================================== */
     
     var backgroundImage: UIImage?
     
@@ -29,7 +29,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
     @IBOutlet weak var saveChangesBtn: UIButton!
     @IBOutlet weak var saveChangesBottomConstraint: NSLayoutConstraint!
     
-    /* ================================= Super Methods Overridden ============================= */
+    /* ======================================== UIViewController Methods ================================== */
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -40,7 +40,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
         return true
     }
 
-    /* ================================= View Config Methods =================================== */
+    /* ========================================== View Config Methods ===================================== */
 
     func setupView() {
         self.addTintedBlur()
@@ -95,7 +95,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
             name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
-    /* ===================================== Selectors ===================================== */
+    /* ============================================== Selectors ============================================ */
     func closeBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -104,9 +104,11 @@ class EditProfileFormViewController: CSFormBaseViewController {
         if let userInfo = notification.userInfo {
             if let keyboardFrame: CGRect? = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue {
                 // Extracting animation relevant params
-                let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+                let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?
+                    .doubleValue ?? 0
                 let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-                let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+                let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions
+                    .CurveEaseInOut.rawValue
                 let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
                 // Setting the bottom constraint value. This is important
                 if(keyboardFrame?.origin.y >= UIScreen.mainScreen().bounds.size.height) {

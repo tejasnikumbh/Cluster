@@ -54,7 +54,8 @@ class MainViewController: UIViewController {
         // Illogical but useful for hiding the gray stuff of search controller
         self.contactsTableView.backgroundView = UIView()
         // Useful for cancel button white color
-        UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
+        UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()])
+            .tintColor = UIColor.whiteColor()
     }
     
     func setupNavBar() {
@@ -116,14 +117,18 @@ class MainViewController: UIViewController {
     // Selectors for Nav Bar Items
     func settingsPressed(settingsButton: UIBarButtonItem) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : EditProfileViewController = storyboard.instantiateViewControllerWithIdentifier("editProfileViewController") as! EditProfileViewController
+        let vc : EditProfileViewController = storyboard
+            .instantiateViewControllerWithIdentifier("editProfileViewController")
+            as! EditProfileViewController
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
     func addUserPressed(addUserButton: UIBarButtonItem) {
         //presentViewController(phoneNumberPrompt, animated: true, completion: nil)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : ConnectViewController = storyboard.instantiateViewControllerWithIdentifier("connectViewController") as! ConnectViewController
+        let vc : ConnectViewController = storyboard
+            .instantiateViewControllerWithIdentifier("connectViewController")
+            as! ConnectViewController
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
@@ -131,7 +136,8 @@ class MainViewController: UIViewController {
     func filterContentForSearchText(searchText: String?, scope: String = "All") {
         filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter {
             userContactDetail in
-            return userContactDetail.contactName.lowercaseString.containsString((searchText?.lowercaseString)!)
+            return userContactDetail.contactName.lowercaseString
+                .containsString((searchText?.lowercaseString)!)
         })!
         self.contactsTableView.reloadData()
     }

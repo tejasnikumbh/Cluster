@@ -11,6 +11,8 @@ import Parse
 
 class LoginFormViewController: CSFormBaseViewController {
 
+    /* ====================================== Outlets and IBActions =============================== */
+    
     @IBOutlet weak var bgView: UIView!
     
     @IBOutlet weak var usernameContainerView: UIView!
@@ -31,6 +33,8 @@ class LoginFormViewController: CSFormBaseViewController {
         self.logInUser(username!, password: password!)
     }
     
+    /* ====================================== UIViewController Methods ============================== */
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.setupView()
@@ -45,7 +49,6 @@ class LoginFormViewController: CSFormBaseViewController {
         self.loginBtnTrailingConstraint.constant = -1*self.usernameContainerView.frame.size.width/2.0 - 8.0
         self.signUpBtnLeadingConstraint.constant = self.usernameContainerView.frame.size.width/2.0 + 8.0
     }
-    
 }
 
 // Extension for parse relevant methods
