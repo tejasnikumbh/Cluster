@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/EditProfileFormViewController.swift"
-            timestampString = "472447568.99781"
+            timestampString = "472449199.11685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "addTintedBlur()"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/EditProfileFormViewController.swift"
-            timestampString = "472447568.99781"
+            timestampString = "472449199.11685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "EditProfileFormViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -560,6 +560,70 @@
             startingLineNumber = "121"
             endingLineNumber = "121"
             landmarkName = "editDetailsPressed(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cluster/EditProfileFormViewController.swift"
+            timestampString = "472449300.687958"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "saveUserDetails()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cluster.EditProfileFormViewController.saveUserDetails (Cluster.EditProfileFormViewController)() -&gt; ()"
+                  moduleName = "Cluster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tejasnikumbh/Desktop/Cluster/Cluster/EditProfileFormViewController.swift"
+                  timestampString = "472449300.707787"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "6458">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cluster.EditProfileFormViewController.(saveUserDetails (Cluster.EditProfileFormViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "Cluster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tejasnikumbh/Desktop/Cluster/Cluster/EditProfileFormViewController.swift"
+                  timestampString = "472449300.707991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cluster/SignUpFormViewController.swift"
+            timestampString = "472449497.480533"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "signUpUser(_:password:fullName:phoneNumber:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

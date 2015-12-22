@@ -15,6 +15,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
     var backgroundImage: UIImage?
     
     @IBOutlet weak var backgroundImageMask: UIView!
+    @IBOutlet weak var spinnerMask: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var closeBtnContainer: UIView!
 
@@ -182,9 +183,11 @@ extension EditProfileFormViewController {
         user?.setObject(address!, forKey: "address")
         
         let spinner = CSUtils.startSpinner(self.view)
+        self.saveChangesBtn.enabled = false
         user?.saveInBackgroundWithBlock({
             (success, error) -> Void in
             CSUtils.stopSpinner(spinner)
+            self.saveChangesBtn.enabled = true
             if(success && (error == nil)) { // If no error
                 let dialog = CSUtils.getDisplayDialog(
                     message: "Successfully updated details!")

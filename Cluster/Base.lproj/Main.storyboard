@@ -4155,6 +4155,10 @@
                                     </mask>
                                 </variation>
                             </scrollView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XF9-pj-T9M" userLabel="spinnerMask">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDO-59-gqg" userLabel="closeBtnContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -4254,11 +4258,15 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="4S9-vC-DkJ" secondAttribute="trailing" id="5kb-ky-UdU"/>
+                            <constraint firstItem="Zdk-oe-nLe" firstAttribute="top" secondItem="XF9-pj-T9M" secondAttribute="bottom" id="97Z-kZ-N0q"/>
+                            <constraint firstItem="XF9-pj-T9M" firstAttribute="top" secondItem="Edl-ps-uem" secondAttribute="bottom" id="B8G-pT-UFZ"/>
+                            <constraint firstItem="XF9-pj-T9M" firstAttribute="leading" secondItem="lZk-N6-FEa" secondAttribute="leading" id="E7c-s8-kXI"/>
                             <constraint firstAttribute="trailing" secondItem="PQU-a3-XrX" secondAttribute="trailing" id="LCh-tS-Via"/>
                             <constraint firstItem="nVz-qt-xWe" firstAttribute="leading" secondItem="lZk-N6-FEa" secondAttribute="leading" id="Mqr-6i-xhb"/>
                             <constraint firstAttribute="trailing" secondItem="Zdk-oe-nLe" secondAttribute="trailing" id="NWc-YF-nB1"/>
                             <constraint firstItem="Zdk-oe-nLe" firstAttribute="leading" secondItem="lZk-N6-FEa" secondAttribute="leading" id="Wbv-UX-oOb"/>
                             <constraint firstItem="gDO-59-gqg" firstAttribute="leading" secondItem="lZk-N6-FEa" secondAttribute="leading" id="Wnn-2F-MMl"/>
+                            <constraint firstAttribute="trailing" secondItem="XF9-pj-T9M" secondAttribute="trailing" id="YeZ-vQ-x0b"/>
                             <constraint firstItem="1p1-Qb-52a" firstAttribute="top" secondItem="4S9-vC-DkJ" secondAttribute="bottom" id="bTa-KO-2Xa"/>
                             <constraint firstItem="PQU-a3-XrX" firstAttribute="top" secondItem="Edl-ps-uem" secondAttribute="bottom" id="cds-HK-C9U"/>
                             <constraint firstAttribute="bottomMargin" secondItem="nVz-qt-xWe" secondAttribute="bottom" id="dQj-EK-IDa"/>
@@ -4276,15 +4284,15 @@
                                 <exclude reference="nVz-qt-xWe"/>
                                 <exclude reference="PQU-a3-XrX"/>
                                 <exclude reference="4S9-vC-DkJ"/>
+                                <exclude reference="XF9-pj-T9M"/>
                                 <exclude reference="gDO-59-gqg"/>
                                 <exclude reference="Zdk-oe-nLe"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="bTa-KO-2Xa"/>
-                                <exclude reference="e93-QS-A73"/>
-                                <exclude reference="fh9-Re-xWS"/>
-                                <exclude reference="NWc-YF-nB1"/>
-                                <exclude reference="Wbv-UX-oOb"/>
+                                <exclude reference="Mqr-6i-xhb"/>
+                                <exclude reference="dQj-EK-IDa"/>
+                                <exclude reference="g2i-P8-QFy"/>
+                                <exclude reference="gDc-pj-B3c"/>
                                 <exclude reference="5YD-ma-286"/>
                                 <exclude reference="5kb-ky-UdU"/>
                                 <exclude reference="kNc-L2-Afl"/>
@@ -4294,10 +4302,15 @@
                                 <exclude reference="Wnn-2F-MMl"/>
                                 <exclude reference="o0n-Jl-TQK"/>
                                 <exclude reference="dlP-Eq-ynx"/>
-                                <exclude reference="Mqr-6i-xhb"/>
-                                <exclude reference="dQj-EK-IDa"/>
-                                <exclude reference="g2i-P8-QFy"/>
-                                <exclude reference="gDc-pj-B3c"/>
+                                <exclude reference="B8G-pT-UFZ"/>
+                                <exclude reference="E7c-s8-kXI"/>
+                                <exclude reference="YeZ-vQ-x0b"/>
+                                <exclude reference="97Z-kZ-N0q"/>
+                                <exclude reference="NWc-YF-nB1"/>
+                                <exclude reference="Wbv-UX-oOb"/>
+                                <exclude reference="bTa-KO-2Xa"/>
+                                <exclude reference="e93-QS-A73"/>
+                                <exclude reference="fh9-Re-xWS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -4305,15 +4318,15 @@
                                 <include reference="nVz-qt-xWe"/>
                                 <include reference="PQU-a3-XrX"/>
                                 <include reference="4S9-vC-DkJ"/>
+                                <include reference="XF9-pj-T9M"/>
                                 <include reference="gDO-59-gqg"/>
                                 <include reference="Zdk-oe-nLe"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="bTa-KO-2Xa"/>
-                                <include reference="e93-QS-A73"/>
-                                <include reference="fh9-Re-xWS"/>
-                                <include reference="NWc-YF-nB1"/>
-                                <include reference="Wbv-UX-oOb"/>
+                                <include reference="Mqr-6i-xhb"/>
+                                <include reference="dQj-EK-IDa"/>
+                                <include reference="g2i-P8-QFy"/>
+                                <include reference="gDc-pj-B3c"/>
                                 <include reference="5YD-ma-286"/>
                                 <include reference="5kb-ky-UdU"/>
                                 <include reference="kNc-L2-Afl"/>
@@ -4323,10 +4336,15 @@
                                 <include reference="Wnn-2F-MMl"/>
                                 <include reference="o0n-Jl-TQK"/>
                                 <include reference="dlP-Eq-ynx"/>
-                                <include reference="Mqr-6i-xhb"/>
-                                <include reference="dQj-EK-IDa"/>
-                                <include reference="g2i-P8-QFy"/>
-                                <include reference="gDc-pj-B3c"/>
+                                <include reference="B8G-pT-UFZ"/>
+                                <include reference="E7c-s8-kXI"/>
+                                <include reference="YeZ-vQ-x0b"/>
+                                <include reference="97Z-kZ-N0q"/>
+                                <include reference="NWc-YF-nB1"/>
+                                <include reference="Wbv-UX-oOb"/>
+                                <include reference="bTa-KO-2Xa"/>
+                                <include reference="e93-QS-A73"/>
+                                <include reference="fh9-Re-xWS"/>
                             </mask>
                         </variation>
                     </view>
@@ -4351,6 +4369,7 @@
                         <outlet property="secondaryEmailTextFieldContainer" destination="ABA-SO-b3h" id="Oga-As-yI5"/>
                         <outlet property="secondaryPhoneTextField" destination="ILZ-si-h97" id="Mgj-hc-sgR"/>
                         <outlet property="secondaryPhoneTextFieldContainer" destination="WvS-r9-rK8" id="4S7-p9-tqL"/>
+                        <outlet property="spinnerMask" destination="XF9-pj-T9M" id="ypH-A4-Kdb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7r7-n6-Q2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
