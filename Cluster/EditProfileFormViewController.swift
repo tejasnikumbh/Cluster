@@ -29,11 +29,21 @@ class EditProfileFormViewController: CSFormBaseViewController {
     @IBOutlet weak var saveChangesBtn: UIButton!
     @IBOutlet weak var saveChangesBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var nameTextFieldContainer: UIView!
+    @IBOutlet weak var designationTextFieldContainer: UIView!
+    @IBOutlet weak var primaryPhoneTextFieldContainer: UIView!
+    @IBOutlet weak var secondaryPhoneTextFieldContainer: UIView!
+    @IBOutlet weak var primaryEmailTextFieldContainer: UIView!
+    @IBOutlet weak var secondaryEmailTextFieldContainer: UIView!
+    @IBOutlet weak var addressTextFieldContainer: UIView!
     /* ======================================== UIViewController Methods ================================== */
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupView()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupView()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -44,36 +54,18 @@ class EditProfileFormViewController: CSFormBaseViewController {
 
     func setupView() {
         self.addTintedBlur()
-        self.addTextFieldEffects()
     }
  
     func addTintedBlur() {
         // Setting the backgroundImage
-        self.backgroundImageView.image = backgroundImage
+        self.backgroundImageView.image = self.backgroundImage
         // Adjusting mask color if you want to
-        self.backgroundImageMask.alpha = 0.35
+        self.backgroundImageMask.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.35)
         // Adding the Blur Effect
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = self.view.bounds
         self.backgroundImageView.addSubview(blurView)
-    }
-    
-    func addTextFieldEffects() {
-        self.nameTextField.attributedPlaceholder = NSAttributedString(string:"Name",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.designationTextField.attributedPlaceholder = NSAttributedString(string:"Designation",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.primaryPhoneTextField.attributedPlaceholder = NSAttributedString(string:"Primary Phone",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.secondaryPhoneTextField.attributedPlaceholder = NSAttributedString(string:"Secondary Phone",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.primaryEmailTextField.attributedPlaceholder = NSAttributedString(string:"Primary Email",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.secondaryEmailTextField.attributedPlaceholder = NSAttributedString(string:"Secondary Email",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        self.addressTextField.attributedPlaceholder = NSAttributedString(string:"Address",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
     override func setupGestureRecognizers() {
@@ -85,12 +77,24 @@ class EditProfileFormViewController: CSFormBaseViewController {
     
     override func startObservingKeyboard() {
         NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:Selector("keyboardWillShow:"),
+            name:UIKeyboardWillShowNotification,
+            object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
             selector: Selector("keyboardWillChangeFrame:"),
             name: UIKeyboardWillChangeFrameNotification,
             object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:Selector("keyboardWillHide:"),
+            name:UIKeyboardWillHideNotification,
+            object:nil)
     }
     
     override func stopObservingKeyboard() {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
@@ -98,6 +102,16 @@ class EditProfileFormViewController: CSFormBaseViewController {
     /* ============================================== Selectors ============================================ */
     func closeBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0,
+                    keyboardSize.height + 56.0, 0.0);
+                self.rootScrollView.contentInset = contentInset
+            }
+        }
     }
     
     func keyboardWillChangeFrame(notification: NSNotification) {
@@ -124,6 +138,11 @@ class EditProfileFormViewController: CSFormBaseViewController {
                     completion: nil)
             }
         }
+    }
+    
+    override func keyboardWillHide(notification: NSNotification) {
+        let contentInset = UIEdgeInsetsZero;
+        self.rootScrollView.contentInset = contentInset
     }
     
 }

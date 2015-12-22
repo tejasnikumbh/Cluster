@@ -13,6 +13,12 @@
 		CC5677121C240CD1003114D0 /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */; };
 		CC5677131C240CD1003114D0 /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */; };
 		CC5677141C240CD1003114D0 /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */; };
+		CC767C4D1C2816DC00E77348 /* CSPaleBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C4C1C2816DC00E77348 /* CSPaleBackground.swift */; };
+		CC767C4E1C2816DC00E77348 /* CSPaleBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C4C1C2816DC00E77348 /* CSPaleBackground.swift */; };
+		CC767C4F1C2816DC00E77348 /* CSPaleBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C4C1C2816DC00E77348 /* CSPaleBackground.swift */; };
+		CC767C511C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C501C28284A00E77348 /* CSGrayWhitePlaceholder.swift */; };
+		CC767C521C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C501C28284A00E77348 /* CSGrayWhitePlaceholder.swift */; };
+		CC767C531C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC767C501C28284A00E77348 /* CSGrayWhitePlaceholder.swift */; };
 		CCAC6F981C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
 		CCAC6F991C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
 		CCAC6F9A1C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */; };
@@ -96,6 +102,8 @@
 /* Begin PBXFileReference section */
 		CC56770D1C240CBF003114D0 /* LoginFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFormViewController.swift; sourceTree = "<group>"; };
 		CC5677111C240CD1003114D0 /* SignUpFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
+		CC767C4C1C2816DC00E77348 /* CSPaleBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSPaleBackground.swift; sourceTree = "<group>"; };
+		CC767C501C28284A00E77348 /* CSGrayWhitePlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSGrayWhitePlaceholder.swift; sourceTree = "<group>"; };
 		CCAC6F971C27085400D87AB6 /* CSFormBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSFormBaseViewController.swift; sourceTree = "<group>"; };
 		CCAC6F9D1C27241D00D87AB6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		CCAC6FA11C27242800D87AB6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -268,6 +276,8 @@
 			children = (
 				CCBC38951C1DDBD900E0EFEF /* CSSummaryCard.swift */,
 				CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */,
+				CC767C4C1C2816DC00E77348 /* CSPaleBackground.swift */,
+				CC767C501C28284A00E77348 /* CSGrayWhitePlaceholder.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -467,7 +477,9 @@
 				CC56770E1C240CBF003114D0 /* LoginFormViewController.swift in Sources */,
 				CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CC767C511C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */,
 				CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
+				CC767C4D1C2816DC00E77348 /* CSPaleBackground.swift in Sources */,
 				CCDD36451C230B8000481E23 /* CSRequestDetailFetcher.swift in Sources */,
 				CCBC38961C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
 				CCBC389F1C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
@@ -495,8 +507,10 @@
 				CCBC38D81C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D01C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCAC6F991C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */,
+				CC767C521C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */,
 				CC5677131C240CD1003114D0 /* SignUpFormViewController.swift in Sources */,
 				CCBC38971C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
+				CC767C4E1C2816DC00E77348 /* CSPaleBackground.swift in Sources */,
 				CCBC386C1C1DCAA700E0EFEF /* ClusterTests.swift in Sources */,
 				CCBC389C1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AD1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
@@ -518,8 +532,10 @@
 				CCBC38D91C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC38D11C21A53700E0EFEF /* UIColor+ExtraColors.swift in Sources */,
 				CCAC6F9A1C27085400D87AB6 /* CSFormBaseViewController.swift in Sources */,
+				CC767C531C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */,
 				CC5677141C240CD1003114D0 /* SignUpFormViewController.swift in Sources */,
 				CCBC38981C1DDBD900E0EFEF /* CSSummaryCard.swift in Sources */,
+				CC767C4F1C2816DC00E77348 /* CSPaleBackground.swift in Sources */,
 				CCBC38771C1DCAA700E0EFEF /* ClusterUITests.swift in Sources */,
 				CCBC389D1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
 				CCBC38AE1C1E01C800E0EFEF /* CSUtils.swift in Sources */,
