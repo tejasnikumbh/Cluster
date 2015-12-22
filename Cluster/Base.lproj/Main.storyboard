@@ -4216,6 +4216,9 @@
                                         <include reference="3RV-3n-4BP"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="saveChangesBtnTapped:" destination="BNg-0C-v97" eventType="touchUpInside" id="gZM-8O-NcF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

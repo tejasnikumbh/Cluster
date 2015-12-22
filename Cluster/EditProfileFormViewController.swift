@@ -36,6 +36,12 @@ class EditProfileFormViewController: CSFormBaseViewController {
     @IBOutlet weak var primaryEmailTextFieldContainer: UIView!
     @IBOutlet weak var secondaryEmailTextFieldContainer: UIView!
     @IBOutlet weak var addressTextFieldContainer: UIView!
+    
+    
+    @IBAction func saveChangesBtnTapped(sender: UIButton) {
+        self.saveUserDetails()
+    }
+    
     /* ======================================== UIViewController Methods ================================== */
     
     override func viewDidLayoutSubviews() {
@@ -116,14 +122,19 @@ class EditProfileFormViewController: CSFormBaseViewController {
     
     func keyboardWillChangeFrame(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let keyboardFrame: CGRect? = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue {
-                // Extracting animation relevant params
-                let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?
+            if let keyboardFrame: CGRect? = userInfo[UIKeyboardFrameEndUserInfoKey]?
+                .CGRectValue {
+                let duration:NSTimeInterval = (
+                    userInfo[UIKeyboardAnimationDurationUserInfoKey]
+                    as? NSNumber)?
                     .doubleValue ?? 0
-                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-                let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions
+                let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey]
+                    as? NSNumber
+                let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue
+                    ?? UIViewAnimationOptions
                     .CurveEaseInOut.rawValue
-                let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+                let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(
+                    rawValue: animationCurveRaw)
                 // Setting the bottom constraint value. This is important
                 if(keyboardFrame?.origin.y >= UIScreen.mainScreen().bounds.size.height) {
                     self.saveChangesBottomConstraint?.constant = 0.0
@@ -145,4 +156,46 @@ class EditProfileFormViewController: CSFormBaseViewController {
         self.rootScrollView.contentInset = contentInset
     }
     
+}
+
+// Extension for Parse related methods
+
+import Parse
+
+extension EditProfileFormViewController {
+    func saveUserDetails() {
+        let fullName = self.nameTextField.text
+        let designation = self.designationTextField.text
+        let primaryPhone = self.primaryPhoneTextField.text
+        let secondaryPhone = self.secondaryPhoneTextField.text
+        let primaryEmail = self.primaryEmailTextField.text
+        let secondaryEmail = self.secondaryEmailTextField.text
+        let address = self.addressTextField.text
+        
+        let user = PFUser.currentUser()
+        user?.setObject(fullName!, forKey: "full_name")
+        user?.setObject(designation!, forKey: "designation")
+        user?.setObject(primaryPhone!, forKey: "primary_phone")
+        user?.setObject(secondaryPhone!, forKey: "secondary_phone")
+        user?.setObject(primaryEmail!, forKey: "primary_email")
+        user?.setObject(secondaryEmail!, forKey: "secondary_email")
+        user?.setObject(address!, forKey: "address")
+        
+        let spinner = CSUtils.startSpinner(self.view)
+        user?.saveInBackgroundWithBlock({
+            (success, error) -> Void in
+            CSUtils.stopSpinner(spinner)
+            if(success && (error == nil)) { // If no error
+                let dialog = CSUtils.getDisplayDialog(
+                    message: "Successfully updated details!")
+                self.presentViewController(dialog,
+                    animated: true, completion: nil)
+                return
+            } // If guard fails and error is encountered
+            let dialog = CSUtils.getDisplayDialog(
+                message: "Error saving details, please try again")
+            self.presentViewController(dialog,
+                animated: true, completion: nil)
+        })
+    }
 }
