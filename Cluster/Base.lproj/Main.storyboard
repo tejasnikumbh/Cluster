@@ -64,8 +64,7 @@
                                                             <exclude reference="R4D-AP-cKJ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="88" width="240" height="0.0"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="R4D-AP-cKJ"/>
                                                         </mask>
@@ -2667,7 +2666,9 @@
                                             <constraint firstItem="yTb-2g-OSI" firstAttribute="top" secondItem="I0e-CP-JgY" secondAttribute="top" id="T9a-H2-Ukx"/>
                                             <constraint firstAttribute="bottom" secondItem="IdJ-Pl-Qvp" secondAttribute="bottom" id="UVb-Bv-bya"/>
                                             <constraint firstItem="UOL-a5-qB1" firstAttribute="leading" secondItem="I0e-CP-JgY" secondAttribute="leading" constant="16" id="VRa-Pz-goI"/>
-                                            <constraint firstItem="avM-fd-B2B" firstAttribute="top" secondItem="LSE-L2-pSq" secondAttribute="bottom" constant="30" id="WlI-Y0-NyV"/>
+                                            <constraint firstItem="avM-fd-B2B" firstAttribute="top" secondItem="LSE-L2-pSq" secondAttribute="bottom" constant="30" id="WlI-Y0-NyV">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                            </constraint>
                                             <constraint firstItem="IdJ-Pl-Qvp" firstAttribute="top" secondItem="0vU-ya-a8K" secondAttribute="bottom" id="afj-xr-DGT"/>
                                             <constraint firstItem="LSE-L2-pSq" firstAttribute="top" secondItem="QTY-Sc-ejA" secondAttribute="bottom" constant="8" id="cGl-cb-BgR"/>
                                             <constraint firstAttribute="trailing" secondItem="rLU-bA-gv9" secondAttribute="trailing" constant="16" id="eN0-yQ-VVd"/>
@@ -4634,8 +4635,7 @@
                                                                     <exclude reference="NZp-WP-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="16" y="62" width="208" height="2"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <exclude reference="1vA-cM-eWB"/>
                                                                     <include reference="NZp-WP-nEN"/>
@@ -4713,8 +4713,7 @@
                                                                     <exclude reference="xbg-9b-zxq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="212" y="8" width="56" height="56"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="subviews">
                                                                     <include reference="PGN-uX-3kh"/>
                                                                 </mask>
