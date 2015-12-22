@@ -52,18 +52,34 @@ class CSUtils: NSObject {
     
     
     /* ============================= Validation Utils ========================== */
-    static func validatePhoneNumber(phoneNumber: String?) -> Bool{
-        if(phoneNumber == nil) {
-            print("Internal Error: Text Input String is nil")
-            return false
-        } else {
-            // Need to validate for empty string
-            // Valid phone number with international code
-            // and then only return true
-            return true
-        }
-        
+    
+    static func validateUserDetails(name: String?, designation: String?,
+        primaryPhone: String?, secondaryPhone: String?,
+        primaryEmail: String?, secondaryEmail: String?,
+        address: String?) -> Bool {
+        return true
     }
+    
+    static func validateFullName(name: String?) -> Bool {
+        return true
+    }
+    
+    static func validateDesignation(designation: String?) -> Bool {
+        return true
+    }
+    
+    static func validatePhoneNumber(phoneNumber: String?) -> Bool{
+       return true
+    }
+    
+    static func validateEmail(email: String?) -> Bool {
+        return true
+    }
+    
+    static func validateAddress(address: String?) -> Bool {
+        return true
+    }
+    
     
     /* =========================== Debug Utils ================================== */
     static func log(message: String?) {

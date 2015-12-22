@@ -61,6 +61,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
 
     func setupView() {
         self.addTintedBlur()
+        self.loadUserDetails()
     }
  
     func addTintedBlur() {
@@ -165,6 +166,9 @@ import Parse
 
 extension EditProfileFormViewController {
     func saveUserDetails() {
+        
+        let user = PFUser.currentUser()
+        
         let fullName = self.nameTextField.text
         let designation = self.designationTextField.text
         let primaryPhone = self.primaryPhoneTextField.text
@@ -173,14 +177,24 @@ extension EditProfileFormViewController {
         let secondaryEmail = self.secondaryEmailTextField.text
         let address = self.addressTextField.text
         
-        let user = PFUser.currentUser()
-        user?.setObject(fullName!, forKey: "full_name")
-        user?.setObject(designation!, forKey: "designation")
-        user?.setObject(primaryPhone!, forKey: "primary_phone")
-        user?.setObject(secondaryPhone!, forKey: "secondary_phone")
-        user?.setObject(primaryEmail!, forKey: "primary_email")
-        user?.setObject(secondaryEmail!, forKey: "secondary_email")
-        user?.setObject(address!, forKey: "address")
+        let areUserDetailsValid = CSUtils.validateUserDetails(
+            fullName, designation: designation,
+            primaryPhone: primaryPhone, secondaryPhone: secondaryPhone,
+            primaryEmail: primaryEmail, secondaryEmail: secondaryEmail,
+            address: address)
+            
+        if(areUserDetailsValid){ // Guard for valid details
+            user?.setObject(fullName!, forKey: "full_name")
+            user?.setObject(designation!, forKey: "designation")
+            user?.setObject(primaryPhone!, forKey: "primary_phone")
+            user?.setObject(secondaryPhone!, forKey: "secondary_phone")
+            user?.setObject(primaryEmail!, forKey: "primary_email")
+            user?.setObject(secondaryEmail!, forKey: "secondary_email")
+            user?.setObject(address!, forKey: "address")
+        } else {
+            // Show form with asterisk
+            return
+        }
         
         let spinner = CSUtils.startSpinner(self.view)
         self.saveChangesBtn.enabled = false
@@ -200,5 +214,51 @@ extension EditProfileFormViewController {
             self.presentViewController(dialog,
                 animated: true, completion: nil)
         })
+    }
+    
+    func loadUserDetails() {
+        let user = PFUser.currentUser()
+        if let fullName = user?.objectForKey("full_name") as? String {
+            self.nameTextField.attributedText =  NSAttributedString(
+            string: fullName,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+        
+        if let designation = user?.objectForKey("designation") as? String {
+            self.designationTextField.attributedText = NSAttributedString(
+            string: designation,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+
+        if let primaryPhone =  (user?.objectForKey("primary_phone") as? String) {
+            self.primaryPhoneTextField.attributedText = NSAttributedString(
+            string:primaryPhone,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+
+        if let secondaryPhone = (user?.objectForKey("secondary_phone") as? String) {
+            self.secondaryPhoneTextField.attributedText = NSAttributedString(
+            string: secondaryPhone,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+        
+        if let primaryEmail = (user?.objectForKey("primary_email") as? String) {
+            self.primaryEmailTextField.attributedText = NSAttributedString(
+            string: primaryEmail,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+
+        if let secondaryEmail = (user?.objectForKey("secondary_email") as? String) {
+            self.secondaryEmailTextField.attributedText = NSAttributedString(
+            string: secondaryEmail,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+
+        if let address = (user?.objectForKey("address") as? String) {
+            self.addressTextField.attributedText = NSAttributedString(
+            string: address,
+            attributes:[NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+
     }
 }
