@@ -11,10 +11,7 @@ import UIKit
 class CSUtils: NSObject {
  
     /* ============================= UI Utils ================================== */
-    static func showCameraActionSheet(){
         
-    }
-    
     static func startSpinner(backgroundView: UIView) -> UIActivityIndicatorView {
         let spinner: UIActivityIndicatorView = UIActivityIndicatorView(
             frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
@@ -66,6 +63,11 @@ class CSUtils: NSObject {
             return true
         }
         
+    }
+    
+    /* =========================== Debug Utils ================================== */
+    static func log(message: String?) {
+        print(message)
     }
     
 }

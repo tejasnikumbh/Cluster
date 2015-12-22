@@ -65,13 +65,16 @@ extension LoginFormViewController {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true,
+                            completion: nil)
                         print("User successfully logged in")
                     })
                 } else { // Invalid Login
-                    let alertDialog = CSUtils.getDisplayDialog(message: "Invalid Email or Password")
-                    self.presentViewController(alertDialog, animated: true, completion: nil)
-                    print("Wrong email or password")
+                    let alertDialog = CSUtils.getDisplayDialog(
+                        message: "Invalid Email or Password")
+                    self.presentViewController(alertDialog,
+                        animated: true, completion: nil)
+                    CSUtils.log("Trouble logging user into app")
                 }
         })
     }

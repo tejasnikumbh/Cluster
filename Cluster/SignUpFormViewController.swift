@@ -29,7 +29,8 @@ class SignUpFormViewController: CSFormBaseViewController {
         let email = self.emailTextField.text
         let password = self.passwordTextField.text
         // TODO: Validate all these (including if password matches confirm password)
-        self.signUpUser(email, password: password, fullName: fullName, phoneNumber: phoneNumber)
+        self.signUpUser(email, password: password,
+            fullName: fullName, phoneNumber: phoneNumber)
     }
 
     /* ======================================== Super Methods Overridden ================================== */
@@ -66,21 +67,26 @@ extension SignUpFormViewController {
         let newUser = PFUser()
         newUser.username = email
         newUser.password = password
-        newUser.email = email
-        newUser.setObject(phoneNumber!, forKey: "phone_number")
+        newUser.setObject(email!, forKey: "primary_email")
+        newUser.setObject(phoneNumber!, forKey: "primary_phone")
         newUser.setObject(fullName!, forKey: "full_name")
         let spinner = CSUtils.startSpinner(self.view)
         newUser.signUpInBackgroundWithBlock(
         {
             (success, error) -> Void in
-            spinner.stopAnimating()
-            if((error) != nil) {
-                // Display errors by creating a method in CSUtils
-                print("Error saving object!")
+            CSUtils.stopSpinner(spinner)
+            if(success && (error) == nil) {
+                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc : UIViewController = storyboard
+                    .instantiateViewControllerWithIdentifier("mainFlowViewController")
+                self.presentViewController(vc, animated: true, completion: nil)
+                CSUtils.log("Successfully saved user object to parse")
                 return
             }
-            // Successfully signed up
-            print("Successfully saved object")
+            // Display errors by creating a method in CSUtils
+            let dialog = CSUtils.getDisplayDialog(message: "Error signing up!")
+            self.presentViewController(dialog, animated: true, completion: nil)
+            CSUtils.log("Error saving user object to backend")
         })
     }
     
