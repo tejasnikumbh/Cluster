@@ -46,6 +46,14 @@ class EditProfileViewController: UIViewController {
         setupGestureRecognizers()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        PFUser.currentUser()?.refreshInBackgroundWithBlock({
+            (user, error) -> Void in
+            self.setupUserDetails()
+        })
+    }
+    
     override func prefersStatusBarHidden() -> Bool {
         return true;
     }
@@ -53,7 +61,7 @@ class EditProfileViewController: UIViewController {
 
     /* ================================= View Config Methods =================================== */
     func setupView() {
-        addGradientToView(detailCardProfilePic)
+        self.addGradientToView(detailCardProfilePic)
     }
 
     func addGradientToView(imageView: UIImageView!) {
@@ -162,6 +170,86 @@ extension EditProfileViewController {
         }
     }
     
+    func saveUserProfilePic(image: UIImage?) {
+        // Convert to JPG with 50% quality
+        let imageData = UIImageJPEGRepresentation(image!, 0.5)
+        let imageName = ((PFUser.currentUser()?.objectForKey("username"))! as! String) + "_pic.jpg"
+        let imageFile = PFFile(name: imageName, data: imageData!)
+        
+        // Start saving image in background
+        var spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+        imageFile?.saveInBackgroundWithBlock({
+            (success, error) -> Void in
+            
+            CSUtils.stopSpinner(spinner)
+            if((error != nil)) { // Error guard for saving image
+                CSUtils.log("Error: \(error) \(error?.userInfo)")
+                return
+            }
+            
+            // Associate image with user on successful save
+            let user = PFUser.currentUser()
+            user?.setObject(imageFile!, forKey: "profile_pic")
+            
+            spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+            user?.saveInBackgroundWithBlock({
+                (success, error) -> Void in
+                
+                CSUtils.stopSpinner(spinner)
+                if(error != nil) { // Error guard for successful associated
+                    CSUtils.log("Error saving object")
+                    let dialog = CSUtils.getDisplayDialog(message: "There was an error uploading the image. Please try again")
+                    self.presentViewController(dialog,animated: true, completion: nil)
+                }
+                
+                // Succesfully saved and associated image
+                let dialog = CSUtils.getDisplayDialog(message: "Image saved successfully")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                self.detailCardProfilePic.image = image!
+                
+            }) // End of association
+        }) // End of image save
+    }
+    
+    func setupUserDetails() {
+        let user = PFUser.currentUser()
+        if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
+            
+            let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+            profilePic.getDataInBackgroundWithBlock({
+                (data, error) -> Void in
+                
+                CSUtils.stopSpinner(spinner)
+                var profilePicImage: UIImage?
+                if (error != nil) { // Error guard in case of invalid image
+                    // Placeholder image here instead of face
+                    profilePicImage = UIImage(named: "face")
+                    return
+                }
+                
+                // Successful image data fetch
+                profilePicImage = UIImage(data:data!)
+                self.detailCardProfilePic.image = profilePicImage
+            })
+            
+        }
+        let fullName = user?.objectForKey("full_name") as! String?
+        let designation = user?.objectForKey("designation") as! String?
+        let primaryPhone = user?.objectForKey("primary_phone") as! String?
+        let secondaryPhone = user?.objectForKey("secondary_phone") as! String?
+        let primaryEmail = user?.objectForKey("primary_email") as! String?
+        let secondaryEmail = user?.objectForKey("secondary_email") as! String?
+        let address = user?.objectForKey("address") as! String?
+        
+        self.nameLabel.text = fullName
+        self.designationLabel.text = designation
+        self.primaryPhoneLabel.text = primaryPhone
+        self.secondaryPhoneLabel.text = secondaryPhone
+        self.primaryEmailLabel.text = primaryEmail
+        self.secondaryEmailLabel.text = secondaryEmail
+        self.addressLabel.text = address
+    }
+    
 }
 
 // Extension for picking photo
@@ -170,7 +258,6 @@ extension EditProfileViewController: UINavigationControllerDelegate, UIImagePick
         didFinishPickingImage image: UIImage,
         editingInfo: [String : AnyObject]?) {
             self.dismissViewControllerAnimated(true, completion: nil)
-            self.detailCardProfilePic.image = image
-            // Persist the image in local cache as well as store it to the backend
+            self.saveUserProfilePic(image)
     }
 }
