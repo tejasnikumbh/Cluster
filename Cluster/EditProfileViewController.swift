@@ -38,11 +38,11 @@ class EditProfileViewController: UIViewController {
     /* ================================= Super Methods Overridden ============================= */
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupView()
         setupGestureRecognizers()
     }
     
@@ -66,7 +66,7 @@ class EditProfileViewController: UIViewController {
 
     func addGradientToView(imageView: UIImageView!) {
         let colorTop = UIColor(white: 0.0, alpha: 0.0).CGColor
-        let colorBottom = UIColor(white: 0.0, alpha: 0.10).CGColor
+        let colorBottom = UIColor(white: 0.0, alpha: 0.75).CGColor
         let gradient: CAGradientLayer
         gradient = CAGradientLayer()
         gradient.frame = CGRect(x: 0.0, y: 0.0,
