@@ -39,6 +39,7 @@ class MainViewController: UIViewController {
         self.setupView()
         self.setupNavBar()
         self.setupSearchBar()
+        self.setupGestureRecognizers()
     }
     
     
@@ -95,6 +96,11 @@ class MainViewController: UIViewController {
         // Finally setting our searchBar to be the header view
         self.contactsTableView.tableHeaderView = searchController.searchBar
     }
+    
+    func setupGestureRecognizers() {
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: Selector("callContact:"))
+        self.contactsTableView.addGestureRecognizer(longPressGR)
+    }
 
     func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem {
         // Case of a space button
@@ -142,6 +148,21 @@ class MainViewController: UIViewController {
                 .containsString((searchText?.lowercaseString)!)
         })!
         self.contactsTableView.reloadData()
+    }
+    
+    // Make call
+    func callContact(gestureRecognizer: UILongPressGestureRecognizer) {
+        let indexPath = self.contactsTableView.indexPathForRowAtPoint(
+            gestureRecognizer.locationInView(self.contactsTableView))
+        if((indexPath) != nil) {
+            var cellModel: CSContactDetail?
+            if searchController.active && searchController.searchBar.text != "" {
+                cellModel = filteredContacts[indexPath!.row]
+            } else {
+                cellModel = self.contactDetailFetcher?.userContactDetails[indexPath!.row]
+            }
+            CSUtils.makeCall(cellModel?.primaryPhone)
+        }
     }
 }
 

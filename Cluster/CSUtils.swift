@@ -86,4 +86,21 @@ class CSUtils: NSObject {
         print(message)
     }
     
+    /* =========================== Telephony Utils ============================== */
+    static func makeCall(phoneNumber: String?) {
+        let dialPhone = CSUtils.extractPhoneNumber(phoneNumber)
+        if(!CSUtils.validatePhoneNumber(dialPhone)) {
+            CSUtils.log("Invalid Phone Number")
+        }
+        let phone = "tel://\(dialPhone!)";
+        let url:NSURL = NSURL(string:phone)!;
+        UIApplication.sharedApplication().openURL(url);
+    }
+    
+    static func extractPhoneNumber(phoneNumber: String?) -> String?{
+        let substringRange = Range<String.Index>(start: (phoneNumber?.startIndex.advancedBy(1))!, end: (phoneNumber?.endIndex)!)
+        let phoneNumberString = phoneNumber?.substringWithRange(substringRange)
+        let phoneNumberStringArr = phoneNumberString?.componentsSeparatedByString(" ")
+        return phoneNumberStringArr?.joinWithSeparator("")
+    }
 }

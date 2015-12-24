@@ -19,7 +19,7 @@ class CSContactDetailFetcher: NSObject {
     class func fetchContactDetailsWithCompletion(completion:(CSContactDetailFetcher) -> Void) {
         // make async call, fetch contact details and populate the property
         let user1 = CSContactDetail(profilePicImageURL: "face", contactName: "Tejas Nikumbh",
-            contactDesignation: "Software Developer", primaryPhone: "+91 750 608 1238",
+            contactDesignation: "Software Developer", primaryPhone: "+91 741 743 8731",
             secondaryPhone: "+91 997 073 5269", primaryEmail: "tejnikumbh@gmail.com",
             secondaryEmail: "tejasnikumbh@gmail.com", address: "221B, Baker Street, London , New England")
         let user2 = CSContactDetail(profilePicImageURL: "face2", contactName: "Shaan Chugh",
