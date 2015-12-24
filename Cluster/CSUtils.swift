@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias AlertActionClosure = (UIAlertAction) -> ()
+
 class CSUtils: NSObject {
  
     /* ============================= UI Utils ================================== */
@@ -47,6 +49,29 @@ class CSUtils: NSObject {
                 style: UIAlertActionStyle.Default,
                 handler: nil)
         alertDialog.addAction(okAction)
+        return alertDialog
+    }
+    
+    static func getActionDialog(title: String? = "Cluster",
+        message: String?,
+        handler: AlertActionClosure) -> UIAlertController
+    {
+        let alertDialog = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.Default,
+            handler: handler
+        )
+        let cancelAction = UIAlertAction(
+            title: "CANCEL",
+            style:  UIAlertActionStyle.Cancel,
+            handler: handler
+        )
+        alertDialog.addAction(okAction)
+        alertDialog.addAction(cancelAction)
         return alertDialog
     }
     

@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
     }
     
     func setupGestureRecognizers() {
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: Selector("callContact:"))
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: Selector("longPressOnContact:"))
         self.contactsTableView.addGestureRecognizer(longPressGR)
     }
 
@@ -150,8 +150,8 @@ class MainViewController: UIViewController {
         self.contactsTableView.reloadData()
     }
     
-    // Make call
-    func callContact(gestureRecognizer: UILongPressGestureRecognizer) {
+    // Handle Long Press
+    func longPressOnContact(gestureRecognizer: UILongPressGestureRecognizer) {
         let indexPath = self.contactsTableView.indexPathForRowAtPoint(
             gestureRecognizer.locationInView(self.contactsTableView))
         if((indexPath) != nil) {
@@ -161,9 +161,22 @@ class MainViewController: UIViewController {
             } else {
                 cellModel = self.contactDetailFetcher?.userContactDetails[indexPath!.row]
             }
-            CSUtils.makeCall(cellModel?.primaryPhone)
+            
+            let handler: AlertActionClosure = {
+                action in
+                if(action.style != UIAlertActionStyle.Cancel){
+                    CSUtils.makeCall(cellModel?.primaryPhone)
+                }
+            }
+            
+            let contactName = (cellModel?.contactName)!
+            let dialog = CSUtils.getActionDialog("Confirm Call",
+                message: "Call \(contactName)?",
+                handler: handler)
+            self.presentViewController(dialog, animated: true, completion:nil)
         }
     }
+    
 }
 
 // Extension implementing the UITableViewDatasource and UITableViewDelegate methods
