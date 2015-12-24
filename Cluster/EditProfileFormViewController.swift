@@ -200,19 +200,35 @@ extension EditProfileFormViewController {
         self.saveChangesBtn.enabled = false
         user?.saveInBackgroundWithBlock({
             (success, error) -> Void in
-            CSUtils.stopSpinner(spinner)
-            self.saveChangesBtn.enabled = true
+            
             if(success && (error == nil)) { // If no error
-                let dialog = CSUtils.getDisplayDialog(
-                    message: "Successfully updated details!")
-                self.presentViewController(dialog,
-                    animated: true, completion: nil)
+                PFUser.currentUser()?.fetchInBackgroundWithBlock({
+                    (user, error) -> Void in
+                    
+                    CSUtils.stopSpinner(spinner)
+                    if(error == nil){
+                        self.saveChangesBtn.enabled = true
+                        let dialog = CSUtils.getDisplayDialog(
+                            message: "Successfully updated details!")
+                        self.presentViewController(dialog,
+                        animated: true, completion: nil)
+                    } else {
+                        let dialog = CSUtils.getDisplayDialog(
+                            message: "Error saving details, please try again")
+                        self.presentViewController(dialog,
+                            animated: true, completion: nil)
+                    }
+                    
+                })
                 return
-            } // If guard fails and error is encountered
+            }
+            
+            // If guard fails and error is encountered
             let dialog = CSUtils.getDisplayDialog(
                 message: "Error saving details, please try again")
             self.presentViewController(dialog,
                 animated: true, completion: nil)
+            
         })
     }
     

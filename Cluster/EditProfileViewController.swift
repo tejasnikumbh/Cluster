@@ -48,10 +48,7 @@ class EditProfileViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        PFUser.currentUser()?.refreshInBackgroundWithBlock({
-            (user, error) -> Void in
-            self.setupUserDetails()
-        })
+        self.setupUserDetails()
     }
     
     override func prefersStatusBarHidden() -> Bool {
