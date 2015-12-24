@@ -14,22 +14,35 @@ class CSUtils: NSObject {
  
     /* ============================= UI Utils ================================== */
         
-    static func startSpinner(backgroundView: UIView) -> UIActivityIndicatorView {
+    static func startSpinner(backgroundView: UIView) -> (UIActivityIndicatorView) {
+        let spinnerContainer: UIView = UIView()
+        spinnerContainer.frame = CGRectMake(0, 0, 80, 80)
+        spinnerContainer.center = backgroundView.center
+        spinnerContainer.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        spinnerContainer.clipsToBounds = true
+        spinnerContainer.layer.cornerRadius = 10
+
         let spinner: UIActivityIndicatorView = UIActivityIndicatorView(
             frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
-        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        spinner.center = backgroundView.center
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        spinner.center = CGPointMake(spinnerContainer.frame.size.width / 2,
+            spinnerContainer.frame.size.height / 2);
         spinner.hidesWhenStopped = true
-        backgroundView.addSubview(spinner)
+    
+        spinnerContainer.addSubview(spinner)
+        backgroundView.addSubview(spinnerContainer)
+        
         dispatch_async(dispatch_get_main_queue())
         {
             () -> Void in
             spinner.startAnimating()
         }
+        
         return spinner
     }
     
     static func stopSpinner(spinner: UIActivityIndicatorView) {
+        spinner.superview?.removeFromSuperview()
         dispatch_async(dispatch_get_main_queue())
         {
             () -> Void in
