@@ -10,7 +10,7 @@ import UIKit
 
 class CSRequestDetailFetcher: NSObject {
     
-    let requestsContactDetails: [CSContactDetail]
+    var requestsContactDetails: [CSContactDetail]
     
     init(requestsContactDetails: [CSContactDetail]) {
         self.requestsContactDetails = requestsContactDetails

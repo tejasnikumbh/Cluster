@@ -10,7 +10,7 @@ import UIKit
 
 class CSContactDetailFetcher: NSObject {
     
-    let userContactDetails: [CSContactDetail]
+    var userContactDetails: [CSContactDetail]
     
     init(userContactDetails: [CSContactDetail]) {
         self.userContactDetails = userContactDetails
