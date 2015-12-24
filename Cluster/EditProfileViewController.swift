@@ -203,8 +203,6 @@ extension EditProfileViewController {
                 }
                 
                 // Succesfully saved and associated image
-                let dialog = CSUtils.getDisplayDialog(message: "Image saved successfully")
-                self.presentViewController(dialog, animated: true, completion: nil)
                 self.detailCardProfilePic.image = image!
                 
             }) // End of association
