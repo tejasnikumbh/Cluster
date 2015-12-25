@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias EmptyClosure = () -> ()
+
 class ConnectViewController: UIViewController {
 
     @IBOutlet weak var backBtnContainer: UIView!
@@ -96,11 +98,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
         let yesRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
             title: " Yes ", handler:{
                 action, indexpath in
-                // Accept code here
-                self.requestsDetailFetcher?.requestsContactDetails.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath],
-                    withRowAnimation: UITableViewRowAnimation.Automatic)
-                print("YES•ACTION");
+                self.acceptRequestForIndexPath(indexPath)
         });
         yesRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851,
                                                blue: 0.3922, alpha: 1.0);
@@ -108,13 +106,117 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
             style: UITableViewRowActionStyle.Default,
             title: "  No ", handler:{
                 action, indexpath in
-                // Reject Code here
+                // Backend part for accept request
+                
+                // UI part for reject request
                 self.requestsDetailFetcher?.requestsContactDetails.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath],
                     withRowAnimation: UITableViewRowAnimation.Automatic)
                 print("NO•ACTION");
         });
         return [noRowAction, yesRowAction];
+    }
+    
+}
+
+import Parse
+
+// Extension for Parse methods
+extension ConnectViewController {
+    
+    func acceptRequestForIndexPath(contactIndexPath: NSIndexPath) {
+        let user = PFUser.currentUser()
+        var contact: PFUser?
+        let contactModel = self.requestsDetailFetcher?
+            .requestsContactDetails[contactIndexPath.row]
+        let completion =
+        {
+            self.requestsDetailFetcher?.requestsContactDetails
+                .removeAtIndex(contactIndexPath.row)
+            self.requestsTableView.deleteRowsAtIndexPaths([contactIndexPath],
+                withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        // Username is unique, so we do the connections based on that
+        let query = PFUser.query()
+        query!.whereKey("username", equalTo: (contactModel?.username!)!)
+        
+        
+        // Executing the query
+        let spinner = CSUtils.startSpinner(self.view)
+        query!.findObjectsInBackgroundWithBlock {
+            [unowned self] // Since we don't want a retention cycle in case block hangs
+            (contacts: [PFObject]?, error: NSError?) -> Void in
+            if(error != nil || contacts!.count == 0)
+            { //Error guard
+                CSUtils.stopSpinner(spinner)
+                let dialog = CSUtils.getDisplayDialog(
+                    "Deleted Profile",
+                    message: "The user has deleted his profile")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                completion()
+                return
+            }
+            
+            contact = contacts![0] as? PFUser
+            self.saveUserConnection(user,
+                contact: contact,
+                completion:
+                {
+                    let dialog = CSUtils.getDisplayDialog(
+                        "User Added",
+                        message: "\(contact?.objectForKey("full_name") as! String!) has been added!")
+                    self.presentViewController(dialog, animated: true, completion: nil)
+                    CSUtils.log("Successfully saved user connection!")
+                    completion()
+                },
+                spinner: spinner)
+        } // End of query execution
+    }
+    
+    func saveUserConnection(user: PFUser?, contact: PFUser?,
+        completion: EmptyClosure, spinner: UIActivityIndicatorView?) {
+        // Saving the connection on the user side
+        let userConnection = PFObject(className: "Connection")
+        userConnection.setObject(user!, forKey: "core_user")
+        userConnection.setObject(contact!, forKey: "contact_user")
+        userConnection.setObject(contact!, forKey: "request_sender")
+        userConnection.setObject(false, forKey: "request_pending")
+        // Persisting to backend
+        userConnection.saveInBackgroundWithBlock {
+            (success, error) -> Void in
+            if(!success || error != nil)
+            { // Error guard
+                CSUtils.stopSpinner(spinner!)
+                let alert = CSUtils.getDisplayDialog(
+                    message: "Oops! There was a problem")
+                self.presentViewController(alert, animated: true, completion: nil)
+                return
+            }
+            
+            // Refreshing the user
+            PFUser.currentUser()?.fetchInBackgroundWithBlock({
+                (user, error) -> Void in
+                CSUtils.stopSpinner(spinner!)
+                if(error != nil)
+                { // Error guard
+                    let dialog = CSUtils.getDisplayDialog(
+                        message: "Oops! There was a problem")
+                    self.presentViewController(dialog, animated: true, completion: nil)
+                    CSUtils.log("Problem refreshing user data")
+                    return
+                }
+                // Save this user as a connection to the contact, in background
+                let contactConnection = PFObject(className: "Connection")
+                contactConnection.setObject(contact!, forKey: "core_user")
+                contactConnection.setObject(user!, forKey: "contact_user")
+                contactConnection.setObject(contact!, forKey: "request_sender")
+                contactConnection.setObject(false, forKey: "request_pending")
+                contactConnection.saveInBackground()
+                completion()
+            })
+            
+            
+        } // End of connection save
     }
     
 }

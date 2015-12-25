@@ -10,6 +10,7 @@ import Foundation
 
 class CSContactDetail: NSObject {
     
+    let username: String!
     // Primary Required Properties
     let profilePicImageURL: String!
     let contactName: String!
@@ -21,20 +22,18 @@ class CSContactDetail: NSObject {
     let secondaryEmail: String?
     let address: String?
     
-    init(profilePicImageURL: String!, contactName: String!, contactDesignation: String!,
+    init(username: String!, profilePicImageURL: String!, contactName: String!, contactDesignation: String!,
         primaryPhone: String?, secondaryPhone: String?,
         primaryEmail: String?, secondaryEmail: String?,
         address: String?) {
+        self.username = username
         self.profilePicImageURL = profilePicImageURL
         self.contactName = contactName
         self.contactDesignation = contactDesignation
-            
         self.primaryPhone = primaryPhone
         self.secondaryPhone = secondaryPhone
-            
         self.primaryEmail = primaryEmail
         self.secondaryEmail = secondaryEmail
-        
         self.address = address
     }
     
