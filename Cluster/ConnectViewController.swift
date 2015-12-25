@@ -15,6 +15,7 @@ class ConnectViewController: UIViewController {
     @IBOutlet weak var backBtnContainer: UIView!
     @IBOutlet weak var requestsTableView: UITableView!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var recipientPhoneNumberField: UITextField!
     
     var requestsDetailFetcher: CSRequestDetailFetcher?
     // View lifecycle and view property methods
@@ -62,6 +63,21 @@ class ConnectViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func sendRequestTapped(sender: UIButton) {
+        let phoneNumberString = self.recipientPhoneNumberField.text
+        if (CSUtils.validatePhoneNumber(phoneNumberString)) {
+            let spinner = CSUtils.startSpinner(self.view)
+            self.sendContactRequest(
+                CSUtils.extractPhoneNumber(phoneNumberString),
+                spinner: spinner)
+        } else {
+            let dialog = CSUtils.getDisplayDialog(
+                "Invalid Phonenumber",
+                message: "Please enter a valid number")
+            self.presentViewController(dialog, animated: true, completion: nil)
+            return
+        }
+    }
     
 }
 
@@ -112,7 +128,6 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
                 self.requestsDetailFetcher?.requestsContactDetails.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath],
                     withRowAnimation: UITableViewRowAnimation.Automatic)
-                print("NO•ACTION");
         });
         return [noRowAction, yesRowAction];
     }
@@ -164,7 +179,7 @@ extension ConnectViewController {
                 {
                     let dialog = CSUtils.getDisplayDialog(
                         "User Added",
-                        message: "\(contact?.objectForKey("full_name") as! String!) has been added!")
+                        message: "\(contact?.objectForKey("full_name") as! String) has been added!")
                     self.presentViewController(dialog, animated: true, completion: nil)
                     CSUtils.log("Successfully saved user connection!")
                     completion()
@@ -175,48 +190,84 @@ extension ConnectViewController {
     
     func saveUserConnection(user: PFUser?, contact: PFUser?,
         completion: EmptyClosure, spinner: UIActivityIndicatorView?) {
-        // Saving the connection on the user side
-        let userConnection = PFObject(className: "Connection")
-        userConnection.setObject(user!, forKey: "core_user")
-        userConnection.setObject(contact!, forKey: "contact_user")
-        userConnection.setObject(contact!, forKey: "request_sender")
-        userConnection.setObject(false, forKey: "request_pending")
-        // Persisting to backend
-        userConnection.saveInBackgroundWithBlock {
-            (success, error) -> Void in
-            if(!success || error != nil)
-            { // Error guard
+        let query = PFQuery(className: "Connection")
+        query.whereKey("core_user", equalTo: contact!)
+        query.whereKey("contact_user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            // Error Guard
+            if(objects?.count < 0 || error != nil) {
+                // Request was not found or there was an error
                 CSUtils.stopSpinner(spinner!)
-                let alert = CSUtils.getDisplayDialog(
-                    message: "Oops! There was a problem")
-                self.presentViewController(alert, animated: true, completion: nil)
+                let dialog = CSUtils.getDisplayDialog(
+                    message: "Oops! Somethign went wrong")
+                self.presentViewController(dialog, animated: true,
+                    completion: nil)
                 return
             }
             
-            // Refreshing the user
-            PFUser.currentUser()?.fetchInBackgroundWithBlock({
-                (user, error) -> Void in
+            for object in objects! {
+                let connection = object
+                connection.setObject(false, forKey: "request_pending")
+                connection.saveInBackgroundWithBlock({
+                    (success: Bool?, error: NSError?) -> Void in
+                    CSUtils.stopSpinner(spinner!)
+                    if(!success! || (error != nil)) { //Error Guard
+                        let dialog = CSUtils.getDisplayDialog(
+                            message: "Oops! Something went wrong")
+                        self.presentViewController(dialog, animated: true,
+                            completion: nil)
+                        return
+                    }
+                })
+            }
+            
+            completion()
+            
+        }// End of connection query
+    }
+    
+    func sendContactRequest(phoneNumber: String?, spinner: UIActivityIndicatorView?) {
+        let user = PFUser.currentUser()
+        let query = PFQuery(className: "_User")
+        query.whereKey("primary_phone", equalTo: phoneNumber!)
+        query.findObjectsInBackgroundWithBlock {
+            [unowned self] // Since we don't want a retention cycle in case block hangs
+            (contacts: [PFObject]?, error: NSError?) -> Void in
+            if(error != nil || contacts!.count == 0)
+            { //Error guard
                 CSUtils.stopSpinner(spinner!)
-                if(error != nil)
-                { // Error guard
+                let dialog = CSUtils.getDisplayDialog(
+                    "Deleted Profile",
+                    message: "The user has deleted his profile")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                return
+            }
+            
+            let contact = contacts![0] as? PFUser
+            let userConnection = PFObject(className: "Connection")
+            userConnection.setObject(user!, forKey: "core_user")
+            userConnection.setObject(contact!, forKey: "contact_user")
+            userConnection.setObject(user!, forKey: "request_sender")
+            userConnection.setObject(true, forKey: "request_pending")
+            userConnection.saveInBackgroundWithBlock({
+                (success, error) -> Void in
+                CSUtils.stopSpinner(spinner!)
+                if(!success || (error != nil)) { // Error guard
                     let dialog = CSUtils.getDisplayDialog(
-                        message: "Oops! There was a problem")
+                        "Request not sent",
+                        message: "Oops! Something went wrong")
                     self.presentViewController(dialog, animated: true, completion: nil)
-                    CSUtils.log("Problem refreshing user data")
                     return
                 }
-                // Save this user as a connection to the contact, in background
-                let contactConnection = PFObject(className: "Connection")
-                contactConnection.setObject(contact!, forKey: "core_user")
-                contactConnection.setObject(user!, forKey: "contact_user")
-                contactConnection.setObject(contact!, forKey: "request_sender")
-                contactConnection.setObject(false, forKey: "request_pending")
-                contactConnection.saveInBackground()
-                completion()
+                
+                let dialog = CSUtils.getDisplayDialog(
+                    "Request sent successfully",
+                    message: "Your request was sent succesfully!")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                return
             })
-            
-            
-        } // End of connection save
+        } // End of quert execution
     }
     
 }

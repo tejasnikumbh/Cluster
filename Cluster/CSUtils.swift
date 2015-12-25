@@ -136,8 +136,11 @@ class CSUtils: NSObject {
     }
     
     static func extractPhoneNumber(phoneNumber: String?) -> String?{
-        let substringRange = Range<String.Index>(start: (phoneNumber?.startIndex.advancedBy(1))!, end: (phoneNumber?.endIndex)!)
-        let phoneNumberString = phoneNumber?.substringWithRange(substringRange)
+        var phoneNumberString = phoneNumber
+        if(phoneNumber!.characters.first == "+") {
+            let substringRange = Range<String.Index>(start: (phoneNumber?.startIndex.advancedBy(1))!, end: (phoneNumber?.endIndex)!)
+            phoneNumberString = phoneNumber?.substringWithRange(substringRange)
+        }
         let phoneNumberStringArr = phoneNumberString?.componentsSeparatedByString(" ")
         return phoneNumberStringArr?.joinWithSeparator("")
     }

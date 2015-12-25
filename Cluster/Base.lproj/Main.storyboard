@@ -4441,6 +4441,9 @@
                                                 <include reference="dV1-rS-gaD"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="sendRequestTapped:" destination="yqk-xl-N2N" eventType="touchUpInside" id="3py-8M-UsW"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Swipe left on the requests below)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLS-IW-vWC">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -4960,6 +4963,7 @@
                     <connections>
                         <outlet property="backBtnContainer" destination="hnG-XC-mca" id="nBr-D7-SxT"/>
                         <outlet property="bgView" destination="k6p-fG-HUi" id="co5-CA-FeQ"/>
+                        <outlet property="recipientPhoneNumberField" destination="3zB-R0-VKr" id="SdU-Wz-kvj"/>
                         <outlet property="requestsTableView" destination="fG8-eT-ZKF" id="PRm-so-Vur"/>
                     </connections>
                 </viewController>
