@@ -64,8 +64,7 @@
                                                             <exclude reference="R4D-AP-cKJ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="96" y="86" width="128" height="2"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="R4D-AP-cKJ"/>
                                                         </mask>
@@ -4658,8 +4657,7 @@
                                                                     <exclude reference="NZp-WP-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="72" y="62" width="128" height="2"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <exclude reference="1vA-cM-eWB"/>
                                                                     <include reference="NZp-WP-nEN"/>
@@ -4737,8 +4735,7 @@
                                                                     <exclude reference="xbg-9b-zxq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="212" y="8" width="56" height="56"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="subviews">
                                                                     <include reference="PGN-uX-3kh"/>
                                                                 </mask>

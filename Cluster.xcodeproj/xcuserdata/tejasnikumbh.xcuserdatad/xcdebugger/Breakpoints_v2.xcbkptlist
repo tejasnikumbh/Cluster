@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/SignUpFormViewController.swift"
-            timestampString = "472353583.900573"
+            timestampString = "472794691.663606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "submitBtnTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -607,7 +607,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
-            landmarkName = "signUpUser(_:password:fullName:phoneNumber:)"
+            landmarkName = "signUpUser(_:fullName:designation:phoneNumber:password:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -930,11 +930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472793779.221534"
+            timestampString = "472794691.663606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -962,11 +962,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472793779.221534"
+            timestampString = "472794691.663606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -978,11 +978,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472793779.221534"
+            timestampString = "472794691.663606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
             <Locations>
