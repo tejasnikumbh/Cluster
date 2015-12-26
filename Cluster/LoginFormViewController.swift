@@ -65,6 +65,12 @@ extension LoginFormViewController {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
+                        if((self.presentingViewController? // If presented from edit profile vc
+                            .isKindOfClass(EditProfileViewController.classForCoder())) != nil) {
+                            let presetingVC = self.presentingViewController as! EditProfileViewController
+                            presetingVC.contactUser = PFUser.currentUser()
+                        }
+                        
                         self.dismissViewControllerAnimated(true,
                             completion: nil)
                         print("User successfully logged in")

@@ -25,29 +25,31 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // REdirect to login screen if not already logged in
-        if(PFUser.currentUser() == nil) {
+        if(PFUser.currentUser() == nil) { // Not logged in Guard
             let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
                 as! UINavigationController
             self.presentViewController(viewController, animated: true, completion: nil)
-        } else {
-            // Ideally introduce a cache.
-            let spinner = CSUtils.startSpinner(self.contactsTableView)
-            CSContactDetailFetcher.fetchContactDetailsWithCompletion {
-                (contactDetailsFetcher: CSContactDetailFetcher?) -> Void in
-                CSUtils.stopSpinner(spinner)
-                if(contactDetailsFetcher == nil) { // Error Guard
-                    CSUtils.log("Some error occured in fetching objects")
-                    return
-                }
-                // Successfully fetched the contacts
-                self.contactDetailFetcher = contactDetailsFetcher
-                self.contactsTableView.reloadData()
-            }
-            self.setupView()
-            self.setupNavBar()
-            self.setupSearchBar()
-            self.setupGestureRecognizers()
+            return
         }
+        
+        // Ideally introduce a cache.
+        let spinner = CSUtils.startSpinner(self.contactsTableView)
+        CSContactDetailFetcher.fetchContactDetailsWithCompletion {
+            (contactDetailsFetcher: CSContactDetailFetcher?) -> Void in
+            CSUtils.stopSpinner(spinner)
+            if(contactDetailsFetcher == nil) { // Error Guard
+                CSUtils.log("Some error occured in fetching objects")
+                return
+            }
+            // Successfully fetched the contacts
+            self.contactDetailFetcher = contactDetailsFetcher
+            self.contactsTableView.reloadData()
+        }
+        self.setupView()
+        self.setupNavBar()
+        self.setupSearchBar()
+        self.setupGestureRecognizers()
+        
     }
     
     override func prefersStatusBarHidden() -> Bool {
