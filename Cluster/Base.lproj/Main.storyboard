@@ -64,7 +64,8 @@
                                                             <exclude reference="R4D-AP-cKJ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="96" y="86" width="128" height="2"/>
                                                         <mask key="constraints">
                                                             <include reference="R4D-AP-cKJ"/>
                                                         </mask>
@@ -251,11 +252,11 @@
                                 <exclude reference="SQ0-KE-TrX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="6JU-gW-HjY"/>
                                 <exclude reference="O4x-BZ-aia"/>
                                 <exclude reference="Rp2-qQ-PMB"/>
                                 <exclude reference="cfV-3r-kpU"/>
                                 <exclude reference="yIw-ke-P2Z"/>
-                                <exclude reference="6JU-gW-HjY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -263,11 +264,11 @@
                                 <include reference="SQ0-KE-TrX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="6JU-gW-HjY"/>
                                 <exclude reference="O4x-BZ-aia"/>
                                 <include reference="Rp2-qQ-PMB"/>
                                 <include reference="cfV-3r-kpU"/>
                                 <include reference="yIw-ke-P2Z"/>
-                                <include reference="6JU-gW-HjY"/>
                             </mask>
                         </variation>
                     </view>

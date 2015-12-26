@@ -78,10 +78,18 @@ class ConnectViewController: UIViewController {
     @IBAction func sendRequestTapped(sender: UIButton) {
         let phoneNumberString = self.recipientPhoneNumberField.text
         if (CSUtils.validatePhoneNumber(phoneNumberString)) {
-            let spinner = CSUtils.startSpinner(self.view)
-            self.sendContactRequest(
-                CSUtils.extractPhoneNumber(phoneNumberString),
-                spinner: spinner)
+            if(CSUtils.validateClusterRequest(phoneNumberString)) {
+                let spinner = CSUtils.startSpinner(self.view)
+                self.sendContactRequest(
+                    CSUtils.extractPhoneNumber(phoneNumberString),
+                    spinner: spinner)
+            } else {
+                let dialog = CSUtils.getDisplayDialog(
+                    "Invalid Request",
+                    message: "You cannot add yourself on Cluster")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                return
+            }
         } else {
             let dialog = CSUtils.getDisplayDialog(
                 "Invalid Phonenumber",

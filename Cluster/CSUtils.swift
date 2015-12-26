@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 typealias AlertActionClosure = (UIAlertAction) -> ()
 
 class CSUtils: NSObject {
@@ -116,6 +116,16 @@ class CSUtils: NSObject {
     
     static func validateAddress(address: String?) -> Bool {
         return true
+    }
+    
+    static func validateClusterRequest(phoneNumber: String?) -> Bool {
+        let phoneNumber = CSUtils.extractPhoneNumber(phoneNumber)
+        let userPrimaryPhoneNumber = CSUtils.extractPhoneNumber(PFUser.currentUser()!.objectForKey("primary_phone") as! String)
+        let userSecondaryPhoneNUmber = CSUtils.extractPhoneNumber(PFUser.currentUser()!
+                .objectForKey("secondary_phone") as! String)
+        return (phoneNumber != userPrimaryPhoneNumber) &&
+                   (phoneNumber != userSecondaryPhoneNUmber)
+        return false
     }
     
     
