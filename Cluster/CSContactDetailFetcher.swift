@@ -84,7 +84,11 @@ class CSContactDetailFetcher: NSObject {
                             // Alphabetical sort
                             userContactDetailsArray.sortInPlace({
                                 (contact1, contact2) -> Bool in
-                                contact1.contactName < contact2.contactName
+                                if(contact1.contactName == contact2.contactName) {
+                                    return contact1.username < contact2.username
+                                } else {
+                                    return contact1.contactName < contact2.contactName
+                                }
                             })
                             
                             let contactDetailFetcherResultObject = CSContactDetailFetcher(
