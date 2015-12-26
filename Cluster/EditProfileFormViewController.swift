@@ -60,8 +60,14 @@ class EditProfileFormViewController: CSFormBaseViewController {
     /* ========================================== View Config Methods ===================================== */
 
     func setupView() {
+        self.setupKeyboardTypes()
         self.addTintedBlur()
         self.loadUserDetails()
+    }
+    
+    func setupKeyboardTypes() {
+        self.primaryPhoneTextField.keyboardType = UIKeyboardType.NumberPad
+        self.secondaryPhoneTextField.keyboardType = UIKeyboardType.NumberPad
     }
  
     func addTintedBlur() {

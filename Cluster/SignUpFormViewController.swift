@@ -37,6 +37,7 @@ class SignUpFormViewController: CSFormBaseViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.setupViews()
         self.setupGestureRecognizers()
     }
     
@@ -55,6 +56,10 @@ class SignUpFormViewController: CSFormBaseViewController {
     
     func backBtnTapped(gestureRecognizer: UITapGestureRecognizer? = nil) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func setupViews() {
+        self.phoneNumberTextField.keyboardType = UIKeyboardType.NumberPad
     }
     
 }

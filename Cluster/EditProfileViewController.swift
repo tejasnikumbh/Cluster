@@ -260,7 +260,6 @@ extension EditProfileViewController {
         self.secondaryEmailLabel.text = secondaryEmail
         self.addressLabel.text = address
     }
-
 }
 
 

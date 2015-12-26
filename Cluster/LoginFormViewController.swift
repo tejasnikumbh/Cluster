@@ -45,6 +45,7 @@ class LoginFormViewController: CSFormBaseViewController {
     }
     
     func setupView() {
+        self.usernameTextField.keyboardType = UIKeyboardType.NumberPad
         self.navigationController?.navigationBarHidden = true
         self.loginBtnTrailingConstraint.constant = -1*self.usernameContainerView.frame.size.width/2.0 - 8.0
         self.signUpBtnLeadingConstraint.constant = self.usernameContainerView.frame.size.width/2.0 + 8.0
@@ -65,12 +66,6 @@ extension LoginFormViewController {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
-                        if((self.presentingViewController? // If presented from edit profile vc
-                            .isKindOfClass(EditProfileViewController.classForCoder())) != nil) {
-                            let presetingVC = self.presentingViewController as! EditProfileViewController
-                            presetingVC.contactUser = PFUser.currentUser()
-                        }
-                        
                         self.dismissViewControllerAnimated(true,
                             completion: nil)
                         print("User successfully logged in")
