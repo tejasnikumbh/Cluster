@@ -2886,6 +2886,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="aVS-om-SqQ" id="UBI-zv-N44"/>
                         <outlet property="backBtnContainerView" destination="yTb-2g-OSI" id="TQ4-hv-1kI"/>
+                        <outlet property="backBtnImageView" destination="xNA-V8-y1g" id="ZQu-ep-NVY"/>
                         <outlet property="cameraContainerView" destination="0vU-ya-a8K" id="Tpk-eh-BcO"/>
                         <outlet property="designationLabel" destination="UOL-a5-qB1" id="N88-6r-2xX"/>
                         <outlet property="detailCardProfilePic" destination="J1R-j2-LBm" id="g5y-TG-Lgw"/>

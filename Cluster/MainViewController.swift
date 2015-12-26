@@ -224,7 +224,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let viewController: EditProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("editProfileViewController")
             as! EditProfileViewController
-        
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
             cellModel = filteredContacts[indexPath.row]

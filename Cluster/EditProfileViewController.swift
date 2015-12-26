@@ -23,6 +23,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var detailCardProfilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var designationLabel: UILabel!
+    @IBOutlet weak var backBtnImageView: UIImageView!
     
     @IBOutlet weak var backBtnContainerView: UIView!
     @IBOutlet weak var cameraContainerView: UIView!
@@ -74,6 +75,8 @@ class EditProfileViewController: UIViewController {
         self.cameraContainerView.hidden = true
         self.editDetailsContainerView.hidden = true
         self.logOutBtn.hidden = true
+        // Button modification
+        self.backBtnImageView.image = UIImage(named: "close")
     }
     
     func addGradientToView(imageView: UIImageView!) {
