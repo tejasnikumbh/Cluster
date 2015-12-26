@@ -49,7 +49,6 @@ class MainViewController: UIViewController {
         self.setupNavBar()
         self.setupSearchBar()
         self.setupGestureRecognizers()
-        
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -93,21 +92,22 @@ class MainViewController: UIViewController {
     func setupSearchBar() {
         // Styling the bar
         searchController.searchBar.setBackgroundImage(UIImage(),
-            forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.barTintColor = UIColor.themeColor()
-        searchController.searchBar.backgroundColor = UIColor.themeColor()
+             forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
         // Important while resizing
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
         searchController.searchBar.delegate = self
         // Finally setting our searchBar to be the header view
-        self.contactsTableView.tableHeaderView = searchController.searchBar
+        if(self.contactsTableView.tableHeaderView == nil) {
+            // Resetting this when already set will cause it to disappear
+            self.contactsTableView.tableHeaderView = searchController.searchBar
+        }
     }
     
     func setupGestureRecognizers() {
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: Selector("longPressOnContact:"))
+        let longPressGR = UILongPressGestureRecognizer(target: self,
+            action: Selector("longPressOnContact:"))
         self.contactsTableView.addGestureRecognizer(longPressGR)
     }
 
@@ -252,6 +252,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 completion: nil)
         }
     }
+    
 }
 
 // Extension implementing the UISearchResultsUpdating Protocol
@@ -267,5 +268,6 @@ extension MainViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.contactsTableView.scrollEnabled = true
+        self.setupSearchBar()
     }
 }
