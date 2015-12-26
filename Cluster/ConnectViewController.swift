@@ -349,8 +349,13 @@ extension ConnectViewController {
     
     func sendContactRequest(phoneNumber: String?, spinner: UIActivityIndicatorView?) {
         let user = PFUser.currentUser()
-        let query = PFQuery(className: "_User")
-        query.whereKey("primary_phone", equalTo: phoneNumber!)
+        let primaryQuery = PFQuery(className: "_User")
+        primaryQuery.whereKey("primary_phone", equalTo: phoneNumber!)
+        
+        let secondaryQuery = PFQuery(className: "_User")
+        secondaryQuery.whereKey("secondary_phone", equalTo: phoneNumber!)
+        
+        let query = PFQuery.orQueryWithSubqueries([primaryQuery, secondaryQuery])
         query.findObjectsInBackgroundWithBlock {
             [unowned self] // Since we don't want a retention cycle in case block hangs
             (contacts: [PFObject]?, error: NSError?) -> Void in
