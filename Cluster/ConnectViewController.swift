@@ -25,9 +25,15 @@ class ConnectViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Introduce a wait loader until requests are fetched, Ideally do caching
+        
+        let spinner = CSUtils.startSpinner(self.view)
         CSRequestDetailFetcher.fetchRequestDetailsWithCompletion {
-            (requestsDetailFetcher: CSRequestDetailFetcher) -> Void in
+            (requestsDetailFetcher: CSRequestDetailFetcher?) -> Void in
+            CSUtils.stopSpinner(spinner)
+            if(requestsDetailFetcher == nil) { // Error guard
+                CSUtils.log("Some error occurred while fetching requests")
+            }
+            // Successfully fetched all requests
             self.requestsDetailFetcher = requestsDetailFetcher
             self.requestsTableView.reloadData()
         }

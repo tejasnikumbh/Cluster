@@ -17,22 +17,29 @@ class MainViewController: UIViewController {
     
     var contactDetailFetcher: CSContactDetailFetcher?
     var filteredContacts = [CSContactDetail]()
-    var currentUser: PFUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         // REdirect to login screen if not already logged in
         if(PFUser.currentUser() == nil) {
             let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
                 as! UINavigationController
             self.presentViewController(viewController, animated: true, completion: nil)
         } else {
-            // FEtch details relevant to current user
-            currentUser = PFUser.currentUser()
-            // Introduce a waitloader until requests are fetched.
             // Ideally introduce a cache.
+            let spinner = CSUtils.startSpinner(self.contactsTableView)
             CSContactDetailFetcher.fetchContactDetailsWithCompletion {
-                (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
+                (contactDetailsFetcher: CSContactDetailFetcher?) -> Void in
+                CSUtils.stopSpinner(spinner)
+                if(contactDetailsFetcher == nil) { // Error Guard
+                    CSUtils.log("Some error occured in fetching objects")
+                    return
+                }
+                // Successfully fetched the contacts
                 self.contactDetailFetcher = contactDetailsFetcher
                 self.contactsTableView.reloadData()
             }
@@ -42,7 +49,6 @@ class MainViewController: UIViewController {
             self.setupGestureRecognizers()
         }
     }
-    
     
     override func prefersStatusBarHidden() -> Bool {
         return true

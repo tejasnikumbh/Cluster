@@ -18,7 +18,7 @@ class CSContactDetailFetcher: NSObject {
         self.userContactDetails = userContactDetails
     }
     
-    class func fetchContactDetailsWithCompletion(completion:(CSContactDetailFetcher) -> Void) {
+    class func fetchContactDetailsWithCompletion(completion:(CSContactDetailFetcher?) -> Void) {
         // Defining the array of results
         var userContactDetailsArray: [CSContactDetail] = []
         
@@ -30,7 +30,9 @@ class CSContactDetailFetcher: NSObject {
             (connections: [PFObject]?, error: NSError?) -> Void in
             if((error != nil) || connections?.count == 0) { //Error guard
             // Do completion jugaad to handle error
-                CSUtils.log("Error loading connections")
+                if(error != nil){ CSUtils.log("Error loading connections") }
+                else {CSUtils.log("No connections for given query")}
+                completion(nil)
                 return
             }
             
@@ -50,6 +52,7 @@ class CSContactDetailFetcher: NSObject {
                     // Do completion jugaad to handle error
                     if (error != nil) { CSUtils.log("Error loading connections") }
                     else { CSUtils.log("No connections found for given query") }
+                    completion(nil)
                     return
                 }
                 
@@ -59,6 +62,8 @@ class CSContactDetailFetcher: NSObject {
                         (imageData, error) -> Void in
                         if(error != nil) { //Error guard
                             CSUtils.log("Error fetching requests")
+                            completion(nil)
+                            return
                         }
                         
                         let userImage = UIImage(data: imageData!)

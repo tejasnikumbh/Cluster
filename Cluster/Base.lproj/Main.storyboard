@@ -251,11 +251,11 @@
                                 <exclude reference="SQ0-KE-TrX"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="6JU-gW-HjY"/>
                                 <exclude reference="O4x-BZ-aia"/>
                                 <exclude reference="Rp2-qQ-PMB"/>
                                 <exclude reference="cfV-3r-kpU"/>
                                 <exclude reference="yIw-ke-P2Z"/>
+                                <exclude reference="6JU-gW-HjY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -263,11 +263,11 @@
                                 <include reference="SQ0-KE-TrX"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6JU-gW-HjY"/>
                                 <exclude reference="O4x-BZ-aia"/>
                                 <include reference="Rp2-qQ-PMB"/>
                                 <include reference="cfV-3r-kpU"/>
                                 <include reference="yIw-ke-P2Z"/>
+                                <include reference="6JU-gW-HjY"/>
                             </mask>
                         </variation>
                     </view>
@@ -4657,7 +4657,8 @@
                                                                     <exclude reference="NZp-WP-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="72" y="62" width="128" height="2"/>
                                                                 <mask key="constraints">
                                                                     <exclude reference="1vA-cM-eWB"/>
                                                                     <include reference="NZp-WP-nEN"/>
@@ -4735,7 +4736,8 @@
                                                                     <exclude reference="xbg-9b-zxq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="212" y="8" width="56" height="56"/>
                                                                 <mask key="subviews">
                                                                     <include reference="PGN-uX-3kh"/>
                                                                 </mask>
@@ -4793,19 +4795,19 @@
                                                             <exclude reference="1ZN-NF-SAT"/>
                                                             <exclude reference="H2Z-DT-oJ2"/>
                                                             <exclude reference="iXD-oe-ct8"/>
-                                                            <exclude reference="cA6-tv-aJJ"/>
                                                             <exclude reference="18g-cr-axp"/>
                                                             <exclude reference="1bZ-qX-Hwr"/>
                                                             <exclude reference="xGH-gb-uuo"/>
+                                                            <exclude reference="cA6-tv-aJJ"/>
+                                                            <exclude reference="0Om-wX-2A9"/>
+                                                            <exclude reference="cOU-Ay-jjb"/>
+                                                            <exclude reference="eat-fc-aOh"/>
+                                                            <exclude reference="goo-Am-qSW"/>
                                                             <exclude reference="6wG-cx-UMQ"/>
                                                             <exclude reference="K8u-Po-V0t"/>
                                                             <exclude reference="LOe-go-XTv"/>
                                                             <exclude reference="czf-2h-V8U"/>
                                                             <exclude reference="eXS-Nt-zma"/>
-                                                            <exclude reference="0Om-wX-2A9"/>
-                                                            <exclude reference="cOU-Ay-jjb"/>
-                                                            <exclude reference="eat-fc-aOh"/>
-                                                            <exclude reference="goo-Am-qSW"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact">
@@ -4820,19 +4822,19 @@
                                                             <include reference="1ZN-NF-SAT"/>
                                                             <exclude reference="H2Z-DT-oJ2"/>
                                                             <include reference="iXD-oe-ct8"/>
-                                                            <include reference="cA6-tv-aJJ"/>
                                                             <include reference="18g-cr-axp"/>
                                                             <include reference="1bZ-qX-Hwr"/>
                                                             <include reference="xGH-gb-uuo"/>
+                                                            <include reference="cA6-tv-aJJ"/>
+                                                            <include reference="0Om-wX-2A9"/>
+                                                            <exclude reference="cOU-Ay-jjb"/>
+                                                            <include reference="eat-fc-aOh"/>
+                                                            <include reference="goo-Am-qSW"/>
                                                             <include reference="6wG-cx-UMQ"/>
                                                             <exclude reference="K8u-Po-V0t"/>
                                                             <exclude reference="LOe-go-XTv"/>
                                                             <include reference="czf-2h-V8U"/>
                                                             <include reference="eXS-Nt-zma"/>
-                                                            <include reference="0Om-wX-2A9"/>
-                                                            <exclude reference="cOU-Ay-jjb"/>
-                                                            <include reference="eat-fc-aOh"/>
-                                                            <include reference="goo-Am-qSW"/>
                                                         </mask>
                                                     </variation>
                                                 </tableViewCellContentView>
