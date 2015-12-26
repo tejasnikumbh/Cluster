@@ -26,20 +26,21 @@ class MainViewController: UIViewController {
             let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
                 as! UINavigationController
             self.presentViewController(viewController, animated: true, completion: nil)
+        } else {
+            // FEtch details relevant to current user
+            currentUser = PFUser.currentUser()
+            // Introduce a waitloader until requests are fetched.
+            // Ideally introduce a cache.
+            CSContactDetailFetcher.fetchContactDetailsWithCompletion {
+                (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
+                self.contactDetailFetcher = contactDetailsFetcher
+                self.contactsTableView.reloadData()
+            }
+            self.setupView()
+            self.setupNavBar()
+            self.setupSearchBar()
+            self.setupGestureRecognizers()
         }
-        
-        // FEtch details relevant to current user
-        currentUser = PFUser.currentUser()
-        // Introduce a waitloader until requests are fetched.
-        // Ideally introduce a cache.
-        CSContactDetailFetcher.fetchContactDetailsWithCompletion {
-            (contactDetailsFetcher: CSContactDetailFetcher) -> Void in
-            self.contactDetailFetcher = contactDetailsFetcher
-        }
-        self.setupView()
-        self.setupNavBar()
-        self.setupSearchBar()
-        self.setupGestureRecognizers()
     }
     
     
@@ -187,7 +188,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if self.searchController.active && self.searchController.searchBar.text != "" {
             return filteredContacts.count
         }
-        return (self.contactDetailFetcher?.userContactDetails.count)!
+        if(self.contactDetailFetcher != nil){
+            return (self.contactDetailFetcher?.userContactDetails.count)!
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView,
@@ -199,7 +204,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
         }
-        cell.contactDisplayPic.image = UIImage(named: (cellModel?.profilePicImageURL)!)
+        cell.contactDisplayPic.image = cellModel?.profilePicImage
         cell.name.text = cellModel?.contactName
         cell.designation.text = cellModel?.contactDesignation
         cell.email.text = cellModel?.primaryEmail

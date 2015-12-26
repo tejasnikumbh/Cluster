@@ -6,13 +6,14 @@
 //  Copyright © 2015 Personal. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 class CSContactDetail: NSObject {
     
     let username: String!
     // Primary Required Properties
-    let profilePicImageURL: String!
+    let profilePicImage: UIImage?
     let contactName: String!
     let contactDesignation: String!
     // Secondary Optional Properties
@@ -22,12 +23,12 @@ class CSContactDetail: NSObject {
     let secondaryEmail: String?
     let address: String?
     
-    init(username: String!, profilePicImageURL: String!, contactName: String!, contactDesignation: String!,
+    init(username: String!, profilePicImage: UIImage?, contactName: String!, contactDesignation: String!,
         primaryPhone: String?, secondaryPhone: String?,
         primaryEmail: String?, secondaryEmail: String?,
         address: String?) {
         self.username = username
-        self.profilePicImageURL = profilePicImageURL
+        self.profilePicImage = profilePicImage
         self.contactName = contactName
         self.contactDesignation = contactDesignation
         self.primaryPhone = primaryPhone

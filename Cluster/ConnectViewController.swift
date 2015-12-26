@@ -21,10 +21,15 @@ class ConnectViewController: UIViewController {
     // View lifecycle and view property methods
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         // Introduce a wait loader until requests are fetched, Ideally do caching
         CSRequestDetailFetcher.fetchRequestDetailsWithCompletion {
             (requestsDetailFetcher: CSRequestDetailFetcher) -> Void in
             self.requestsDetailFetcher = requestsDetailFetcher
+            self.requestsTableView.reloadData()
         }
     }
     
@@ -84,7 +89,11 @@ class ConnectViewController: UIViewController {
 // Extension for table view methods
 extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.requestsDetailFetcher?.requestsContactDetails.count)!
+        if(self.requestsDetailFetcher != nil) {
+            return (self.requestsDetailFetcher?.requestsContactDetails.count)!
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView,
@@ -92,7 +101,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("requestCardCell") as! CSRequestCard
         let cellModel = self.requestsDetailFetcher?.requestsContactDetails[indexPath.row]
         cell.requestProfileBtn.setBackgroundImage(
-            UIImage(named: (cellModel?.profilePicImageURL)!),
+            cellModel?.profilePicImage,
             forState: .Normal)
         cell.requestNameLabel.text = cellModel?.contactName
         cell.requestPhoneLabel.text = cellModel?.primaryPhone
@@ -252,8 +261,8 @@ extension ConnectViewController {
             userConnection.setObject(true, forKey: "request_pending")
             userConnection.saveInBackgroundWithBlock({
                 (success, error) -> Void in
-                CSUtils.stopSpinner(spinner!)
                 if(!success || (error != nil)) { // Error guard
+                    CSUtils.stopSpinner(spinner!)
                     let dialog = CSUtils.getDisplayDialog(
                         "Request not sent",
                         message: "Oops! Something went wrong")
@@ -261,13 +270,32 @@ extension ConnectViewController {
                     return
                 }
                 
-                let dialog = CSUtils.getDisplayDialog(
-                    "Request sent successfully",
-                    message: "Your request was sent succesfully!")
-                self.presentViewController(dialog, animated: true, completion: nil)
-                return
+                let contactConnection = PFObject(className: "Connection")
+                contactConnection.setObject(contact!, forKey: "core_user")
+                contactConnection.setObject(user!, forKey: "contact_user")
+                contactConnection.setObject(user!, forKey: "request_sender")
+                contactConnection.setObject(true, forKey: "request_pending")
+                contactConnection.saveInBackgroundWithBlock({
+                    (success, error) -> Void in
+                    CSUtils.stopSpinner(spinner!)
+                    if(!success || (error != nil)) { // Error guard
+                        CSUtils.stopSpinner(spinner!)
+                        let dialog = CSUtils.getDisplayDialog(
+                            "Request not sent",
+                            message: "Oops! Something went wrong")
+                        self.presentViewController(dialog, animated: true, completion: nil)
+                        return
+                    }
+                    
+                    let dialog = CSUtils.getDisplayDialog(
+                        "Request sent successfully",
+                        message: "Your request was sent succesfully!")
+                    self.presentViewController(dialog, animated: true, completion: nil)
+                    return
+                    
+                })
             })
-        } // End of quert execution
+        } // End of query execution
     }
     
 }

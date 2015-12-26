@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // More info for local Datastore at : - 
         // https://parse.com/docs/ios/guide#local-datastore
         Parse.enableLocalDatastore()
+        PFUser.registerSubclass()
         Parse.setApplicationId("oS5iXTjbxu3EkAo3I8dIxRfaH4YZcDkbY6iShVrt",
                 clientKey: "cbKt4RG2HG29Rl8Tf9XsyvwPA0R27AqVQUJjI5Sc")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
