@@ -18,12 +18,16 @@ class MainViewController: UIViewController {
     var contactDetailFetcher: CSContactDetailFetcher?
     var filteredContacts = [CSContactDetail]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupView()
+        self.setupNavBar()
+        self.setupSearchBar()
+        self.setupGestureRecognizers()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         // REdirect to login screen if not already logged in
         if(PFUser.currentUser() == nil) { // Not logged in Guard
             let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
@@ -45,10 +49,6 @@ class MainViewController: UIViewController {
             self.contactDetailFetcher = contactDetailsFetcher
             self.contactsTableView.reloadData()
         }
-        self.setupView()
-        self.setupNavBar()
-        self.setupSearchBar()
-        self.setupGestureRecognizers()
     }
     
     override func prefersStatusBarHidden() -> Bool {

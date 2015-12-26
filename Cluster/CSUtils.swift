@@ -17,7 +17,7 @@ class CSUtils: NSObject {
     static func startSpinner(backgroundView: UIView) -> (UIActivityIndicatorView) {
         let spinnerContainer: UIView = UIView()
         spinnerContainer.frame = CGRectMake(0, 0, 80, 80)
-        spinnerContainer.center = backgroundView.center
+        spinnerContainer.center =  backgroundView.center
         spinnerContainer.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
         spinnerContainer.clipsToBounds = true
         spinnerContainer.layer.cornerRadius = 10
