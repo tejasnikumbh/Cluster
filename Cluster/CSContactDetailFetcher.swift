@@ -81,6 +81,12 @@ class CSContactDetailFetcher: NSObject {
                         userContactDetailsArray.append(csContact)
                         
                         if(userContactDetailsArray.count == contacts!.count) {
+                            // Alphabetical sort
+                            userContactDetailsArray.sortInPlace({
+                                (contact1, contact2) -> Bool in
+                                contact1.contactName < contact2.contactName
+                            })
+                            
                             let contactDetailFetcherResultObject = CSContactDetailFetcher(
                                 userContactDetails: userContactDetailsArray)
                             completion(contactDetailFetcherResultObject)

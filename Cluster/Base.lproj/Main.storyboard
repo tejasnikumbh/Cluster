@@ -64,7 +64,8 @@
                                                             <exclude reference="R4D-AP-cKJ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="96" y="86" width="128" height="2"/>
                                                         <mask key="constraints">
                                                             <include reference="R4D-AP-cKJ"/>
                                                         </mask>
@@ -2889,6 +2890,7 @@
                         <outlet property="designationLabel" destination="UOL-a5-qB1" id="N88-6r-2xX"/>
                         <outlet property="detailCardProfilePic" destination="J1R-j2-LBm" id="g5y-TG-Lgw"/>
                         <outlet property="editDetailsContainerView" destination="rLU-bA-gv9" id="zJI-BG-was"/>
+                        <outlet property="logOutBtn" destination="avM-fd-B2B" id="kkB-c3-Aka"/>
                         <outlet property="nameLabel" destination="uok-l3-AMP" id="hMT-Lv-8Z5"/>
                         <outlet property="primaryEmailLabel" destination="99g-mM-Sdq" id="uwE-Xg-ZrE"/>
                         <outlet property="primaryPhoneLabel" destination="5fb-AI-b4Z" id="pD5-1X-UXr"/>
@@ -4657,7 +4659,8 @@
                                                                     <exclude reference="NZp-WP-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="72" y="62" width="128" height="2"/>
                                                                 <mask key="constraints">
                                                                     <exclude reference="1vA-cM-eWB"/>
                                                                     <include reference="NZp-WP-nEN"/>
@@ -4735,7 +4738,8 @@
                                                                     <exclude reference="xbg-9b-zxq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="212" y="8" width="56" height="56"/>
                                                                 <mask key="subviews">
                                                                     <include reference="PGN-uX-3kh"/>
                                                                 </mask>

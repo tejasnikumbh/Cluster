@@ -220,6 +220,35 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     // UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let viewController: EditProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("editProfileViewController")
+            as! EditProfileViewController
+        
+        var cellModel: CSContactDetail?
+        if searchController.active && searchController.searchBar.text != "" {
+            cellModel = filteredContacts[indexPath.row]
+        } else {
+            cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
+        }
+        let query = PFQuery(className: "_User")
+        query.whereKey("username", equalTo: (cellModel?.username)!)
+        
+        let spinner = CSUtils.startSpinner(self.contactsTableView)
+        query.findObjectsInBackgroundWithBlock {
+            (users, error) -> Void in
+            
+            CSUtils.stopSpinner(spinner)
+            if(error != nil || users!.count == 0) { //Error Guard
+                let dialog = CSUtils.getDisplayDialog(message: "Oops! Something went wrong")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                return
+            }
+            
+            let user = users![0] as? PFUser
+            viewController.isContactCard = true
+            viewController.contactUser = user
+            self.presentViewController(viewController, animated: true,
+                completion: nil)
+        }
     }
 }
 

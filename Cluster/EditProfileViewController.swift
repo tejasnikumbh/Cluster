@@ -11,6 +11,9 @@ import QuartzCore
 import Parse
 
 class EditProfileViewController: UIViewController {
+    
+    var isContactCard: Bool = false
+    var contactUser: PFUser? = PFUser.currentUser()
 
     /* ====================================== Outlets and Actions ============================== */
     @IBOutlet weak var rootScrollView: UIScrollView!
@@ -30,6 +33,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var primaryEmailLabel: UILabel!
     @IBOutlet weak var secondaryEmailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var logOutBtn: UIButton!
     
     @IBAction func logOutTapped(sender: UIButton) {
         self.logOutUser()
@@ -58,9 +63,19 @@ class EditProfileViewController: UIViewController {
 
     /* ================================= View Config Methods =================================== */
     func setupView() {
+        if(isContactCard) {
+            self.modifyForContactCard()
+        }
         self.addGradientToView(detailCardProfilePic)
     }
 
+    func modifyForContactCard() {
+        // Hiding edit related stuff
+        self.cameraContainerView.hidden = true
+        self.editDetailsContainerView.hidden = true
+        self.logOutBtn.hidden = true
+    }
+    
     func addGradientToView(imageView: UIImageView!) {
         let colorTop = UIColor(white: 0.0, alpha: 0.0).CGColor
         let colorBottom = UIColor(white: 0.0, alpha: 0.75).CGColor
@@ -207,7 +222,7 @@ extension EditProfileViewController {
     }
     
     func setupUserDetails() {
-        let user = PFUser.currentUser()
+        let user = self.contactUser
         if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
             
             let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
