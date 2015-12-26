@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var contactDetailFetcher: CSContactDetailFetcher?
+    var contactDetailFetcher: CSConnectionDetailFetcher?
     var filteredContacts = [CSContactDetail]()
     
     override func viewWillAppear(animated: Bool) {
@@ -38,17 +38,18 @@ class MainViewController: UIViewController {
         
         // Ideally introduce a cache.
         let spinner = CSUtils.startSpinner(self.contactsTableView)
-        CSContactDetailFetcher.fetchContactDetailsWithCompletion {
-            (contactDetailsFetcher: CSContactDetailFetcher?) -> Void in
+        CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
+            (connectionDetailsFetcher: CSConnectionDetailFetcher?) -> Void in
             CSUtils.stopSpinner(spinner)
-            if(contactDetailsFetcher == nil) { // Error Guard
+            if(connectionDetailsFetcher == nil) { // Error Guard
                 CSUtils.log("Some error occured in fetching objects")
                 return
             }
             // Successfully fetched the contacts
-            self.contactDetailFetcher = contactDetailsFetcher
+            self.contactDetailFetcher = connectionDetailsFetcher
             self.contactsTableView.reloadData()
-        }
+        },
+        isRequest: false) // since we are fetching contacts and not requests
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -151,7 +152,7 @@ class MainViewController: UIViewController {
     
     // UISearchResultUpdating protocol related methods
     func filterContentForSearchText(searchText: String?, scope: String = "All") {
-        filteredContacts = (self.contactDetailFetcher?.userContactDetails.filter {
+        filteredContacts = (self.contactDetailFetcher?.userConnectionDetails.filter {
             userContactDetail in
             return userContactDetail.contactName.lowercaseString
                 .containsString((searchText?.lowercaseString)!)
@@ -168,7 +169,7 @@ class MainViewController: UIViewController {
             if searchController.active && searchController.searchBar.text != "" {
                 cellModel = filteredContacts[indexPath!.row]
             } else {
-                cellModel = self.contactDetailFetcher?.userContactDetails[indexPath!.row]
+                cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath!.row]
             }
             
             let handler: AlertActionClosure = {
@@ -197,7 +198,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             return filteredContacts.count
         }
         if(self.contactDetailFetcher != nil){
-            return (self.contactDetailFetcher?.userContactDetails.count)!
+            return (self.contactDetailFetcher?.userConnectionDetails.count)!
         } else {
             return 0
         }
@@ -210,7 +211,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active && searchController.searchBar.text != "" {
             cellModel = filteredContacts[indexPath.row]
         } else {
-            cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
+            cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
         cell.contactDisplayPic.image = cellModel?.profilePicImage
         cell.name.text = cellModel?.contactName
@@ -229,7 +230,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active && searchController.searchBar.text != "" {
             cellModel = filteredContacts[indexPath.row]
         } else {
-            cellModel = self.contactDetailFetcher?.userContactDetails[indexPath.row]
+            cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
         let query = PFQuery(className: "_User")
         query.whereKey("username", equalTo: (cellModel?.username)!)
