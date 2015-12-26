@@ -324,7 +324,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgY-zQ-xgL" userLabel="editFieldContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUJ-y1-jFp">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUJ-y1-jFp">
                                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -367,7 +367,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD4-Gf-kvI" userLabel="editImageContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_lined" translatesAutoresizingMaskIntoConstraints="NO" id="aj2-sk-yFz" userLabel="editNameImageView">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_lined" translatesAutoresizingMaskIntoConstraints="NO" id="aj2-sk-yFz" userLabel="editNameImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -1123,7 +1123,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsF-DM-fev" userLabel="editFieldContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Oy-Eh-8Xv">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Occupation" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Oy-Eh-8Xv">
                                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1166,7 +1166,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giD-5i-fR6" userLabel="editImageContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_lined" translatesAutoresizingMaskIntoConstraints="NO" id="taH-36-MhM" userLabel="editNameImageView">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="occupation_lined" translatesAutoresizingMaskIntoConstraints="NO" id="taH-36-MhM" userLabel="editNameImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -1287,7 +1287,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-FE-A5s" userLabel="editFieldContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WiE-tE-bfc">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WiE-tE-bfc">
                                                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1330,7 +1330,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIc-NX-21A" userLabel="editImageContainerView">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_lined" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ6-d0-Pk5" userLabel="editNameImageView">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_lined" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ6-d0-Pk5" userLabel="editNameImageView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -2084,10 +2084,10 @@
                         <outlet property="backBtnImageView" destination="wnm-zo-7gt" id="oae-Hh-MXP"/>
                         <outlet property="bgView" destination="bAM-4F-MFH" id="7tQ-cn-DFv"/>
                         <outlet property="confirmPasswordTextField" destination="6oV-me-fk0" id="dZ5-gH-iYN"/>
-                        <outlet property="emailTextField" destination="WiE-tE-bfc" id="PCG-7j-Dx0"/>
+                        <outlet property="designationTextField" destination="8Oy-Eh-8Xv" id="TeF-eO-zfo"/>
                         <outlet property="fullNameTextField" destination="aM5-CP-yc1" id="tyy-LN-Zbg"/>
                         <outlet property="passwordTextField" destination="MLo-jS-6wn" id="aUW-kf-4Sm"/>
-                        <outlet property="phoneNumberTextField" destination="8Oy-Eh-8Xv" id="6aq-B6-0TH"/>
+                        <outlet property="phoneNumberTextField" destination="WiE-tE-bfc" id="fGm-kH-gRv"/>
                         <outlet property="rootScrollView" destination="76U-8i-b9g" id="gSU-TP-CEN"/>
                     </connections>
                 </viewController>
