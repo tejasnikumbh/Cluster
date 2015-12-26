@@ -26,7 +26,7 @@ class ConnectViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let spinner = CSUtils.startSpinner(self.view)
+        let spinner = CSUtils.startSpinner(self.requestsTableView)
         CSRequestDetailFetcher.fetchRequestDetailsWithCompletion {
             (requestsDetailFetcher: CSRequestDetailFetcher?) -> Void in
             CSUtils.stopSpinner(spinner)
@@ -51,6 +51,7 @@ class ConnectViewController: UIViewController {
     
     // View config methods
     func setupView() {
+        self.recipientPhoneNumberField.keyboardType = UIKeyboardType.NumberPad
         self.requestsTableView.contentInset = UIEdgeInsets(top: 12, left: 0,
             bottom: 0, right: 0)
         self.requestsTableView.allowsMultipleSelectionDuringEditing = false
