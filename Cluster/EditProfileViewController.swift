@@ -13,8 +13,8 @@ import Parse
 class EditProfileViewController: UIViewController {
     
     var isContactCard: Bool = false
-    var contactUser: PFUser? = PFUser.currentUser()
-
+    var contactUser: PFUser?
+    
     /* ====================================== Outlets and Actions ============================== */
     @IBOutlet weak var rootScrollView: UIScrollView!
     @IBOutlet weak var rootContentView: UIView!
@@ -223,51 +223,46 @@ extension EditProfileViewController {
     }
     
     func setupUserDetails() {
-        let user = self.contactUser
-        user?.fetchInBackgroundWithBlock({
-            (users, error) -> Void in
-            if(error != nil || users == nil) { // Error guard
-                CSUtils.log("Error fetching user details")
-                let dialog = CSUtils.getDisplayDialog(message: "Oops! Something went wrong")
-                self.presentViewController(dialog, animated: true, completion: nil)
-                return
-            }
+        var user: PFUser?
+        if(isContactCard) { user = self.contactUser }
+        else { user = PFUser.currentUser() }
+        
+        if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
+            let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+            profilePic.getDataInBackgroundWithBlock({
+                (data, error) -> Void in
+                CSUtils.stopSpinner(spinner)
+                var profilePicImage: UIImage?
+                if (error != nil) { // Error guard in case of invalid image
+                    // Placeholder image here instead of face
+                    profilePicImage = UIImage(named: "face")
+                    return
+                }
+                // Successful image data fetch
+                profilePicImage = UIImage(data:data!)
+                self.detailCardProfilePic.image = profilePicImage
+            })
+        }
             
-            if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
-                let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
-                profilePic.getDataInBackgroundWithBlock({
-                    (data, error) -> Void in
-                    CSUtils.stopSpinner(spinner)
-                    var profilePicImage: UIImage?
-                    if (error != nil) { // Error guard in case of invalid image
-                        // Placeholder image here instead of face
-                        profilePicImage = UIImage(named: "face")
-                        return
-                    }
-                    // Successful image data fetch
-                    profilePicImage = UIImage(data:data!)
-                    self.detailCardProfilePic.image = profilePicImage
-                })
-            }
-            
-            let fullName = user?.objectForKey("full_name") as! String?
-            let designation = user?.objectForKey("designation") as! String?
-            let primaryPhone = user?.objectForKey("primary_phone") as! String?
-            let secondaryPhone = user?.objectForKey("secondary_phone") as! String?
-            let primaryEmail = user?.objectForKey("primary_email") as! String?
-            let secondaryEmail = user?.objectForKey("secondary_email") as! String?
-            let address = user?.objectForKey("address") as! String?
-            
-            self.nameLabel.text = fullName
-            self.designationLabel.text = designation
-            self.primaryPhoneLabel.text = primaryPhone
-            self.secondaryPhoneLabel.text = secondaryPhone
-            self.primaryEmailLabel.text = primaryEmail
-            self.secondaryEmailLabel.text = secondaryEmail
-            self.addressLabel.text = address
-        })
+        let fullName = user?.objectForKey("full_name") as! String?
+        let designation = user?.objectForKey("designation") as! String?
+        let primaryPhone = user?.objectForKey("primary_phone") as! String?
+        let secondaryPhone = user?.objectForKey("secondary_phone") as! String?
+        let primaryEmail = user?.objectForKey("primary_email") as! String?
+        let secondaryEmail = user?.objectForKey("secondary_email") as! String?
+        let address = user?.objectForKey("address") as! String?
+        
+        self.nameLabel.text = fullName
+        self.designationLabel.text = designation
+        self.primaryPhoneLabel.text = primaryPhone
+        self.secondaryPhoneLabel.text = secondaryPhone
+        self.primaryEmailLabel.text = primaryEmail
+        self.secondaryEmailLabel.text = secondaryEmail
+        self.addressLabel.text = address
     }
+
 }
+
 
 // Extension for picking photo
 extension EditProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

@@ -1538,13 +1538,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/EditProfileViewController.swift"
-            timestampString = "472857865.995976"
+            timestampString = "472858827.324063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "setupUserDetails()"
-            landmarkType = "5">
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "EditProfileViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
