@@ -18,7 +18,7 @@ class CSRequestDetailFetcher: NSObject {
         self.requestsContactDetails = requestsContactDetails
     }
     
-    class func fetchRequestDetailsWithCompletion(completion:(CSRequestDetailFetcher) -> Void) {
+    class func fetchRequestDetailsWithCompletion(completion:(CSRequestDetailFetcher?) -> Void) {
         // Defining the array of results
         var requestsContactDetailsArray: [CSContactDetail] = []
         
@@ -27,6 +27,7 @@ class CSRequestDetailFetcher: NSObject {
         getPendingConnectionsQuery.whereKey("core_user",
             equalTo: PFUser.currentUser()!)
         getPendingConnectionsQuery.whereKey("request_pending", equalTo: true)
+        getPendingConnectionsQuery.whereKey("request_sender", notEqualTo: PFUser.currentUser()!)
         
         getPendingConnectionsQuery.findObjectsInBackgroundWithBlock {
             (connections: [PFObject]?, error: NSError?) -> Void in
@@ -34,6 +35,7 @@ class CSRequestDetailFetcher: NSObject {
                 // Do completion jugaad to handle error
                 if (error != nil) { CSUtils.log("Error loading connections") }
                 else { CSUtils.log("No connections found for given query") }
+                completion(nil)
                 return
             }
             
@@ -53,6 +55,7 @@ class CSRequestDetailFetcher: NSObject {
                     // Do completion jugaad to handle error
                     if (error != nil) { CSUtils.log("Error loading connections") }
                     else { CSUtils.log("No connections found for given query") }
+                    completion(nil)
                     return
                 }
                 
