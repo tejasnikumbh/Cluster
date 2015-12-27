@@ -28,7 +28,17 @@ class ConnectViewController: UIViewController {
         let spinner = CSUtils.startSpinner(self.requestsTableView)
         CSUser.fetchUserData({ CSUtils.stopSpinner(spinner) },
             refreshControl: nil, connectionsTableView: self.requestsTableView,
-            isRequest: true)
+            isRequest: true, completion:
+            {
+                if(CSUser.requestsDetailFetcher?.userConnectionDetails.count == 0 ||
+                    CSUser.requestsDetailFetcher?.userConnectionDetails == nil) {
+                    let noRequestsImageView = UIImageView(image: UIImage(named:"cancel"))
+                    noRequestsImageView.contentMode = UIViewContentMode.Center
+                    self.requestsTableView.backgroundView = noRequestsImageView
+                    self.requestsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                }
+            }
+        )
     }
     
     override func viewDidLayoutSubviews() {

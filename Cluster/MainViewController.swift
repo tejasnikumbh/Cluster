@@ -243,7 +243,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let query = PFQuery(className: "_User")
         query.whereKey("username", equalTo: (cellModel?.username)!)
         
-        let spinner = CSUtils.startSpinner(self.contactsTableView)
+        let spinner = CSUtils.startSpinner(self.view)
         query.findObjectsInBackgroundWithBlock {
             (users, error) -> Void in
             
