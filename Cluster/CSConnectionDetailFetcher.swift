@@ -24,7 +24,9 @@ class CSConnectionDetailFetcher: NSObject {
         let getConnectionsQuery = PFQuery(className: "Connection")
         getConnectionsQuery.whereKey("core_user", equalTo: PFUser.currentUser()!)
         getConnectionsQuery.whereKey("request_pending", equalTo: isRequest)
-        getConnectionsQuery.whereKey("request_sender", notEqualTo: PFUser.currentUser()!)
+        if(isRequest) { // Fetch requests only where sender is not current user
+            getConnectionsQuery.whereKey("request_sender", notEqualTo: PFUser.currentUser()!)
+        }
         getConnectionsQuery.findObjectsInBackgroundWithBlock {
             (connections: [PFObject]?, error: NSError?) -> Void in
             if((error != nil) || connections?.count == 0) { //Error guard
