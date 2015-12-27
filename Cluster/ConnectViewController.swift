@@ -176,7 +176,6 @@ extension ConnectViewController {
         let query = PFUser.query()
         query!.whereKey("username", equalTo: (contactModel?.username!)!)
         
-        
         // Executing the query
         let spinner = CSUtils.startSpinner(self.view)
         query!.findObjectsInBackgroundWithBlock {
@@ -228,7 +227,7 @@ extension ConnectViewController {
         completion: EmptyClosure, spinner: UIActivityIndicatorView?,
         shouldDelete: Bool) {
         
-        let query = self.getConnectionQuery(user, contact: contact)
+        let query = self.getConnectionForUserAndContactQuery(user, contact: contact)
         query!.findObjectsInBackgroundWithBlock {
             (connections: [PFObject]?, error: NSError?) -> Void in
             // Error Guard
@@ -286,18 +285,10 @@ extension ConnectViewController {
         }// End of connection query
     } // End of function
     
-    
-    
     func sendContactRequest(phoneNumber: String?, spinner: UIActivityIndicatorView?) {
         let user = PFUser.currentUser()
-        let primaryQuery = PFQuery(className: "_User")
-        primaryQuery.whereKey("primary_phone", equalTo: phoneNumber!)
-        
-        let secondaryQuery = PFQuery(className: "_User")
-        secondaryQuery.whereKey("secondary_phone", equalTo: phoneNumber!)
-        
-        let query = PFQuery.orQueryWithSubqueries([primaryQuery, secondaryQuery])
-        query.findObjectsInBackgroundWithBlock {
+        let query = self.getUserFromPhoneQuery(phoneNumber)
+        query!.findObjectsInBackgroundWithBlock {
             [unowned self] // Since we don't want a retention cycle in case block hangs
             (contacts: [PFObject]?, error: NSError?) -> Void in
             if(error != nil || contacts!.count == 0)
@@ -340,14 +331,16 @@ extension ConnectViewController {
                         let dialog = CSUtils.getDisplayDialog(
                             "Request not sent",
                             message: "Oops! Something went wrong")
-                        self.presentViewController(dialog, animated: true, completion: nil)
+                        self.presentViewController(dialog, animated: true,
+                            completion: nil)
                         return
                     }
                     
                     let dialog = CSUtils.getDisplayDialog(
                         "Request sent successfully",
                         message: "Your request was sent succesfully!")
-                    self.presentViewController(dialog, animated: true, completion: nil)
+                    self.presentViewController(dialog, animated: true,
+                        completion: nil)
                     return
                     
                 })
@@ -355,16 +348,27 @@ extension ConnectViewController {
         } // End of query execution
     }
     
-    func getConnectionQuery(user: PFUser?, contact: PFUser?) -> PFQuery? {
+    func getConnectionForUserAndContactQuery(user: PFUser?,
+        contact: PFUser?) -> PFQuery? {
         let queryUser = PFQuery(className: "Connection")
         queryUser.whereKey("core_user", equalTo: user!)
         queryUser.whereKey("contact_user", equalTo: contact!)
-        
         let queryContact = PFQuery(className: "Connection")
         queryContact.whereKey("core_user", equalTo: contact!)
         queryContact.whereKey("contact_user", equalTo: user!)
-        
-        let query = PFQuery.orQueryWithSubqueries([queryUser, queryContact])
+        let query = PFQuery.orQueryWithSubqueries(
+            [queryUser, queryContact])
         return query
     }
+    
+    func getUserFromPhoneQuery(phoneNumber: String?) -> PFQuery? {
+        let primaryQuery = PFQuery(className: "_User")
+        primaryQuery.whereKey("primary_phone", equalTo: phoneNumber!)
+        let secondaryQuery = PFQuery(className: "_User")
+        secondaryQuery.whereKey("secondary_phone", equalTo: phoneNumber!)
+        let query = PFQuery.orQueryWithSubqueries(
+            [primaryQuery, secondaryQuery])
+        return query
+    }
+    
 }
