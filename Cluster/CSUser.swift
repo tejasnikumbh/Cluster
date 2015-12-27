@@ -9,6 +9,7 @@
 import UIKit
 
 class CSUser: NSObject {
+    static var username: String?
     static var requestsDetailFetcher: CSConnectionDetailFetcher?
     static var contactDetailFetcher: CSConnectionDetailFetcher?
     static var filteredContacts = [CSContactDetail]()
@@ -35,4 +36,6 @@ class CSUser: NSObject {
             },
             isRequest: isRequest) // since we are fetching contacts and not requests
     }
+    
+    
 }

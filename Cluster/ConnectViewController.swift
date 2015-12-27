@@ -12,6 +12,7 @@ typealias EmptyClosure = () -> ()
 
 class ConnectViewController: UIViewController {
 
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var backBtnContainer: UIView!
     @IBOutlet weak var requestsTableView: UITableView!
     @IBOutlet weak var bgView: UIView!
@@ -53,6 +54,8 @@ class ConnectViewController: UIViewController {
     
     // View config methods
     func setupView() {
+        self.rootView.clipsToBounds = true
+        self.rootView.layer.cornerRadius = 8
         self.recipientPhoneNumberField.keyboardType = UIKeyboardType.NumberPad
         self.requestsTableView.contentInset = UIEdgeInsets(top: 12, left: 0,
             bottom: 0, right: 0)

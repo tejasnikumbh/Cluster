@@ -65,6 +65,7 @@ extension LoginFormViewController {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
+                        CSUser.username = username
                         CSUser.fetchUserData({ CSUtils.stopSpinner(spinner) },
                             refreshControl: nil,
                             connectionsTableView: nil,

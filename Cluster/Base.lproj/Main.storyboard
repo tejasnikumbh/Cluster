@@ -275,6 +275,7 @@
                     <navigationItem key="navigationItem" id="Ji8-6G-Pai"/>
                     <connections>
                         <outlet property="contactsTableView" destination="SQ0-KE-TrX" id="sTK-CI-AEi"/>
+                        <outlet property="rootView" destination="8bC-Xf-vdC" id="Ljh-FO-kJ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -2897,6 +2898,7 @@
                         <outlet property="primaryPhoneLabel" destination="5fb-AI-b4Z" id="pD5-1X-UXr"/>
                         <outlet property="rootContentView" destination="I0e-CP-JgY" id="Fpf-JV-W6M"/>
                         <outlet property="rootScrollView" destination="dgl-lY-WaD" id="dpx-Xw-NUr"/>
+                        <outlet property="rootView" destination="5h5-MF-W2W" id="Lw4-6Y-din"/>
                         <outlet property="secondaryEmailLabel" destination="Ppg-ia-fCq" id="uVW-nw-yyB"/>
                         <outlet property="secondaryPhoneLabel" destination="7ff-jI-Pbg" id="rp6-lU-9kZ"/>
                         <outlet property="spinnerView" destination="IdJ-Pl-Qvp" id="YFl-NA-3pi"/>
@@ -4395,13 +4397,13 @@
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="k6p-fG-HUi" userLabel="bannerView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-sq-26Y">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="o-O-o-O-o" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-sq-26Y">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="52"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient Phone Number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zB-R0-VKr">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient Phone Number..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zB-R0-VKr">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="9J8-vL-wOF"/>
@@ -4649,7 +4651,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rjW-IO-hbO" userLabel="seperator">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                            <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2" id="1vA-cM-eWB"/>
                                                                 <constraint firstAttribute="height" constant="2" id="NZp-WP-nEN"/>
@@ -4660,8 +4662,7 @@
                                                                     <exclude reference="NZp-WP-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="72" y="62" width="128" height="2"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <exclude reference="1vA-cM-eWB"/>
                                                                     <include reference="NZp-WP-nEN"/>
@@ -4739,8 +4740,7 @@
                                                                     <exclude reference="xbg-9b-zxq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="212" y="8" width="56" height="56"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="subviews">
                                                                     <include reference="PGN-uX-3kh"/>
                                                                 </mask>
@@ -4970,6 +4970,7 @@
                         <outlet property="bgView" destination="k6p-fG-HUi" id="co5-CA-FeQ"/>
                         <outlet property="recipientPhoneNumberField" destination="3zB-R0-VKr" id="SdU-Wz-kvj"/>
                         <outlet property="requestsTableView" destination="fG8-eT-ZKF" id="PRm-so-Vur"/>
+                        <outlet property="rootView" destination="0wB-zX-Uvj" id="Azd-s2-Ary"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="404-6d-BDH" userLabel="First Responder" sceneMemberID="firstResponder"/>

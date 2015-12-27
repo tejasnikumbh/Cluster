@@ -81,6 +81,7 @@ extension SignUpFormViewController {
             (success, error) -> Void in
             CSUtils.stopSpinner(spinner)
             if(success && (error) == nil) {
+                CSUser.username = username
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc : UIViewController = storyboard
                     .instantiateViewControllerWithIdentifier("mainFlowViewController")

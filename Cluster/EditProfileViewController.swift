@@ -16,6 +16,7 @@ class EditProfileViewController: UIViewController {
     var contactUser: PFUser?
     
     /* ====================================== Outlets and Actions ============================== */
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var rootScrollView: UIScrollView!
     @IBOutlet weak var rootContentView: UIView!
     @IBOutlet weak var spinnerView: UIView!
@@ -64,6 +65,8 @@ class EditProfileViewController: UIViewController {
 
     /* ================================= View Config Methods =================================== */
     func setupView() {
+        self.rootView.clipsToBounds = true
+        self.rootView.layer.cornerRadius = 8
         if(isContactCard) {
             self.modifyForContactCard()
         }
@@ -178,6 +181,7 @@ extension EditProfileViewController {
             dispatch_async(dispatch_get_main_queue(),
             { // We need dispatch async since what if user has navigated away?
                 () -> Void in
+                CSUser.username = nil
                 CSUser.contactDetailFetcher = nil
                 CSUser.requestsDetailFetcher = nil
                 CSUser.filteredContacts = []

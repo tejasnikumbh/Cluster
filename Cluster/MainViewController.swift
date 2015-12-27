@@ -11,6 +11,7 @@ import Parse
 
 class MainViewController: UIViewController {
 
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var contactsTableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -64,6 +65,14 @@ class MainViewController: UIViewController {
     }
     
     func setupNavBar() {
+        // Styling the bar frame
+        let path = UIBezierPath(
+            roundedRect:(self.navigationController?.navigationBar.bounds)!,
+            byRoundingCorners:[.TopRight, .TopLeft],
+            cornerRadii: CGSizeMake(8, 8))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.CGPath
+        self.navigationController?.navigationBar.layer.mask = maskLayer
         // Styling up the bar properties
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "Helvetica", size: 22)!,
