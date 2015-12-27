@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/EditProfileFormViewController.swift"
-            timestampString = "472859800.054408"
+            timestampString = "472882555.149118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "EditProfileFormViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/EditProfileFormViewController.swift"
-            timestampString = "472859800.054408"
+            timestampString = "472882555.149118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "loadUserDetails()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1432,6 +1432,22 @@
             startingLineNumber = "183"
             endingLineNumber = "183"
             landmarkName = "logOutUser()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cluster/ConnectViewController.swift"
+            timestampString = "472881788.64489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

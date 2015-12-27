@@ -151,7 +151,7 @@ class CSUtils: NSObject {
     
     static func extractPhoneNumber(phoneNumber: String?) -> String?{
         var phoneNumberString = phoneNumber
-        if(phoneNumber!.characters.first == "+") {
+        if(phoneNumber?.characters.first == "+") {
             let substringRange = Range<String.Index>(start: (phoneNumber?.startIndex.advancedBy(1))!, end: (phoneNumber?.endIndex)!)
             phoneNumberString = phoneNumber?.substringWithRange(substringRange)
         }
