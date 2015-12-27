@@ -738,12 +738,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -754,12 +754,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -770,12 +770,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -786,12 +786,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "saveUserConnection(_:contact:completion:spinner:)"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -802,12 +802,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -818,12 +818,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -834,44 +834,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "acceptRequestForIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "acceptRequestForIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "saveUserConnection(_:contact:completion:spinner:)"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "processUserConnection(_:contact:completion:spinner:shouldDelete:)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -914,11 +882,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -930,11 +898,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -946,11 +914,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -962,11 +930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "sendContactRequest(_:spinner:)"
             landmarkType = "5">
             <Locations>
@@ -1010,12 +978,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "saveUserConnection(_:contact:completion:spinner:)"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "processUserConnection(_:contact:completion:spinner:shouldDelete:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1026,12 +994,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "saveUserConnection(_:contact:completion:spinner:)"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "processUserConnection(_:contact:completion:spinner:shouldDelete:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1042,12 +1010,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "saveUserConnection(_:contact:completion:spinner:)"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "processUserConnection(_:contact:completion:spinner:shouldDelete:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1058,12 +1026,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1074,28 +1042,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "acceptRequestForIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1106,44 +1058,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
+            timestampString = "472868800.865122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
-            landmarkName = "acceptRequestForIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "acceptRequestForIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cluster/ConnectViewController.swift"
-            timestampString = "472866581.032146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "acceptRequestForIndexPath(_:)"
+            landmarkName = "processRequestForIndexPath(_:shouldReject:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -139,7 +139,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
         let yesRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
             title: " Yes ", handler:{
                 action, indexpath in
-                self.acceptRequestForIndexPath(indexPath)
+                self.processRequestForIndexPath(indexPath, shouldReject: false)
         });
         yesRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851,
                                                blue: 0.3922, alpha: 1.0);
@@ -147,7 +147,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
             style: UITableViewRowActionStyle.Default,
             title: "  No ", handler:{
                 action, indexpath in
-                self.rejectRequestForIndexPath(indexPath)
+                self.processRequestForIndexPath(indexPath, shouldReject: true)
         });
         return [noRowAction, yesRowAction];
     }
@@ -159,7 +159,8 @@ import Parse
 // Extension for Parse methods
 extension ConnectViewController {
     
-    func acceptRequestForIndexPath(contactIndexPath: NSIndexPath) {
+    func processRequestForIndexPath(contactIndexPath: NSIndexPath,
+        shouldReject: Bool) {
         let user = PFUser.currentUser()
         var contact: PFUser?
         let contactModel = self.requestsDetailFetcher?
@@ -185,89 +186,50 @@ extension ConnectViewController {
             { //Error guard
                 CSUtils.stopSpinner(spinner)
                 let dialog = CSUtils.getDisplayDialog(
-                    "Deleted Profile",
-                    message: "The user has deleted his profile")
+                    "User Not Available",
+                    message: "The user is not available on Cluster")
                 self.presentViewController(dialog, animated: true, completion: nil)
                 completion()
                 return
             }
             
+            let acceptCompletionBlock = {
+                let dialog = CSUtils.getDisplayDialog(
+                    "User Added",
+                    message: "\(contact?.objectForKey("full_name") as! String) has been added!")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                CSUtils.log("Successfully saved user connection!")
+                completion()
+            }
+            
+            let rejectCompletionBlock = {
+                let dialog = CSUtils.getDisplayDialog(
+                    "Request Rejected",
+                    message: "\(contact?.objectForKey("full_name") as! String)'s request has been removed")
+                self.presentViewController(dialog, animated: true, completion: nil)
+                CSUtils.log("Successfully deleted user connection!")
+                completion()
+            }
+            
             contact = contacts![0] as? PFUser
-            self.saveUserConnection(user,
-                contact: contact,
-                completion:
-                {
-                    let dialog = CSUtils.getDisplayDialog(
-                        "User Added",
-                        message: "\(contact?.objectForKey("full_name") as! String) has been added!")
-                    self.presentViewController(dialog, animated: true, completion: nil)
-                    CSUtils.log("Successfully saved user connection!")
-                    completion()
-                },
-                spinner: spinner)
+            var currentCompletionBlock: EmptyClosure
+            if(!shouldReject) { currentCompletionBlock = acceptCompletionBlock }
+            else { currentCompletionBlock = rejectCompletionBlock }
+            self.processUserConnection(user,
+                    contact: contact,
+                    completion: currentCompletionBlock,
+                    spinner: spinner,
+                    shouldDelete: shouldReject)
+            
         } // End of query execution
     }
     
-    func rejectRequestForIndexPath(contactIndexPath: NSIndexPath) {
-        let user = PFUser.currentUser()
-        var contact: PFUser?
-        let contactModel = self.requestsDetailFetcher?
-            .userConnectionDetails[contactIndexPath.row]
-        let completion =
-        {
-            self.requestsDetailFetcher?.userConnectionDetails
-                .removeAtIndex(contactIndexPath.row)
-            self.requestsTableView.deleteRowsAtIndexPaths([contactIndexPath],
-                withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
-        // Username is unique, so we do the connections based on that
-        let query = PFUser.query()
-        query!.whereKey("username", equalTo: (contactModel?.username!)!)
+    func processUserConnection(user: PFUser?, contact: PFUser?,
+        completion: EmptyClosure, spinner: UIActivityIndicatorView?,
+        shouldDelete: Bool) {
         
-        // Executing the query
-        let spinner = CSUtils.startSpinner(self.view)
+        let query = self.getConnectionQuery(user, contact: contact)
         query!.findObjectsInBackgroundWithBlock {
-            [unowned self] // Since we don't want a retention cycle in case block hangs
-            (contacts: [PFObject]?, error: NSError?) -> Void in
-            if(error != nil || contacts!.count == 0)
-            { //Error guard
-                CSUtils.stopSpinner(spinner)
-                let dialog = CSUtils.getDisplayDialog(
-                    "Deleted Profile",
-                    message: "The user has deleted his profile")
-                self.presentViewController(dialog, animated: true, completion: nil)
-                completion()
-                return
-            }
-            
-            contact = contacts![0] as? PFUser
-            self.deleteUserConnection(user,
-                contact: contact,
-                completion:
-                {
-                    let dialog = CSUtils.getDisplayDialog(
-                        "Request Rejected",
-                        message: "\(contact?.objectForKey("full_name") as! String)'s request has been removed")
-                    self.presentViewController(dialog, animated: true, completion: nil)
-                    CSUtils.log("Successfully deleted user connection!")
-                    completion()
-                },
-                spinner: spinner)
-        }
-    }
-    
-    func saveUserConnection(user: PFUser?, contact: PFUser?,
-        completion: EmptyClosure, spinner: UIActivityIndicatorView?) {
-        let queryUser = PFQuery(className: "Connection")
-        queryUser.whereKey("core_user", equalTo: user!)
-        queryUser.whereKey("contact_user", equalTo: contact!)
-        
-        let queryContact = PFQuery(className: "Connection")
-        queryContact.whereKey("core_user", equalTo: contact!)
-        queryContact.whereKey("contact_user", equalTo: user!)
-            
-        let query = PFQuery.orQueryWithSubqueries([queryUser, queryContact])
-        query.findObjectsInBackgroundWithBlock {
             (connections: [PFObject]?, error: NSError?) -> Void in
             // Error Guard
             if(connections?.count < 0 || error != nil) {
@@ -280,53 +242,28 @@ extension ConnectViewController {
                 return
             }
             
-            var connectionsModified = 0
-            for connection in connections! {
-                connection.setObject(false, forKey: "request_pending")
-                connection.saveInBackgroundWithBlock({
-                    (success: Bool?, error: NSError?) -> Void in
-                    CSUtils.stopSpinner(spinner!)
-                    if(!success! || (error != nil)) { //Error Guard
-                        let dialog = CSUtils.getDisplayDialog(
-                            message: "Oops! Something went wrong")
-                        self.presentViewController(dialog, animated: true,
-                            completion: nil)
-                        return
-                    }
-                    // Connection saved successfully!
-                    connectionsModified += 1
-                    if(connectionsModified == 2) {
-                        completion()
-                    }
-                })
-            }
-        }// End of connection query
-    }
-    
-    func deleteUserConnection(user: PFUser?, contact: PFUser?,
-        completion: EmptyClosure, spinner: UIActivityIndicatorView?) {
-            let queryUser = PFQuery(className: "Connection")
-            queryUser.whereKey("core_user", equalTo: user!)
-            queryUser.whereKey("contact_user", equalTo: contact!)
-            
-            let queryContact = PFQuery(className: "Connection")
-            queryContact.whereKey("core_user", equalTo: contact!)
-            queryContact.whereKey("contact_user", equalTo: user!)
-            
-            let query = PFQuery.orQueryWithSubqueries([queryUser, queryContact])
-            query.findObjectsInBackgroundWithBlock {
-                (connections: [PFObject]?, error: NSError?) -> Void in
-                // Error Guard
-                if(connections?.count < 0 || error != nil) {
-                    // Request was not found or there was an error
-                    CSUtils.stopSpinner(spinner!)
-                    let dialog = CSUtils.getDisplayDialog(
-                        message: "Oops! Somethign went wrong")
-                    self.presentViewController(dialog, animated: true,
-                        completion: nil)
-                    return
+            if (!shouldDelete) { // Request accepted, save connection
+                var connectionsModified = 0
+                for connection in connections! {
+                    connection.setObject(false, forKey: "request_pending")
+                    connection.saveInBackgroundWithBlock({
+                        (success: Bool?, error: NSError?) -> Void in
+                        CSUtils.stopSpinner(spinner!)
+                        if(!success! || (error != nil)) { //Error Guard
+                            let dialog = CSUtils.getDisplayDialog(
+                                message: "Oops! Something went wrong")
+                            self.presentViewController(dialog, animated: true,
+                                completion: nil)
+                            return
+                        }
+                        // Connection saved successfully!
+                        connectionsModified += 1
+                        if(connectionsModified == 2) {
+                            completion()
+                        }
+                    })
                 }
-                
+            } else {
                 var connectionsModified = 0
                 for connection in connections! {
                     connection.deleteInBackgroundWithBlock({
@@ -345,8 +282,11 @@ extension ConnectViewController {
                         }
                     })
                 }
-            } // End of connection query
-    }
+            } // End of save|delete connection block
+        }// End of connection query
+    } // End of function
+    
+    
     
     func sendContactRequest(phoneNumber: String?, spinner: UIActivityIndicatorView?) {
         let user = PFUser.currentUser()
@@ -415,4 +355,16 @@ extension ConnectViewController {
         } // End of query execution
     }
     
+    func getConnectionQuery(user: PFUser?, contact: PFUser?) -> PFQuery? {
+        let queryUser = PFQuery(className: "Connection")
+        queryUser.whereKey("core_user", equalTo: user!)
+        queryUser.whereKey("contact_user", equalTo: contact!)
+        
+        let queryContact = PFQuery(className: "Connection")
+        queryContact.whereKey("core_user", equalTo: contact!)
+        queryContact.whereKey("contact_user", equalTo: user!)
+        
+        let query = PFQuery.orQueryWithSubqueries([queryUser, queryContact])
+        return query
+    }
 }
