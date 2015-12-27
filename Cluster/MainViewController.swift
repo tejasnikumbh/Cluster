@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     
     var contactDetailFetcher: CSConnectionDetailFetcher?
     var filteredContacts = [CSContactDetail]()
+    var refreshControl: UIRefreshControl?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,10 +25,11 @@ class MainViewController: UIViewController {
         self.setupNavBar()
         self.setupSearchBar()
         self.setupGestureRecognizers()
+        self.setupRefreshControl()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // REdirect to login screen if not already logged in
         if(PFUser.currentUser() == nil) { // Not logged in Guard
             let viewController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
@@ -35,21 +37,12 @@ class MainViewController: UIViewController {
             self.presentViewController(viewController, animated: true, completion: nil)
             return
         }
-        
         // Ideally introduce a cache.
-        let spinner = CSUtils.startSpinner(self.contactsTableView)
-        CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
-            (connectionDetailsFetcher: CSConnectionDetailFetcher?) -> Void in
+        let spinner = CSUtils.startSpinner(self.contactsTableView,
+            hasBeenInitialized: false)
+        self.fetchContactData(nil, stopLoader: {
             CSUtils.stopSpinner(spinner)
-            if(connectionDetailsFetcher == nil) { // Error Guard
-                CSUtils.log("Some error occured in fetching objects")
-                return
-            }
-            // Successfully fetched the contacts
-            self.contactDetailFetcher = connectionDetailsFetcher
-            self.contactsTableView.reloadData()
-        },
-        isRequest: false) // since we are fetching contacts and not requests
+        })
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -110,6 +103,14 @@ class MainViewController: UIViewController {
         let longPressGR = UILongPressGestureRecognizer(target: self,
             action: Selector("longPressOnContact:"))
         self.contactsTableView.addGestureRecognizer(longPressGR)
+    }
+    
+    func setupRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: "fetchContactData:stopLoader:",
+            forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.tintColor = UIColor.paleWhite()
+        self.contactsTableView.addSubview(refreshControl!)
     }
 
     func getBarButtonItem(image: UIImage?, selector: Selector?) -> UIBarButtonItem {
@@ -185,6 +186,25 @@ class MainViewController: UIViewController {
                 handler: handler)
             self.presentViewController(dialog, animated: true, completion:nil)
         }
+    }
+    
+    // Helper methods for class
+    func fetchContactData(sender: AnyObject?, stopLoader: EmptyClosure?) {
+        CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
+            (connectionDetailsFetcher: CSConnectionDetailFetcher?) -> Void in
+            if(connectionDetailsFetcher == nil)
+            { // Error Guard
+                CSUtils.log("Some error occured in fetching objects")
+                if(stopLoader != nil){ stopLoader!() }
+                self.refreshControl?.endRefreshing()
+                return
+            }
+            // Successfully fetched the contacts
+            self.contactDetailFetcher = connectionDetailsFetcher
+            self.contactsTableView.reloadData()
+            if(stopLoader != nil) { stopLoader!() }
+            self.refreshControl?.endRefreshing() },
+            isRequest: false) // since we are fetching contacts and not requests
     }
     
 }

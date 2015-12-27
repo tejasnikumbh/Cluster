@@ -14,10 +14,15 @@ class CSUtils: NSObject {
  
     /* ============================= UI Utils ================================== */
         
-    static func startSpinner(backgroundView: UIView) -> (UIActivityIndicatorView) {
+    static func startSpinner(backgroundView: UIView,
+        hasBeenInitialized: Bool? = true) -> (UIActivityIndicatorView) {
         let spinnerContainer: UIView = UIView()
         spinnerContainer.frame = CGRectMake(0, 0, 80, 80)
         spinnerContainer.center =  backgroundView.center
+        if(!hasBeenInitialized!) {
+            spinnerContainer.center = CGPointMake(UIScreen.mainScreen().bounds.width / 2,
+                UIScreen.mainScreen().bounds.height / 2)
+        }
         spinnerContainer.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
         spinnerContainer.clipsToBounds = true
         spinnerContainer.layer.cornerRadius = 10

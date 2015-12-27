@@ -23,7 +23,8 @@ class CSContactDetail: NSObject {
     let secondaryEmail: String?
     let address: String?
     
-    init(username: String!, profilePicImage: UIImage?, contactName: String!, contactDesignation: String!,
+    init(username: String!, profilePicImage: UIImage?,
+        contactName: String!, contactDesignation: String!,
         primaryPhone: String?, secondaryPhone: String?,
         primaryEmail: String?, secondaryEmail: String?,
         address: String?) {
