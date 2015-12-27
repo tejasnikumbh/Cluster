@@ -61,18 +61,23 @@ extension LoginFormViewController {
             password: password,
             block: {
                 (user, error) -> Void in
-                CSUtils.stopSpinner(spinner)
                 if ((user) != nil) {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
-                        CSUser.fetchUserData(nil, refreshControl: nil,
-                            connectionsTableView: nil, isRequest: false)
-                        self.dismissViewControllerAnimated(true,
-                            completion: nil)
-                        print("User successfully logged in")
+                        CSUser.fetchUserData({ CSUtils.stopSpinner(spinner) },
+                            refreshControl: nil,
+                            connectionsTableView: nil,
+                            isRequest: false,
+                            completion:
+                            {
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                                print("User successfully logged in")
+                            }
+                        )
                     })
                 } else { // Invalid Login
+                    CSUtils.stopSpinner(spinner)
                     let alertDialog = CSUtils.getDisplayDialog(
                         message: "Invalid Email or Password")
                     self.presentViewController(alertDialog,

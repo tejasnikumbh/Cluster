@@ -23,6 +23,10 @@ class MainViewController: UIViewController {
         self.setupSearchBar()
         self.setupGestureRecognizers()
         self.setupRefreshControl()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.contactsTableView.reloadData()
     }
     

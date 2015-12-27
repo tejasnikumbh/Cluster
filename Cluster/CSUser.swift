@@ -15,7 +15,7 @@ class CSUser: NSObject {
     
     static func fetchUserData(stopLoader: EmptyClosure?,
         refreshControl: UIRefreshControl?, connectionsTableView: UITableView?,
-        isRequest: Bool)
+        isRequest: Bool, completion: EmptyClosure? = nil)
     {
         CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
             (connectionDetailsFetcher: CSConnectionDetailFetcher?) -> Void in
@@ -24,12 +24,15 @@ class CSUser: NSObject {
             if(connectionDetailsFetcher == nil)
             { // Error Guard
                 CSUtils.log("Some error occured in fetching objects")
+                completion?()
                 return
             }
             // Successfully fetched the contacts
             if(!isRequest) { CSUser.contactDetailFetcher = connectionDetailsFetcher }
             else { CSUser.requestsDetailFetcher = connectionDetailsFetcher }
-            connectionsTableView?.reloadData() },
+            connectionsTableView?.reloadData()
+            completion?()
+            },
             isRequest: isRequest) // since we are fetching contacts and not requests
     }
 }
