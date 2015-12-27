@@ -24,13 +24,13 @@ class CSConnectionDetailFetcher: NSObject {
         let getConnectionsQuery = PFQuery(className: "Connection")
         getConnectionsQuery.whereKey("core_user", equalTo: PFUser.currentUser()!)
         getConnectionsQuery.whereKey("request_pending", equalTo: isRequest)
-        
+        getConnectionsQuery.whereKey("request_sender", notEqualTo: PFUser.currentUser()!)
         getConnectionsQuery.findObjectsInBackgroundWithBlock {
             (connections: [PFObject]?, error: NSError?) -> Void in
             if((error != nil) || connections?.count == 0) { //Error guard
                 // Do completion jugaad to handle error
                 if(error != nil){ CSUtils.log("Error loading connections") }
-                else {CSUtils.log("No connections for given query")}
+                else { CSUtils.log("No connections for given query") }
                 completion(nil)
                 return
             }
