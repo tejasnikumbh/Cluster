@@ -80,7 +80,6 @@ class CSConnectionDetailFetcher: NSObject {
                             address: user.objectForKey("address")! as? String)
                         
                         userConnectionDetailsArray.append(csContact)
-                        
                         if(userConnectionDetailsArray.count == users!.count) {
                             // Alphabetical sort
                             userConnectionDetailsArray.sortInPlace({

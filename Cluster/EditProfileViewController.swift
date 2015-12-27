@@ -178,6 +178,9 @@ extension EditProfileViewController {
             dispatch_async(dispatch_get_main_queue(),
             { // We need dispatch async since what if user has navigated away?
                 () -> Void in
+                CSUser.contactDetailFetcher = nil
+                CSUser.requestsDetailFetcher = nil
+                CSUser.filteredContacts = []
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("loginSignupFlowViewController")
                 self.presentViewController(viewController, animated: true, completion: nil)
                 print("User logged out successfully")

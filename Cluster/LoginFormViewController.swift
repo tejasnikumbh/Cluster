@@ -66,6 +66,8 @@ extension LoginFormViewController {
                     dispatch_async(dispatch_get_main_queue(),
                     { // Successful Login
                         () -> Void in
+                        CSUser.fetchUserData(nil, refreshControl: nil,
+                            connectionsTableView: nil, isRequest: false)
                         self.dismissViewControllerAnimated(true,
                             completion: nil)
                         print("User successfully logged in")

@@ -77,6 +77,9 @@
 		CCD834921C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834911C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift */; };
 		CCD834931C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834911C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift */; };
 		CCD834941C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834911C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift */; };
+		CCD834961C2F908B004EA7AF /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834951C2F908B004EA7AF /* CSUser.swift */; };
+		CCD834971C2F908B004EA7AF /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834951C2F908B004EA7AF /* CSUser.swift */; };
+		CCD834981C2F908B004EA7AF /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD834951C2F908B004EA7AF /* CSUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +143,7 @@
 		CCBC38D61C22AEA000E0EFEF /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		CCBC38DA1C22B0A300E0EFEF /* CSRequestCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSRequestCard.swift; sourceTree = "<group>"; };
 		CCD834911C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSConnectionDetailFetcher.swift; sourceTree = "<group>"; };
+		CCD834951C2F908B004EA7AF /* CSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +285,7 @@
 		CCBC38991C1DF5F100E0EFEF /* models */ = {
 			isa = PBXGroup;
 			children = (
+				CCD834951C2F908B004EA7AF /* CSUser.swift */,
 				CCBC389A1C1DF63600E0EFEF /* CSContactDetail.swift */,
 				CCD834911C2F5B4B004EA7AF /* CSConnectionDetailFetcher.swift */,
 			);
@@ -472,6 +477,7 @@
 				CC56770E1C240CBF003114D0 /* LoginFormViewController.swift in Sources */,
 				CCBC38D71C22AEA000E0EFEF /* ConnectViewController.swift in Sources */,
 				CCBC389B1C1DF63600E0EFEF /* CSContactDetail.swift in Sources */,
+				CCD834961C2F908B004EA7AF /* CSUser.swift in Sources */,
 				CC767C511C28284A00E77348 /* CSGrayWhitePlaceholder.swift in Sources */,
 				CCBC38D31C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
 				CC767C4D1C2816DC00E77348 /* CSPaleBackground.swift in Sources */,
@@ -493,6 +499,7 @@
 			files = (
 				CC56770F1C240CBF003114D0 /* LoginFormViewController.swift in Sources */,
 				CCBC38C21C214E3B00E0EFEF /* EditProfileFormViewController.swift in Sources */,
+				CCD834971C2F908B004EA7AF /* CSUser.swift in Sources */,
 				CCBC38A01C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38DC1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38D41C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,
@@ -517,6 +524,7 @@
 			files = (
 				CC5677101C240CBF003114D0 /* LoginFormViewController.swift in Sources */,
 				CCBC38C31C214E3B00E0EFEF /* EditProfileFormViewController.swift in Sources */,
+				CCD834981C2F908B004EA7AF /* CSUser.swift in Sources */,
 				CCBC38A11C1DF9A400E0EFEF /* EditProfileViewController.swift in Sources */,
 				CCBC38DD1C22B0A300E0EFEF /* CSRequestCard.swift in Sources */,
 				CCBC38D51C21A82900E0EFEF /* UISearchController+Customization.swift in Sources */,

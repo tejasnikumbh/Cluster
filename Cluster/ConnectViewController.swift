@@ -17,7 +17,6 @@ class ConnectViewController: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var recipientPhoneNumberField: UITextField!
     
-    var requestsDetailFetcher: CSConnectionDetailFetcher?
     // View lifecycle and view property methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +26,9 @@ class ConnectViewController: UIViewController {
         super.viewDidAppear(animated)
         
         let spinner = CSUtils.startSpinner(self.requestsTableView)
-        CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
-            (connectionDetailFetcher: CSConnectionDetailFetcher?) -> Void in
-            CSUtils.stopSpinner(spinner)
-            if(connectionDetailFetcher == nil) { // Error guard
-                CSUtils.log("Some error occurred while fetching requests")
-            }
-            // Successfully fetched all requests
-            self.requestsDetailFetcher = connectionDetailFetcher
-            self.requestsTableView.reloadData()
-        },
-        isRequest: true)
+        CSUser.fetchUserData({ CSUtils.stopSpinner(spinner) },
+            refreshControl: nil, connectionsTableView: self.requestsTableView,
+            isRequest: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -105,8 +96,8 @@ class ConnectViewController: UIViewController {
 // Extension for table view methods
 extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(self.requestsDetailFetcher != nil) {
-            return (self.requestsDetailFetcher?.userConnectionDetails.count)!
+        if(CSUser.requestsDetailFetcher != nil) {
+            return (CSUser.requestsDetailFetcher?.userConnectionDetails.count)!
         } else {
             return 0
         }
@@ -115,7 +106,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("requestCardCell") as! CSRequestCard
-        let cellModel = self.requestsDetailFetcher?.userConnectionDetails[indexPath.row]
+        let cellModel = CSUser.requestsDetailFetcher?.userConnectionDetails[indexPath.row]
         cell.requestProfileBtn.setBackgroundImage(
             cellModel?.profilePicImage,
             forState: .Normal)
@@ -163,11 +154,11 @@ extension ConnectViewController {
         shouldReject: Bool) {
         let user = PFUser.currentUser()
         var contact: PFUser?
-        let contactModel = self.requestsDetailFetcher?
+        let contactModel = CSUser.requestsDetailFetcher?
             .userConnectionDetails[contactIndexPath.row]
         let completion =
         {
-            self.requestsDetailFetcher?.userConnectionDetails
+            CSUser.requestsDetailFetcher?.userConnectionDetails
                 .removeAtIndex(contactIndexPath.row)
             self.requestsTableView.deleteRowsAtIndexPaths([contactIndexPath],
                 withRowAnimation: UITableViewRowAnimation.Automatic)

@@ -14,10 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
-    
-    var contactDetailFetcher: CSConnectionDetailFetcher?
-    var filteredContacts = [CSContactDetail]()
-    var refreshControl: UIRefreshControl?
+    let refreshControl: UIRefreshControl? = UIRefreshControl()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,6 +23,7 @@ class MainViewController: UIViewController {
         self.setupSearchBar()
         self.setupGestureRecognizers()
         self.setupRefreshControl()
+        self.contactsTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -106,7 +104,6 @@ class MainViewController: UIViewController {
     }
     
     func setupRefreshControl() {
-        self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "fetchContactData:stopLoader:",
             forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl!.tintColor = UIColor.paleWhite()
@@ -153,7 +150,7 @@ class MainViewController: UIViewController {
     
     // UISearchResultUpdating protocol related methods
     func filterContentForSearchText(searchText: String?, scope: String = "All") {
-        filteredContacts = (self.contactDetailFetcher?.userConnectionDetails.filter {
+        CSUser.filteredContacts = (CSUser.contactDetailFetcher?.userConnectionDetails.filter {
             userContactDetail in
             return userContactDetail.contactName.lowercaseString
                 .containsString((searchText?.lowercaseString)!)
@@ -168,9 +165,9 @@ class MainViewController: UIViewController {
         if((indexPath) != nil) {
             var cellModel: CSContactDetail?
             if searchController.active && searchController.searchBar.text != "" {
-                cellModel = filteredContacts[indexPath!.row]
+                cellModel = CSUser.filteredContacts[indexPath!.row]
             } else {
-                cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath!.row]
+                cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath!.row]
             }
             
             let handler: AlertActionClosure = {
@@ -190,21 +187,8 @@ class MainViewController: UIViewController {
     
     // Helper methods for class
     func fetchContactData(sender: AnyObject?, stopLoader: EmptyClosure?) {
-        CSConnectionDetailFetcher.fetchConnectionDetailsWithCompletion({
-            (connectionDetailsFetcher: CSConnectionDetailFetcher?) -> Void in
-            if(connectionDetailsFetcher == nil)
-            { // Error Guard
-                CSUtils.log("Some error occured in fetching objects")
-                if(stopLoader != nil){ stopLoader!() }
-                self.refreshControl?.endRefreshing()
-                return
-            }
-            // Successfully fetched the contacts
-            self.contactDetailFetcher = connectionDetailsFetcher
-            self.contactsTableView.reloadData()
-            if(stopLoader != nil) { stopLoader!() }
-            self.refreshControl?.endRefreshing() },
-            isRequest: false) // since we are fetching contacts and not requests
+        CSUser.fetchUserData(stopLoader, refreshControl: self.refreshControl,
+            connectionsTableView: self.contactsTableView, isRequest: false)
     }
     
 }
@@ -215,10 +199,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     // UITableViewDatasource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.searchController.active && self.searchController.searchBar.text != "" {
-            return filteredContacts.count
+            return CSUser.filteredContacts.count
         }
-        if(self.contactDetailFetcher != nil){
-            return (self.contactDetailFetcher?.userConnectionDetails.count)!
+        if(CSUser.contactDetailFetcher != nil){
+            return (CSUser.contactDetailFetcher?.userConnectionDetails.count)!
         } else {
             return 0
         }
@@ -229,9 +213,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("csCardCell") as! CSSummaryCard
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
-            cellModel = filteredContacts[indexPath.row]
+            cellModel = CSUser.filteredContacts[indexPath.row]
         } else {
-            cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath.row]
+            cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
         cell.contactDisplayPic.image = cellModel?.profilePicImage
         cell.name.text = cellModel?.contactName
@@ -248,9 +232,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
-            cellModel = filteredContacts[indexPath.row]
+            cellModel = CSUser.filteredContacts[indexPath.row]
         } else {
-            cellModel = self.contactDetailFetcher?.userConnectionDetails[indexPath.row]
+            cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
         let query = PFQuery(className: "_User")
         query.whereKey("username", equalTo: (cellModel?.username)!)
