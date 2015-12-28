@@ -249,14 +249,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
+        
         let query = PFQuery(className: "_User")
         query.whereKey("username", equalTo: (cellModel?.username)!)
+        // Using cached results
+        query.fromLocalDatastore()
         
-        let spinner = CSUtils.startSpinner(self.view)
+        // let spinner = CSUtils.startSpinner(self.view)
         query.findObjectsInBackgroundWithBlock {
             (users, error) -> Void in
             
-            CSUtils.stopSpinner(spinner)
+            // CSUtils.stopSpinner(spinner)
             if(error != nil || users!.count == 0) { //Error Guard
                 let dialog = CSUtils.getDisplayDialog(message: "Oops! Something went wrong")
                 self.presentViewController(dialog, animated: true, completion: nil)

@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Parse
 
 class CSContactDetail: NSObject {
     
@@ -38,5 +39,4 @@ class CSContactDetail: NSObject {
         self.secondaryEmail = secondaryEmail
         self.address = address
     }
-    
 }

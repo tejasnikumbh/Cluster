@@ -238,10 +238,10 @@ extension EditProfileViewController {
         else { user = PFUser.currentUser() }
         
         if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
-            let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+            //let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
             profilePic.getDataInBackgroundWithBlock({
                 (data, error) -> Void in
-                CSUtils.stopSpinner(spinner)
+                //CSUtils.stopSpinner(spinner)
                 var profilePicImage: UIImage?
                 if (error != nil) { // Error guard in case of invalid image
                     // Placeholder image here instead of face

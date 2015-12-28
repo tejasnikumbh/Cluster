@@ -58,6 +58,10 @@ class CSConnectionDetailFetcher: NSObject {
                 }
                 
                 for user in users! {
+                    // Pinning so that later on local data store can query
+                    let userToPin = user as! PFUser
+                    userToPin.pinInBackground()
+                    
                     let userImageFile: PFFile = user.objectForKey("profile_pic")! as! PFFile
                     userImageFile.getDataInBackgroundWithBlock {
                         (imageData, error) -> Void in
