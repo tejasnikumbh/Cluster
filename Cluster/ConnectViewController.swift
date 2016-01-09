@@ -60,6 +60,7 @@ class ConnectViewController: UIViewController {
         self.requestsTableView.contentInset = UIEdgeInsets(top: 12, left: 0,
             bottom: 0, right: 0)
         self.requestsTableView.allowsMultipleSelectionDuringEditing = false
+        self.bgView.backgroundColor = UIColor.themeColor()
     }
     
     func setupGestureRecognizers() {

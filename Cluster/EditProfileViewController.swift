@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var spinnerView: UIView!
     
     @IBOutlet weak var detailCardProfilePic: UIImageView!
+    @IBOutlet weak var detailCardProfilePicCentered: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var designationLabel: UILabel!
     @IBOutlet weak var backBtnImageView: UIImageView!
@@ -71,6 +72,15 @@ class EditProfileViewController: UIViewController {
             self.modifyForContactCard()
         }
         self.addGradientToView(detailCardProfilePic)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.origin = CGPointMake(0, 0)
+        blurView.frame.size.width = UIScreen.mainScreen().bounds.width
+        blurView.frame.size.height = 320
+        self.detailCardProfilePic.addSubview(blurView)
+        if(isContactCard) {
+            self.rootScrollView.scrollEnabled = false
+        }
     }
 
     func modifyForContactCard() {
@@ -227,6 +237,7 @@ extension EditProfileViewController {
                 
                 // Succesfully saved and associated image
                 self.detailCardProfilePic.image = image!
+                self.detailCardProfilePicCentered.image = image!
                 
             }) // End of association
         }) // End of image save
@@ -251,6 +262,7 @@ extension EditProfileViewController {
                 // Successful image data fetch
                 profilePicImage = UIImage(data:data!)
                 self.detailCardProfilePic.image = profilePicImage
+                self.detailCardProfilePicCentered.image = profilePicImage
             })
         }
             

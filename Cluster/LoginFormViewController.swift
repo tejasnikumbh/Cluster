@@ -49,6 +49,8 @@ class LoginFormViewController: CSFormBaseViewController {
         self.navigationController?.navigationBarHidden = true
         self.loginBtnTrailingConstraint.constant = -1*self.usernameContainerView.frame.size.width/2.0 - 8.0
         self.signUpBtnLeadingConstraint.constant = self.usernameContainerView.frame.size.width/2.0 + 8.0
+        self.bgView.backgroundColor = UIColor.themeColor()
+        self.rootScrollView.backgroundColor = UIColor.themeColor()
     }
 }
 

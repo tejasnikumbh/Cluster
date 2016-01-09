@@ -60,6 +60,8 @@ class SignUpFormViewController: CSFormBaseViewController {
     
     func setupViews() {
         self.phoneNumberTextField.keyboardType = UIKeyboardType.NumberPad
+        self.bgView.backgroundColor = UIColor.themeColor()
+        self.rootScrollView.backgroundColor = UIColor.themeColor()
     }
     
 }

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Callback Filled-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Phone Filled-100.png",
       "scale" : "2x"
     },
     {
