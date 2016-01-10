@@ -125,7 +125,7 @@ extension ConnectViewController: UITableViewDataSource, UITableViewDelegate {
             cellModel?.profilePicImage,
             forState: .Normal)
         cell.requestNameLabel.text = cellModel?.contactName
-        cell.requestPhoneLabel.text = cellModel?.primaryPhone
+        cell.requestSubtitleLabel.text = cellModel?.connectionLocation
         return cell
     }
     
@@ -292,22 +292,27 @@ extension ConnectViewController {
     
     func sendContactRequest(phoneNumber: String?, spinner: UIActivityIndicatorView?) {
         let user = PFUser.currentUser()
+        let requestLocation = user?.objectForKey("current_event")
+        if(requestLocation! as! String == "" || requestLocation == nil) {
+            // Set a suitable value according to current location
+        }
         let query = self.getUserFromPhoneQuery(phoneNumber)
         query!.findObjectsInBackgroundWithBlock {
             [unowned self] // Since we don't want a retention cycle in case block hangs
             (contacts: [PFObject]?, error: NSError?) -> Void in
             if(error != nil || contacts!.count == 0)
-            { //Error guard
+            { //Error guard - Send SMS Here later if user not on cluster
                 CSUtils.stopSpinner(spinner!)
                 let dialog = CSUtils.getDisplayDialog(
-                    "Deleted Profile",
-                    message: "The user has deleted his profile")
+                    "Unavailable Profile",
+                    message: "The user is not currently on cluster")
                 self.presentViewController(dialog, animated: true, completion: nil)
                 return
             }
             
             let contact = contacts![0] as? PFUser
             let userConnection = PFObject(className: "Connection")
+            userConnection.setObject(requestLocation!, forKey: "request_location")
             userConnection.setObject(user!, forKey: "core_user")
             userConnection.setObject(contact!, forKey: "contact_user")
             userConnection.setObject(user!, forKey: "request_sender")
@@ -324,6 +329,7 @@ extension ConnectViewController {
                 }
                 
                 let contactConnection = PFObject(className: "Connection")
+                contactConnection.setObject(requestLocation!, forKey: "request_location")
                 contactConnection.setObject(contact!, forKey: "core_user")
                 contactConnection.setObject(user!, forKey: "contact_user")
                 contactConnection.setObject(user!, forKey: "request_sender")

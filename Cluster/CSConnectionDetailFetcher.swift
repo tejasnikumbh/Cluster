@@ -37,15 +37,15 @@ class CSConnectionDetailFetcher: NSObject {
                 return
             }
             
-            var filteredUsers: [AnyObject] = []
+            var filteredUsersWithRequestLocations = [String: String]()
             for connection in connections! {
                 let currentUser = connection["contact_user"] as! PFUser
-                filteredUsers += [currentUser.objectId as! AnyObject]
+                filteredUsersWithRequestLocations[currentUser.objectId!] = connection["request_location"] as? String
             }
             
             let getUsersCorrespondingToConnnectionsQuery = PFUser.query()!
             getUsersCorrespondingToConnnectionsQuery.whereKey("objectId",
-                containedIn: filteredUsers)
+                containedIn: Array(filteredUsersWithRequestLocations.keys))
             getUsersCorrespondingToConnnectionsQuery.fromLocalDatastore()
             getUsersCorrespondingToConnnectionsQuery.findObjectsInBackgroundWithBlock {
                 (users: [PFObject]?, error: NSError?) -> Void in
@@ -81,7 +81,8 @@ class CSConnectionDetailFetcher: NSObject {
                             secondaryPhone: user.objectForKey("secondary_phone")! as? String,
                             primaryEmail: user.objectForKey("primary_email")! as? String,
                             secondaryEmail: user.objectForKey("secondary_email")! as? String,
-                            address: user.objectForKey("address")! as? String)
+                            address: user.objectForKey("address")! as? String,
+                            connectionLocation: filteredUsersWithRequestLocations[user.objectId!])
                         
                         userConnectionDetailsArray.append(csContact)
                         if(userConnectionDetailsArray.count == users!.count) {

@@ -12,7 +12,7 @@ class CSUser: NSObject {
     static var username: String?
     static var requestsDetailFetcher: CSConnectionDetailFetcher?
     static var contactDetailFetcher: CSConnectionDetailFetcher?
-    static var filteredContacts = [CSContactDetail]()
+    static var filteredContacts = [CSContactDetail]?()
     
     static func fetchUserData(stopLoader: EmptyClosure?,
         refreshControl: UIRefreshControl?, connectionsTableView: UITableView?,

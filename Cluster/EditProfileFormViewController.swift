@@ -19,6 +19,7 @@ class EditProfileFormViewController: CSFormBaseViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var closeBtnContainer: UIView!
 
+    @IBOutlet weak var currentEventTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var designationTextField: UITextField!
     @IBOutlet weak var primaryPhoneTextField: UITextField!
@@ -175,6 +176,7 @@ extension EditProfileFormViewController {
         
         let user = PFUser.currentUser()
         
+        let currentEvent = self.currentEventTextField.text
         let fullName = self.nameTextField.text
         let designation = self.designationTextField.text
         let primaryPhone = self.primaryPhoneTextField.text
@@ -190,6 +192,9 @@ extension EditProfileFormViewController {
             address: address)
             
         if(areUserDetailsValid){ // Guard for valid details
+            // Add the current location to the current_event data provided by user
+            // E.g:- currentEvent! = currentEvent! + "London"
+            user?.setObject(currentEvent!, forKey: "current_event")
             user?.setObject(fullName!, forKey: "full_name")
             user?.setObject(designation!, forKey: "designation")
             user?.setObject(primaryPhone!, forKey: "primary_phone")
@@ -240,6 +245,13 @@ extension EditProfileFormViewController {
     
     func loadUserDetails() {
         let user = PFUser.currentUser()
+        
+        if let currentEvent = user?.objectForKey("current_event") as? String {
+            self.currentEventTextField.attributedText = NSAttributedString(
+            string: currentEvent,
+            attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
+        }
+        
         if let fullName = user?.objectForKey("full_name") as? String {
             self.nameTextField.attributedText =  NSAttributedString(
             string: fullName,

@@ -167,7 +167,7 @@ class MainViewController: UIViewController {
             userContactDetail in
             return userContactDetail.contactName.lowercaseString
                 .containsString((searchText?.lowercaseString)!)
-        })!
+        })
         self.contactsTableView.reloadData()
     }
     
@@ -178,7 +178,7 @@ class MainViewController: UIViewController {
         if((indexPath) != nil) {
             var cellModel: CSContactDetail?
             if searchController.active && searchController.searchBar.text != "" {
-                cellModel = CSUser.filteredContacts[indexPath!.row]
+                cellModel = CSUser.filteredContacts![indexPath!.row]
             } else {
                 cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath!.row]
             }
@@ -212,7 +212,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     // UITableViewDatasource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.searchController.active && self.searchController.searchBar.text != "" {
-            return CSUser.filteredContacts.count
+            return (CSUser.filteredContacts)!.count
         }
         if(CSUser.contactDetailFetcher != nil){
             return (CSUser.contactDetailFetcher?.userConnectionDetails.count)!
@@ -226,7 +226,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("csCardCell") as! CSSummaryCard
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
-            cellModel = CSUser.filteredContacts[indexPath.row]
+            cellModel = (CSUser.filteredContacts)![indexPath.row]
         } else {
             cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
@@ -238,40 +238,21 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     // UITableViewDelegate methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let viewController: EditProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("editProfileViewController")
             as! EditProfileViewController
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         var cellModel: CSContactDetail?
         if searchController.active && searchController.searchBar.text != "" {
-            cellModel = CSUser.filteredContacts[indexPath.row]
+            cellModel = (CSUser.filteredContacts)![indexPath.row]
         } else {
             cellModel = CSUser.contactDetailFetcher?.userConnectionDetails[indexPath.row]
         }
-        
-        let query = PFQuery(className: "_User")
-        query.whereKey("username", equalTo: (cellModel?.username)!)
-        // Using cached results
-        query.fromLocalDatastore()
-        
-        // let spinner = CSUtils.startSpinner(self.view)
-        query.findObjectsInBackgroundWithBlock {
-            (users, error) -> Void in
-            
-            // CSUtils.stopSpinner(spinner)
-            if(error != nil || users!.count == 0) { //Error Guard
-                let dialog = CSUtils.getDisplayDialog(message: "Oops! Something went wrong")
-                self.presentViewController(dialog, animated: true, completion: nil)
-                return
-            }
-            
-            let user = users![0] as? PFUser
-            viewController.isContactCard = true
-            viewController.contactUser = user
-            self.presentViewController(viewController, animated: true,
-                completion: nil)
-        }
+        viewController.isContactCard = true
+        viewController.contactUser = cellModel!
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
 }

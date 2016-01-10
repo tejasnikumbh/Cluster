@@ -14,7 +14,7 @@ import Parse
 class EditProfileViewController: UIViewController {
     
     var isContactCard: Bool = false
-    var contactUser: PFUser?
+    var contactUser: CSContactDetail?
     
     var primaryPhone: String?
     var secondaryPhone: String?
@@ -35,11 +35,13 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var backBtnContainerView: UIView!
     @IBOutlet weak var cameraContainerView: UIView!
+    @IBOutlet weak var currentEventLabel: UILabel!
     
     @IBOutlet weak var callImageView: UIImageView!
     @IBOutlet weak var emailImageView: UIImageView!
     @IBOutlet weak var houseImageView: UIImageView!
     @IBOutlet weak var moreImageView: UIImageView!
+    @IBOutlet weak var currentEventValueLabel: UILabel!
     
     @IBOutlet weak var editDetailsContainerView: UIView!
     @IBOutlet weak var logOutBtn: UIButton!
@@ -200,7 +202,6 @@ class EditProfileViewController: UIViewController {
         CSUtils.log("More pressed!")
     }
     
-    
     func presentViewControllerWithSourceType(
         imagePickerSourceType: UIImagePickerControllerSourceType) {
             
@@ -253,7 +254,7 @@ extension EditProfileViewController {
         let imageFile = PFFile(name: imageName, data: imageData!)
         
         // Start saving image in background
-        var spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+        var spinner = CSUtils.startSpinner(self.view)
         imageFile?.saveInBackgroundWithBlock({
             (success, error) -> Void in
             
@@ -287,35 +288,68 @@ extension EditProfileViewController {
     }
     
     func setupUserDetails() {
-        var user: PFUser?
-        if(isContactCard) { user = self.contactUser }
-        else { user = PFUser.currentUser() }
-        
-        if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
-            //let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
-            profilePic.getDataInBackgroundWithBlock({
-                (data, error) -> Void in
-                //CSUtils.stopSpinner(spinner)
-                var profilePicImage: UIImage?
-                if (error != nil) { // Error guard in case of invalid image
-                    // Placeholder image here instead of face
-                    profilePicImage = UIImage(named: "face")
-                    return
-                }
-                // Successful image data fetch
-                profilePicImage = UIImage(data:data!)
-                self.detailCardProfilePic.image = profilePicImage
-                self.detailCardProfilePicCentered.image = profilePicImage
-            })
-        }
+        var currentEvent: String?
+        var fullName: String?
+        var designation: String?
+        var primaryPhone: String?
+        var secondaryPhone: String?
+        var primaryEmail: String?
+        var secondaryEmail: String?
+        var address: String?
+        if(!self.isContactCard) {
             
-        let fullName = user?.objectForKey("full_name") as! String?
-        let designation = user?.objectForKey("designation") as! String?
-        let primaryPhone = user?.objectForKey("primary_phone") as! String?
-        let secondaryPhone = user?.objectForKey("secondary_phone") as! String?
-        let primaryEmail = user?.objectForKey("primary_email") as! String?
-        let secondaryEmail = user?.objectForKey("secondary_email") as! String?
-        let address = user?.objectForKey("address") as! String?
+            var user: PFUser?
+            user = PFUser.currentUser()
+            if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
+                //let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
+                profilePic.getDataInBackgroundWithBlock({
+                    (data, error) -> Void in
+                    //CSUtils.stopSpinner(spinner)
+                    var profilePicImage: UIImage?
+                    if (error != nil) { // Error guard in case of invalid image
+                        // Placeholder image here instead of face
+                        profilePicImage = UIImage(named: "face")
+                        return
+                    }
+                    // Successful image data fetch
+                    profilePicImage = UIImage(data:data!)
+                    self.detailCardProfilePic.image = profilePicImage
+                    self.detailCardProfilePicCentered.image = profilePicImage
+                })
+            }
+            
+            currentEvent = user?.objectForKey("current_event") as! String?
+            if(currentEvent == "" || currentEvent == nil) { currentEvent = "Unspecified" }
+            fullName = user?.objectForKey("full_name") as! String?
+            designation = user?.objectForKey("designation") as! String?
+            primaryPhone = user?.objectForKey("primary_phone") as! String?
+            secondaryPhone = user?.objectForKey("secondary_phone") as! String?
+            primaryEmail = user?.objectForKey("primary_email") as! String?
+            secondaryEmail = user?.objectForKey("secondary_email") as! String?
+            address = user?.objectForKey("address") as! String?
+            
+            self.currentEventLabel.text = "CURRENT EVENT"
+            
+        } else {
+            
+            // Guard against bad values
+            if((self.contactUser == nil)) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+                return
+            }
+            
+            fullName = self.contactUser!.contactName
+            designation = self.contactUser!.contactDesignation
+            primaryPhone = self.contactUser!.primaryPhone
+            secondaryPhone = self.contactUser!.secondaryPhone
+            primaryEmail = self.contactUser!.primaryEmail
+            secondaryEmail = self.contactUser!.secondaryEmail
+            address = self.contactUser!.address
+            currentEvent = self.contactUser!.connectionLocation
+            
+            self.currentEventLabel.text = "MEETING PLACE"
+            self.detailCardProfilePicCentered.image = self.contactUser!.profilePicImage
+        }
         
         self.nameLabel.text = fullName
         self.designationLabel.text = designation
@@ -324,7 +358,9 @@ extension EditProfileViewController {
         self.primaryEmail = primaryEmail
         self.secondaryEmail = secondaryEmail
         self.address = address
+        self.currentEventValueLabel.text = currentEvent
     }
+    
 }
 
 

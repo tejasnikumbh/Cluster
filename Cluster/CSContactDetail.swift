@@ -23,12 +23,13 @@ class CSContactDetail: NSObject {
     let primaryEmail: String?
     let secondaryEmail: String?
     let address: String?
+    let connectionLocation: String!
     
     init(username: String!, profilePicImage: UIImage?,
         contactName: String!, contactDesignation: String!,
         primaryPhone: String?, secondaryPhone: String?,
         primaryEmail: String?, secondaryEmail: String?,
-        address: String?) {
+        address: String?,connectionLocation: String?) {
         self.username = username
         self.profilePicImage = profilePicImage
         self.contactName = contactName
@@ -38,5 +39,6 @@ class CSContactDetail: NSObject {
         self.primaryEmail = primaryEmail
         self.secondaryEmail = secondaryEmail
         self.address = address
+        self.connectionLocation = connectionLocation
     }
 }

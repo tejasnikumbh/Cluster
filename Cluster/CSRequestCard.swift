@@ -12,7 +12,7 @@ class CSRequestCard: UITableViewCell {
 
     @IBOutlet weak var requestProfileBtn: UIButton!
     @IBOutlet weak var requestNameLabel: UILabel!
-    @IBOutlet weak var requestPhoneLabel: UILabel!
+    @IBOutlet weak var requestSubtitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
