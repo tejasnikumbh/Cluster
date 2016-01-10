@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 import QuartzCore
 import Parse
 
@@ -15,11 +16,16 @@ class EditProfileViewController: UIViewController {
     var isContactCard: Bool = false
     var contactUser: PFUser?
     
+    var primaryPhone: String?
+    var secondaryPhone: String?
+    var primaryEmail: String?
+    var secondaryEmail: String?
+    var address: String?
+    
     /* ====================================== Outlets and Actions ============================== */
     @IBOutlet var rootView: UIView!
     @IBOutlet weak var rootScrollView: UIScrollView!
     @IBOutlet weak var rootContentView: UIView!
-    @IBOutlet weak var spinnerView: UIView!
     
     @IBOutlet weak var detailCardProfilePic: UIImageView!
     @IBOutlet weak var detailCardProfilePicCentered: UIImageView!
@@ -29,14 +35,13 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var backBtnContainerView: UIView!
     @IBOutlet weak var cameraContainerView: UIView!
+    
+    @IBOutlet weak var callImageView: UIImageView!
+    @IBOutlet weak var emailImageView: UIImageView!
+    @IBOutlet weak var houseImageView: UIImageView!
+    @IBOutlet weak var moreImageView: UIImageView!
+    
     @IBOutlet weak var editDetailsContainerView: UIView!
-    
-    @IBOutlet weak var primaryPhoneLabel: UILabel!
-    @IBOutlet weak var secondaryPhoneLabel: UILabel!
-    @IBOutlet weak var primaryEmailLabel: UILabel!
-    @IBOutlet weak var secondaryEmailLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    
     @IBOutlet weak var logOutBtn: UIButton!
     
     @IBAction func logOutTapped(sender: UIButton) {
@@ -115,6 +120,14 @@ class EditProfileViewController: UIViewController {
         tapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: Selector("editDetailsPressed:"))
         self.editDetailsContainerView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("callPressed:"))
+        self.callImageView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("emailPressed:"))
+        self.emailImageView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("addressDetailsPressed:"))
+        self.houseImageView.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("morePressed:"))
+        self.moreImageView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     /* ======================================= Selectors ====================================== */
@@ -158,6 +171,36 @@ class EditProfileViewController: UIViewController {
 
     }
     
+    func callPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        CSUtils.makeCall(self.primaryPhone)
+    }
+    
+    func emailPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        let emailTitle = ""
+        let messageBody = ""
+        let toRecipents:[String]? = [self.primaryEmail!]
+        let mc = MFMailComposeViewController()
+        mc.mailComposeDelegate = self
+        mc.setToRecipients(toRecipents)
+        mc.setSubject(emailTitle)
+        mc.setMessageBody(messageBody, isHTML: false)
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mc, animated: true, completion: nil)
+        } else {
+            CSUtils.log("Error Sending Emails")
+        }
+    }
+    
+    func addressDetailsPressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        let alert = CSUtils.getDisplayDialog("Address of Contact",message: self.address)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func morePressed(gestureRecognizer: UITapGestureRecognizer? = nil) {
+        CSUtils.log("More pressed!")
+    }
+    
+    
     func presentViewControllerWithSourceType(
         imagePickerSourceType: UIImagePickerControllerSourceType) {
             
@@ -177,7 +220,7 @@ class EditProfileViewController: UIViewController {
 extension EditProfileViewController {
   
     func logOutUser() {
-        let spinner = CSUtils.startSpinner(self.spinnerView)
+        let spinner = CSUtils.startSpinner(self.view)
         PFUser.logOutInBackgroundWithBlock {
             (error) -> Void in
             CSUtils.stopSpinner(spinner)
@@ -276,21 +319,41 @@ extension EditProfileViewController {
         
         self.nameLabel.text = fullName
         self.designationLabel.text = designation
-        self.primaryPhoneLabel.text = primaryPhone
-        self.secondaryPhoneLabel.text = secondaryPhone
-        self.primaryEmailLabel.text = primaryEmail
-        self.secondaryEmailLabel.text = secondaryEmail
-        self.addressLabel.text = address
+        self.primaryPhone = primaryPhone
+        self.secondaryPhone = secondaryPhone
+        self.primaryEmail = primaryEmail
+        self.secondaryEmail = secondaryEmail
+        self.address = address
     }
 }
 
 
 // Extension for picking photo
-extension EditProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension EditProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate {
+    
+    // MARK:- UIIMagePickerControllerDelegate methods
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingImage image: UIImage,
         editingInfo: [String : AnyObject]?) {
             self.dismissViewControllerAnimated(true, completion: nil)
             self.saveUserProfilePic(image)
     }
+    
+    // MARK:- MailComposeViewControllerDelegate methods
+    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: %@", [error!.localizedDescription])
+        default:
+            break
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
+

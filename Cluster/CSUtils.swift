@@ -143,10 +143,20 @@ class CSUtils: NSObject {
         let dialPhone = CSUtils.extractPhoneNumber(phoneNumber)
         if(!CSUtils.validatePhoneNumber(dialPhone)) {
             CSUtils.log("Invalid Phone Number")
+            return
         }
         let phone = "tel://\(dialPhone!)";
         let url:NSURL = NSURL(string:phone)!;
         UIApplication.sharedApplication().openURL(url);
+    }
+    
+    static func sendEmail(email: String?) {
+        if(!CSUtils.validateEmail(email)) {
+            CSUtils.log("Invalid Phone Number")
+            return
+        }
+        let url = NSURL(string: "mailto:\(email)")!
+        UIApplication.sharedApplication().openURL(url)
     }
     
     static func extractPhoneNumber(phoneNumber: String?) -> String?{
