@@ -300,6 +300,8 @@ extension EditProfileViewController {
             
             var user: PFUser?
             user = PFUser.currentUser()
+            self.detailCardProfilePic.image = UIImage(named: "request_placeholder")
+            self.detailCardProfilePicCentered.image = UIImage(named: "request_placeholder")
             if let profilePic = user!.valueForKey("profile_pic") as! PFFile? {
                 //let spinner = CSUtils.startSpinner(self.detailCardProfilePic)
                 profilePic.getDataInBackgroundWithBlock({

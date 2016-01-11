@@ -62,6 +62,7 @@ class SignUpFormViewController: CSFormBaseViewController {
         self.phoneNumberTextField.keyboardType = UIKeyboardType.NumberPad
         self.bgView.backgroundColor = UIColor.themeColor()
         self.rootScrollView.backgroundColor = UIColor.themeColor()
+        self.passwordTextField.secureTextEntry = true
     }
     
 }

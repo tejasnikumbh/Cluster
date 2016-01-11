@@ -51,6 +51,7 @@ class LoginFormViewController: CSFormBaseViewController {
         self.signUpBtnLeadingConstraint.constant = self.usernameContainerView.frame.size.width/2.0 + 8.0
         self.bgView.backgroundColor = UIColor.themeColor()
         self.rootScrollView.backgroundColor = UIColor.themeColor()
+        self.passwordTextField.secureTextEntry = true
     }
 }
 

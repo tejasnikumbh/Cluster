@@ -46,7 +46,6 @@ class CSConnectionDetailFetcher: NSObject {
             let getUsersCorrespondingToConnnectionsQuery = PFUser.query()!
             getUsersCorrespondingToConnnectionsQuery.whereKey("objectId",
                 containedIn: Array(filteredUsersWithRequestLocations.keys))
-            getUsersCorrespondingToConnnectionsQuery.fromLocalDatastore()
             getUsersCorrespondingToConnnectionsQuery.findObjectsInBackgroundWithBlock {
                 (users: [PFObject]?, error: NSError?) -> Void in
                 if((error != nil) || users?.count == 0) { //Error guard
